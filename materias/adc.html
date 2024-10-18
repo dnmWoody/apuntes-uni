@@ -181,8 +181,329 @@
 
             <!-- ********************************************************************************************************** MICROCONTROLADORES -->
             <section id="microcontroladores" class="contenido">
-                <h2>Microcontroladores</h2>
-                <p>Introducción al mundo de los microcontroladores y su uso en sistemas embebidos.</p>
+                <h2 class="titulo2">MICROCONTROLADORES</h2>
+                <h3>Microcontroladores</h3>
+                <p>
+                    Un <b>microcontrolador</b> es un circuito integrado programable que ejecuta ordenes grabadas en su memoria.  Es un <b>sistema cerrado</b> que incluye CPU, memoria y periféricos en un solo chip. <br>
+                    Está diseñado para <b>aplicaciones específicas</b> y control de aplicaciones. Los microcontroladores son comunes en sistemas embebidos, como electrodomésticos, automóviles, dispositivos médicos y sistemas de automatización industrial.
+                </p>
+                <div class="contenedor-imagen-tabla">
+                    <img src="images/adc-microcontrolador.jpg" width="300px" alt="Microcontrolador" title="Microcontrolador">
+                    <img src="images/adc-microprocesador.jpeg" width="300px" alt="Microprocesador" title="Microprocesador">
+                </div>
+                <br>
+
+                <h3>Microprocesadores</h3>
+                <p>
+                    Un <b>microprocesador</b> es un circuito integrado que <b>contiene la CPU de una computadora</b>. Es un <b>sistema abierto</b> que requiere <b>componentes</b> externos, como memoria y periféricos para <b>poder funcionar</b>. <br>
+                    Los microprocesadores se utilizan en una amplia gama de dispositivos, incluido computadoras personales, servidores, dispositivos móviles y sistemas embebidos de alto rendimiento.
+                </p>
+                <div class="contenedor-imagen-tabla">
+                    <table>
+                        <tr>
+                            <th style="background-color: rgb(31, 34, 34); ;"> </th>
+                            <th>MICRO CONTROLADOR</th>
+                            <th>MICRO PROCESADOR</th>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Tipo de sistemas</td>
+                            <td>Cerrado</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Buses</td>
+                            <td>Inaccesibles desde el exterior</td>
+                            <td>Accesibles desde el exterior</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Memoria</td>
+                            <td>Interna, incluye RAM, ROM y almacenamiento</td>
+                            <td>Externa, necesita componenetes adicionales</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Flexibilidad</td>
+                            <td>Limitada a aplicaciones específicas y tareas predefinidas</td>
+                            <td>Alta, se puede utilizar una amplia variedad de aplicaciones</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Complejidad del sistema</td>
+                            <td>Menor, integrado en un solo chip</td>
+                            <td>Mayor, requiere componentes externos como memoria y periféricos</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Costo</td>
+                            <td>Generalmente más barato, todo en un solo chip</td>
+                            <td>Generlamente más caro, debido a la necesidad de componentes adicionales</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Ejemplos de uso</td>
+                            <td>Electrodomésticos, automóviles, sistemas de automatización</td>
+                            <td>Computadoras, servidores, dispositivos móviles</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Capacidad de procesamiento</td>
+                            <td>Menos potentes, optimizados para eficiencia y tareas específicas</td>
+                            <td>Generalemtne más potentes y rápidos</td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+
+                <h2 class="titulo2">ARQUITECTURAS</h2>
+                <div class="contenedor-imagen-tabla">
+                    <img src="images/adc-arquitecturas.png" width="800px" alt="arquitecturas" title="Arquitecturas">
+                </div>
+                <br>
+                <h3>Arquitectura Harvard</h3>
+                <p>
+                    La arquitecura Harvard utiliza <b>dos memorias separadas para instrucciones y datos</b>, permitiendo acceso simultáneo a ambas, lo cual puede incrementar el rendimiento. <br>
+                    Esta arquitectura es común en <b>microcontroladores</b>, especialmente en aplicaciones donde se requiere un rendimiento elevado y un control preciso, como en sistemas embebidos y dispositivos de tiempo real. <br><br>
+                    En este diseño, la CPU está conectada a dos memorias independientes y con buses diferentes: una para las instrucciones y otra para los datos. Esta configuración permite el <b>paralelismo</b>, ya que se puede acceder a los datos e instrucciones de forma independiente y simultánea.<br>
+                    Las memorias no necesariamente deben compartir características, por lo que pueden tener distinta longitud de datos e instrucciones, permitiendo una optimización del uso de la memoria en general.<br>
+                    El tiempo de acceso a las instrucciones y a los datos puede superponerse, aumetando la velocidad de procesamiento en cada operación.<br><br>
+                    Además, facilita la realización de <b>pipeline</b>, una técnica de segmentación que permite al procesador ejecutar una instrucción mientras busca el código de la siguiente.<br> 
+                    Las instrucciones y los datos se almacenan en caches separadas para mejorar el rendimiento. <br>
+                    Sin embargo, esta arquitectura tiene <u>desventajas</u>. Divide la cantidad de caché entre instrucciones y datos, lo que solo es beneficioso si la frecuencia de lectura de ambos es similar.<br> 
+                    También requiere dos buses separados, lo que aumenta la complejidad y el costo de fabricación.
+                </p>
+                <br>
+
+                <h3>Arquitectura Von Neumann</h3>
+                <p>
+                    La arquitectura Von Neumann utiliza una sola memoria para almacenar tanto las instrucciones como los datos.<br>
+                    Esta arquitectura describe a la computadora con <b>cuatros secciones principales: </b>
+                    <ol>
+                        <li>Memoria principal</li>
+                        <li>Dispositivos de entrada-salida</li>
+                        <li>Unidad Centra de Procesamiento (CPU)</li>
+                        <li>Las interconexiones o buses entre todos los bloques funcionales del sistema</li>
+                    </ol>
+                    <br>
+
+                    Es común en <b>microprocesadores</b> y procesadores de señal digital, debido a su simplicidad y flexibilidad, lo que facilita el diseño en sistemas de propósito general, como los que se encuentran en las computadoras personales. <br><br>
+                    En este diseño, la CPU está conectada a una <b>memoria principal única</b> (generalmente RAM), donde se guardan tanto las instrucciones del programa como los datos, lo cual hace que el procesamiento sea eficiente debido a que todo está ubicado en un solo lugar. Esto elimina la necesidad de buses separados y permite una búsqueda más directa y eficiente. <br>
+                    Sin embargo, <b>requiere un mecanismo para distinguri entre datos e instrucciones, ya que se almacenan en el mismo formato.</b><br><br>
+                    La arquitectura de Von Neumann es relativamente fácil de diseñar y eficiente en el uso de la memoria, ya que no desperdicia espacio de almacenamiento al ser usada por ambos tipos de información. Una particularidad de esta arquitectura es que la <b>conexión se realiza mediante un único bus.</b> El tamaño de las instrucciones es fijado por el ancho del bus; por ejemplo, un microprocesador de 8 bits con un bus de 8 bits tendrá que manejar datos e instrucciones en unidades de 8 bits (bytes). Si se necesita acceder a una instrucción que excede el ancho de bus, se deberán realizar múltiples accesos a la memoria.<br><br>
+                    Tener un único bús hace más lenta la respuesta del microprocesador, ya que no puede buscar en memoria una nueva instrucción mientras está transfiriendo datos de la instrucción anterior.<br>
+                    Ademas, <b>requiere de dos ciclos de reloj para leer la memoria, uno para las instrucciones y otro para los datos.</b><br>
+                    El cuello de botella de Von Neumann se puede mejorar de varias maneras, como con el uso de memoria caché entre la CPU y la memoria princial, o con vías independientes para instrucciones y datos (arquitectura Harvard modificada), para reducir el acceso a memoria.
+                </p>
+                <br>
+
+                <h2 class="titulo2">INSTRUCCIONES (CISC - RISC)</h2>
+                <h3>Conjunto de instrucciones</h3>
+                <p>
+                    Los <b>microprocesadores</b> suelen ser <b>CISC (Complex Instruction Set Computing)</b>, estos tienen un conjunto de instrucciones grande y complejo, diseñado para realizar tareas complejas en pocas líneas de código. (Secuenciadores microprogramados)
+                    <ul class="lista">
+                        <li>
+                            <b>Características</b>
+                            <ul class="lista" style="list-style: circle;">
+                                <li><b>Conjunto de instrucciones grandes:</b> Hay muchas instrucciones disponibles, lo que permite realizar tareas complejas en una sola línea de código.</li>
+                                <li><b>Complejidad:</b> Hay muchas instrucciones disponibles, lo que permite realizar tareas complejas en una sola línea de código.</li>
+                                <li><b>Eficiencia en codificación:</b> Los programadores pueden escribir programas más cortos y complejos, lo que puede reducir el tiempo de desarrollo.</li>
+                                <li><b>Variedad de modos de direccionamiento:</b> Permite diferentes formas de acceder a la memoria, lo que añade flexibilidad.</li>
+                                <li><b>Mayor consumo de energia:</b> Por lo general, CISC consume más energía debido a su complejidad.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>Aplicaciones:</b> Utilizados en computadoras personales, servidores y estaciones de trabajo donde la flexibilidad y la capacidad de realizar tareas complejas son cruciales.
+                        </li>
+                    </ul>
+                    <br>
+
+                    Los <b>microcontroladores</b> suelen ser <b>RISC (Reduced Instruction Set Computing)</b>, estos tienen un conjunto de instrucciones más pequeño y simplificado, optimizado para realizar operaciones básicas de manera rápida y eficiente. Esto es beneficioso para aplciaciones embebidas que requieren alta eficiencia y bajo consumo de energía.
+                    <ul class="lista">
+                        <li>
+                            <b>Características</b>
+                            <ul class="lista" style="list-style: circle;">
+                                <li><b>Conjunto de instrucciones pequeño:</b> Hay menos instrucciones, lo que simplifica el diseño del procesador.</li>
+                                <li><b>Simplicidad:</b> La arquitectura es más sencilla, lo que facilita su implementación.</li>
+                                <li><b>Optimización para operaciones básicas:</b> Está diseñado para ejecutar instrucciones simples rápidamente.</li>
+                                <li><b>Eficiencia en la ejecución:</b> Las instrucciones se ejecutan de manera más eficiente, gracias a la simplicidad del conjunto.</li>
+                                <li><b>Pipeline:</b> Permite que diferentes etapas de ejecución de instrucciones se realicen simultáneamente, aumentando la eficiencia.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <b>Aplicaciones:</b> Ideal para aplicaciones embebidas que requieren alta eficiencia y bajo consumode energia, como electrodomésticos, automóviles, dispositivos médicos y sistemas de automatización industrial.
+                        </li>                        
+                    </ul>
+                    <br>
+
+                    Cabe destacar que el análisis de instrucción no es necesario en <b>RISC</b> porque no hay microprograma, RISC trabaja con <b>secuenciadores cableados.</b><br>
+                    En cuanto al cálculo de la dirección del operando, las <b>transferencia se hacen entre registros</b>, y la búsqueda del operando no es necesaria ya que el <b>operando está en registros de acceso</b> muy rápido.<br>
+                    Además, cada instruccion en RISC toma solo <b>un solo ciclo de reloj</b>, lo que constribuye a su alta eficiencia.
+                    <br>
+
+                    <div class="contenedor-imagen-tabla">
+                        <table>
+                            <tr>
+                                <th> Características</th>
+                                <th>RISC</th>
+                                <th>CISC</th>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Simplicidad de instrucciones</b></td>
+                                <td>Instrucciones simples, típicamente <b>1 ciclo de ejecución</b></td>
+                                <td>Instrucciones complejas, pueden tomar <b>múltiples ciclos de ejecución</b></td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Acceso a Memoria</b></td>
+                                <td>Referencias a memoria solo con instrucciones LOAD/STORE</td>
+                                <td>Cualquier instrucción puede referenciar a la memoria.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Pipeline</b></td>
+                                <td>Más eficaz, con menos etapas</td>
+                                <td>Menos eficaz, con más etapas</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Ejecución de instrucciones</b></td>
+                                <td>Ejecutadas directamente por el <b>hardware</b></td>
+                                <td>INterpretadas por un <b>microprograma</b></td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Formato de instrucciones</b></td>
+                                <td>Formato <b>fijo</b> de instrucciones</td>
+                                <td>Formato <b>variable</b> de instrucciones</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Cantidad de ejecuciones</b></td>
+                                <td>Poca instruccioens y modos de instrucción</td>
+                                <td>Muchas instrucciones y modos</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Complejidad del Sistema</b></td>
+                                <td>La complejidad se encuentra en el <b>compilador</b></td>
+                                <td>Complejidad en el <b>microprograma</b></td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Registro</b></td>
+                                <td>Conjunto <b>múltiple</b> de registros</td>
+                                <td>Conjunto <b>único</b> de registros</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+
+                    En conclusión, se puede decir que las máquinas RISC completan todas sus instrucciones en un solo ciclo de reloj, es por eso que es más rápida que las máquinas CISC, y en RISC contamos con un gran manejo de registros. Sin embargo, para efectuar una operación de mayor complejidad (como multipicaciones o divisiones) necesitamos más instrucciones como en CISC.<br>
+                    Por eso un usuario debe definirse a favor o en contra de una arquitectura en función de la aplicación que desea realizar.
+                </p>
+                <br>
+
+                <h2 class="titulo2"> PIPELINE EN MICROCONTROLADORES</h2> 
+                <p>
+                    El <b>pipeline</b> en los <b>microcontroladores es una técnica segmentada</b> utilizada para aumentar la eficiencia y la velocidad de procesamiento al dividir la <b>ejecución de una tarea en múltiples etapas independientes.</b><br>
+                    Estas etapas pueden ejecutarse simultáneamente en diferentes partes del hardware del microcontrolador. 
+                    <br>
+                    
+                    La tarea de ejecutar una instrucción se divide en varias etapas como:
+                    <ul class="lista">
+                        <li>la búsqueda de la instrucción (fetch), </li>
+                        <li>la decodifcación (decode), </li>
+                        <li>la ejecución (execute), </li>
+                        <li>la memoria (memory), y </li>
+                        <li>la escritura del resultado (write-back)</li>
+                    </ul> 
+                    <br>
+
+                    Cada una de estas etapas puede trabajar en diferentes instruciones al mismo tiempo.<br>
+                    <div class="cuadro">
+                        Por ejemplo, mientras una instrucción está siendo decodificada, otra puede estar siendo buscada y otra puede estar siendo ejecutada. Sin embargo, las <u>dependencias</u> de datos y otros problemas pueden causar ralentizaciones, por lo que se requieren diversas estrategias para mitigar estos problemas y mantener el flujo de instrucciones lo más fluido posible.
+                    </div>
+                    <br><br>
+
+                    <h3>Estrategias para mitigar problemas en el pipeline</h3>
+                    <h4>Incluyen:</h4>
+                    <ul class="lista">
+                        <li>Interbloque (Stalling)</li>
+                        <li>Reordenamiento de instrucciones</li>
+                        <li>Bypassing / Forwarding</li>
+                        <li>Predicción de saltos</li>
+                    </ul>
+                    <br>
+
+                    <h4>Ventajas</h4>
+                    <ul class="lista">
+                        <li>Mayor rendimiento</li>
+                        <li>Eficiencia</li>
+                    </ul>
+                    <br>
+
+                    <h4>Desventajas</h4>
+                    <ul class="lista">
+                        <li>Interbloqueos</li>
+                        <li>Complejidad de Control</li>
+                    </ul>
+                </p>
+                <br>
+
+                <h3>Comparación con Microprocesadores</h3>
+                <p>
+                    Los <b>microprocesadores</b>, diseñados para tareas más complejas y de alto rendimiento, implementan pipeline de manera más agresiva y sofisticada.<br>
+                    Tienen más recursos disponibles y pueden permitirse un pipeline más profundo y complejo, lo cual mejora significativamente el rendimiento costa de mayor consumo de energía.<br><br>
+                    Por otro lado, los <b>microcontroladores</b> están diseñados para aplicaciones específicas y de menor consumo energético, por lo que su implementación de pipeline tiende a ser más sencilla y menos profunda.
+                </p>
+                <br>
+
+                <h3>Comparación con Procesador sin Pipeline</h3>
+                <p>
+                    <ul>
+                        <li><b>Sin Pipeline: </b> Cada instrucción debe completarse antes de que la siguiente comience, lo que puede resultar en una ejecución más lenta.</li>
+                        <li><b>Ventaja de Sin Pipeline: </b> Diseño más sencillo y menor complejidad en la unidad de control.</li>
+                    </ul>
+                </p>
+                <br><br>
+
+                <h2 class="titulo2">FORMATO DE INSTRUCCIONES ORTOGONAL</h2>
+                <p>
+                    El <b>formato de instrucciones ortogonal</b> es un diseño de conjunto de instrucciones en el que <b>cualquier operación puede ser realizada con cualquier registro o modo de direccionamiento disponible.</b> 
+                    <br>Esto proporciona una gran flexibilidad y simplicidad en la programación, ya que permite utilizar <b>cualquier combinación de registros y modos de direccionamiento para cualquier instrucción.</b><br>
+                    Sin embargo, este formato puede resultar en instrucciones de mayor tamaño, lo que aumenta la complejidad de decodificación, y también incrementa la complejidad del hardware al requerir soporte  para todas las combinaciones posibles.
+                    <br><br>
+
+                    <h4>Ventajas</h4>
+                    <ul class="lista">
+                        <li>Flexibilidad: Facilita la programación al permitir una mayor flexibilidad en el uso de registros y modos de direccionamiento.</li>
+                        <li>Simplicidad: Simplifica el diseño del compilador y el código ensamblador</li>
+                    </ul>
+                    <br><br>
+
+                    <h4>Desventajas</h4>
+                    <ul class="lista">
+                        <li>Tamaño de instrucciones: Puede resultar en isntrucciones de mayor tamaño, lo que aumenta la complejidad de decodificación.</li>
+                        <li>Costo: Aumenta la complejidad de hardware, ya que se necesita soporte para todas las combinaciones posibles de registros y modos de direccionamiento.</li>
+                    </ul>
+                </p>
+                <br><br>
+
+                <h3>Amplio banco de registros:</h3>
+                <p>
+                    Un <b>amplio banco de registros</b> se refiere a disponer de una <b>gran cantidad de registros</b> accesibles por el procesador de operaciones rápidas. ESto reduce la necesidad de acceder a la memoria princial, acelerando el procesamiento y permitiendo que más variables temporales y datos intermedio se almacenan en registros, optimizando la eficiencia del código.<br>
+                    Sin embargo, tener más registros puede complicar la gestión de contexto durante interrupciones o cambios de tarea, y aumentar el costo y la complejidad del hardware en comparación con un <b>banco de registro limitado</b>, que requiere más acceso a memoria y puede ralentizar el procesamiento, aunque <b>simplifica el diseño y reduce los costos</b>
+                    <br><br>
+
+                    <h4>Ventajas</h4>
+                    <ul class="lista">
+                        <li>Eficiencia: Reduce la necesidad de acceder a la memoria principal, lo que acelera el procesamiento.</li>
+                        <li>Optimización de Código: Permite que más variables temporales y datos intermedios se almacenan en registros, mejorando la eficiencia del código.</li>
+                    </ul>
+                    <br><br>
+
+                    <h4>Desventajas</h4>
+                    <ul class="lista">
+                        <li>Complejidad de manejo: Un mayor número de registros puede complicar la gestión de contexto durante interrupciones o cambios de tarea.</li>
+                        <li>Costo de hardware: Más registros pueden aumentar el costo y la complejidad del hardware</li>
+                    </ul>
+                    <br><br>
+
+                    <h4>Comparación de Regitro Limitado</h4>
+                    <ul class="lista">
+                        <li>Registros limitados: Menos registros requieren más accesos a memoria, lo que puede ralentizar el procesamiento.</li>
+                        <li>Ventaja de registros limitados: Diseño más sencillo y menor costo de hardware.</li>
+                    </ul>
+                </p>
+
                 <button onclick="scrollToTop('microcontroladores')">▲</button>
                 <!--<button onclick="goBack()">Volver Atrás</button>-->
             </section>

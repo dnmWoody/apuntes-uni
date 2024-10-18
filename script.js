@@ -30,8 +30,10 @@ function showContent(materia) {
         
         // SEGUNDO AÑO
         case 'ayp2':
+            // ALGORITMICA Y PROGRAMACIÓN II
             content = `
             <br><br>
+            
             <h1> Algoritmica y Programación II </h1>
             <p><strong>[UNIDADES]</strong></p>
             <ul>
@@ -50,10 +52,10 @@ function showContent(materia) {
                 <li> Unidad 13: Algoritmos avanzados de búsqueda</li>
                 <li> Unidad 14: Estrategia de diseño de algoritmos</li>
             </ul>
-            <button><a href="/materias/ayp2.html" style="text-decoration: none; color:black">IR A LA UNIDAD</a></button>
-            `;
+            <button><a href="/materias/ayp2.html" style="text-decoration: none; color:black">IR A LA UNIDAD</a></button>`;
             break;
         case 'adc':
+            // ARQUITECTURA DE COMPUTADORAS
             content = ` 
                 <br><br>
                 <h1> Arquitectura de Computadoras</h1>

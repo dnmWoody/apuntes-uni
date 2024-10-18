@@ -42,10 +42,55 @@ ol {
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
+.contenedor-imagen-tabla {
+    background-color: #f5f5f5; /* Fondo claro para el contenedor */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    margin-top: 20px; /* Separación superior */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.contenedor-imagen-tabla img {
+    max-width: 100%; /* Asegura que la imagen sea responsiva */
+    border-radius: 10px; /* Bordes redondeados en la imagen */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
 /* Versión en modo oscuro */
 body.dark .cuadro {
     background-color: #2c3e50; /* Fondo más oscuro */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más marcada */
+}
+
+table {
+    width: 100%; /* Ancho completo de la tabla */
+    border-collapse: collapse; /* Colapsa los bordes de la tabla */
+}
+
+th {
+    background-color: rgb(31, 34, 34); /* Fondo de las cabeceras */
+    color: white; /* Color del texto en las cabeceras */
+    padding: 10px; /* Espaciado interno */
+}
+
+td {
+    padding: 10px; /* Espaciado interno en celdas */
+    border: 1px solid #ccc; /* Borde gris claro para las celdas */
+}
+
+/* Versión en modo oscuro */
+body.dark .contenedor-imagen-tabla {
+    background-color: #2c3e50; /* Fondo más oscuro */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más marcada */
+}
+
+body.dark table {
+    color: #ecf0f1; /* Color del texto en modo oscuro */
+}
+
+body.dark th {
+    background-color: rgb(45, 55, 60); /* Fondo más oscuro para las cabeceras */
 }
 
 
