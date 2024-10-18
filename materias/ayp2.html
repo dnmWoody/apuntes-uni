@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADC - Arquitectura de Computadoras</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="styleM.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <h2>Contenido</h2>
+            <ul>
+                <li><a href="#memoria-dinamica" onclick="hideMenu()">           Memoria Dinámica</a></li>
+                <li><a href="#manejo-de-excepciones" onclick="hideMenu()">      Manejo de Excepciones</a></li>
+                <li><a href="#recursividad" onclick="hideMenu()">               Programación con Recursividad</a></li>
+                <li><a href="#eficiencia-analisis" onclick="hideMenu()">        Eficiencia y análisis de algoritmos</a></li>
+                <li><a href="#verificacion-correccion" onclick="hideMenu()">    Verificación y correción de algoritmos</a></li>
+                <li><a href="#datos-abstractos" onclick="hideMenu()">           Tipos de Datos Abstractos</a></li>
+                <li><a href="#adt-lo" onclick="hideMenu()">                     ADT Lista Ordenada</a></li>
+                <li><a href="#adt-pila" onclick="hideMenu()">                   ADT Pila</a></li>
+                <li><a href="#adt-cola" onclick="hideMenu()">                   ADT Cola</a></li>
+                <li><a href="#adt-abb" onclick="hideMenu()">                    ADT Árbol Binario de Búsqueda (ABB)</a></li>
+                <li><a href="#adt-gf" onclick="hideMenu()">                     ADT Grafo Dirigido</a></li>
+                <li><a href="#algoritmo-ordenamiento" onclick="hideMenu()">     Algortimos avanzados de ordenamiento</a></li>
+                <li><a href="#algoritmo-busqueda" onclick="hideMenu()">         Algoritmos avanzados de búsqueda</a></li>
+                <li><a href="#algoritmo-estrategia" onclick="hideMenu()">       Estrategia de diseño de algoritmos</a></li>
+                <li><a href="#examenes" onclick="hideMenu()">                   Exámenes</a></li>
+                <li><a href="../index.html" onclick="hideMenu()" style="color: rgb(207, 89, 89);">← Volver atrás</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">Cambiar Tema</button>
+        </aside>
+
+        <!-- Botón para mostrar el menú cuando esté oculto en modo responsive -->
+        <button id="show-menu-btn" class="show-menu-btn" onclick="toggleMenu()">Menú</button>
+        <!--<button id="show-atras-btn" class="show-atras-btn"><a href="../index.html">Volver atrás</a></button>-->
+
+
+        <main class="main-content" id="main-content">
+            <section id="entrada-salida" class="contenido">
+                <h2>Entrada - Salida</h2>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <p>Descripción detallada sobre los sistemas de entrada y salida.</p>
+                <button onclick="scrollToTop('entrada-salida')">▲</button>
+            </section>
+
+            <section id="interrupciones" class="contenido">
+                <h2>Interrupciones</h2>
+                <p>Contenido sobre el manejo y gestión de interrupciones en sistemas operativos.</p>
+                <button onclick="scrollToTop('interrupciones')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <section id="pipeline" class="contenido">
+                <h2>Pipeline</h2>
+                <p>Conceptos relacionados con el pipeline y su funcionamiento en los procesadores.</p>
+                <button onclick="scrollToTop('pipeline')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <section id="microcontroladores" class="contenido">
+                <h2>Microcontroladores</h2>
+                <p>Introducción al mundo de los microcontroladores y su uso en sistemas embebidos.</p>
+                <button onclick="scrollToTop('microcontroladores')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <section id="memoria-cache" class="contenido">
+                <h2>Memoria Caché</h2>
+                <p>Funcionamiento de la memoria caché y su importancia en la arquitectura de computadoras.</p>
+                <button onclick="scrollToTop('memoria-cache')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <section id="examenes" class="contenido">
+                <h2>Exámenes</h2>
+                <p>Listado y resultados de los exámenes realizados durante el curso.</p>
+                <button onclick="scrollToTop('examenes')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <div id="content-display" class="contenido">Selecciona una materia para ver su contenido aquí.</div>
+        </main>
+
+    </div>
+
+    <script src="scriptM.js"></script>
+</body>
+</html>

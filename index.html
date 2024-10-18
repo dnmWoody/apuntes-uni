@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ESTUDIANTE</title>
+</head>
+<body>
+    <div class="container" id="container">
+        <aside class="sidebar">
+            <button class="toggle-btn" onclick="toggleTheme()">Cambiar a Modo Oscuro</button>
+            <br><br>
+            <h2>Contenido</h2>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="toggleDropdown('carrera')">APU - SISTEMAS</button>
+                <div class="dropdown-content" id="carrera">
+                    <div class="dropdown">
+                        <!-- Primer año -->
+                        <button class="dropbtn" onclick="toggleDropdown('primer-anio')">Primer año</button>
+                        <div class="dropdown-content" id="primer-anio">
+                            <a href="#" onclick="showContent('algebra')">Algebra</a>
+                            <a href="#" onclick="showContent('edi')">Elementos de Informática</a>
+                            <a href="#" onclick="showContent('epa')">Expresión de Problemas de Algoritmos (EPA)</a>
+                            
+                            <a href="#" onclick="showContent('ayp1')">Alg. y Programación I</a>
+                            <a href="#" onclick="showContent('discretas')">Lógica y Matemática Discretas</a>
+                            <a href="#" onclick="showContent('am')">Analisis Matemático</a>
+                        </div>
+
+                        <!-- Segundo año -->
+                        <button class="dropbtn" onclick="toggleDropdown('segundo-anio')">Segundo año</button>
+                        <div class="dropdown-content" id="segundo-anio">
+                            <a href="#" onclick="showContent('ayp2')">Alg. y Programación II</a>
+                            <a href="#" onclick="showContent('adc')">Arquitectura de Computadoras</a>
+                            <a href="#" onclick="showContent('syo')">Sistemas y Organizaciones</a>
+                            
+                            <a href="#" onclick="showContent('poo')">Programación Orientada a Objetos</a>
+                            <a href="#" onclick="showContent('bd1')">Base de Datos I</a>
+                            <a href="#" onclick="showContent('ic')">Introducción a Concurrencia</a>
+                        </div>
+
+                        <!-- Tercer año-->
+                        <button class="dropbtn" onclick="toggleDropdown('tercer-anio')">Tercer año</button>
+                        <div class="dropdown-content" id="tercer-anio">
+                            <a href="#" onclick="showContent('so')">Sistemas Operativos</a>
+                            <a href="#" onclick="showContent('is1')">Ingenieria de Software I</a>
+                            <a href="#" onclick="showContent('ll')">Laboratorio de Lenguajes</a>
+                            
+                            <a href="#" onclick="showContent('ds')">Desarrollo de Software</a>
+                            <a href="#" onclick="showContent('fti')">Fundamentos Teóricos de Informática</a>
+                            <a href="#" onclick="showContent('is2')">Ingenieria de Software II</a>
+                        </div>
+                    </div>
+                    <!--
+                        <a href="#" onclick="showContent('base_datos')">Base de Datos</a>
+                        <a href="#" onclick="showContent('algoritmica')">Algorítmica</a>
+                    -->
+                </div>
+                <br><br>
+                <button class="dropbtn" onclick="toggleDropdown('cursos')">CURSOS</button>
+                <div class="dropdown-content" id="cursos">
+                    <div class="dropdown">
+                        <a href="#" onclick="showContent('diplo-apps')">Diplomatura en Programación de Apps</a>
+                        <a href="#" onclick="showContent('html-css-js')">HTML, CSS y JS</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <h1>Contenido Seleccionado</h1>
+            <div id="content-display">
+                [AUTOR]: WoodyDev<br>   
+                [OBJETIVO]: Listar las materias cursadas durante la carrera, con enlaces a cada una para ver sus unidades y contenidos.<br>
+                Cada entrada tendrá un desglose de las unidades vistas y la opción de descargar un PDF con más información.
+                <br><br>
+                Se podrá encontrar la unidades dadas por la cátedra del año que se cursó.<br>
+                Además, se encontrara los resumenes que se utilizaron para la aprobación de los finales involucrados.
+                <br><br><br>
+                
+                <h3>Selecciona una opción para ver su contenido aquí.</h3>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

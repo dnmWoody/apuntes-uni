@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADC - Arquitectura de Computadoras</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="styleM.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <h2>Contenido</h2>
+            <ul>
+                <li><a href="#interrupciones" onclick="hideMenu()">Interrupciones</a></li>
+                <li><a href="#microcontroladores" onclick="hideMenu()">Microcontroladores</a></li>
+                <li><a href="#pipeline" onclick="hideMenu()">Pipeline</a></li>
+                <li><a href="#entrada-salida" onclick="hideMenu()">Entrada - Salida</a></li>
+                <li><a href="#paralelismo" onclick="hideMenu()">Paralelismo</a></li>
+                <li><a href="#secuenciadores" onclick="hideMenu()">Secuenciadores</a></li>
+                <li><a href="#memoria-cache" onclick="hideMenu()">Memoria Caché</a></li>
+                <li><a href="#coherencia-cache" onclick="hideMenu()">Coherencia Caché</a></li>
+                <li><a href="#examenes" onclick="hideMenu()">Exámenes</a></li>
+                <li><a href="../index.html" onclick="hideMenu()" style="color: rgb(207, 89, 89);">← Volver atrás</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">Cambiar Tema</button>
+        </aside>
+
+        <!-- Botón para mostrar el menú cuando esté oculto en modo responsive -->
+        <button id="show-menu-btn" class="show-menu-btn" onclick="toggleMenu()">Menú</button>
+        <!--<button id="show-atras-btn" class="show-atras-btn"><a href="../index.html">Volver atrás</a></button>-->
+
+
+        <main class="main-content" id="main-content">
+            <!-- ********************************************************************************************************** INTERRUPCIONES -->
+            <section id="interrupciones" class="contenido">
+                <h2 class="titulo2">Interrupciones</h2>
+                <p>Las interrupciones son cambios en el flujo de control causados no por el programa en ejecución, sino por eventos externos al mismo, como los relacionados con operaciones de E/S (Entrada/Salida).<br>
+                    Por ejemplo, un disco duro que realiza una transferencia puede interrumpir el flujo normal de trabajo cuando finaliza la operación. Otro ejemplo es el teclado: al presionar una tecla, se genera una interrupción.<br>
+                    Cuando se habla de interrupciones, se hace referencia a la detención temporal del flujo normal de ejecución del procesador, transfiriendo el control a la unidad manejadora de interrupciones, que se encargará de realizar la acción apropiada.<br>
+                    Una vez finalizada la acción, el control debe ser devuelto al proceso interrumpido, restaurando los registros y el estado interno del sistema tal como estaban antes de la interrupción.<br>
+                    Las interrupciones son asíncronas, lo que significa que pueden ocurrir en cualquier momento, ya que no son controladas directamente por el programa en ejecución.
+                </p>
+                <br>
+
+                <h3>Mecanismo de interrupciones (Paso a Paso)</h3>
+                <ol>
+                    <li><b>El dispositivo genera una interrupción:</b> 
+                        <br>Un dispositivo, como el teclado o un disco duro, necesita atención de la CPU, por lo que envía una señal de interrupción a través del bus del sistema, que es la conexión física entre los componentes de la computadora.</li>
+                    <li><b>La CPU está lista para manejar la interrupción:</b>
+                        <br> La CPU sigue trabajando en sus tareas hasta que pueda atender la interrupción. Una vez que esté lista, envía una señal de reconocimiento para decirle al dispositivo que la interrupción ha sido registrada.</li>
+                    <li><b>Identificación del dispositivo que generó la interrupción:</b>
+                        <br>El dispositivo coloca un número, llamado <b>vector de interrupción</b>, en el bus de datos. Este número identifica qué dispositivo solicitó la interrupción.</li>
+                    <li><b>La CPU toma el vector de interrupción: </b>
+                        <br> La CPU guarda temporalmente ese número (el vector de interrupción), que servirá para localizar la rutina que debe ejecutarse para manejar la interrupción.</li>
+                    <li><b>La CPU guarda su estado actual: </b> 
+                        <br> La CPU necesita recordar en qué punto estaba ejecutando el programa cuando ocurrió la interrupción. Para ello, guarda el <b>contador de programa</b> (que le dice qué instrucción estaba ejecutando) y el <b>estado del programa</b> (valores de los registros y otros datos importantes) en la pila, una zona de la memoria.</li>
+                    <li><b>La CPU localiza la rutina de manejo de interrupciones: </b>
+                        <br>Usando el vector de interrupción, la CPU busca una tabla especial en la memoria (ubicada en la parte baja de la memoria) que le indica dónde está la <b>rutina de servicio de interrupción</b>, que es el código que se va a ejecutar para manejar la interrupción.</li>
+                    <li><b>Guardado de registros: </b>
+                        <br>La rutina de servicio de interrupción guarda todos los registros (información importante que estaba usando la CPU), para poder restaurarlos después de atender la interrupción. Estos se guardan en la pila o en una tabla del sistema.</li>
+                    <li><b>Identificación específica del dispositivo: </b>
+                        <br>A veces, varios dispositivos pueden compartir el mismo vector de interrupción. En este caso, la CPU debe leer un registro en el dispositivo para saber cuál de ellos exactamente generó la interrupción (por ejemplo, si fue el teclado o un ratón).</li>
+                    <li><b> Lectura de la información sobre la interrupción: </b>
+                        <br>La CPU recoge toda la información adicional que necesita sobre el evento que causó la interrupción, como códigos de error o datos específicos del dispositivo.</li>
+                    <li><b>Manejo de errores de E/S: </b>
+                        <br>Si hubo algún error durante la operación de entrada/salida (E/S), como un problema al leer del disco duro, la rutina de servicio se encarga de solucionarlo aquí.</li>
+                    <li><b>Actualización de variables: </b>
+                        <br>Si la interrupción requiere que se actualicen contadores o variables globales, como el número de datos procesados, esto se hace en este paso.</li>
+                    <li><b>Notificación al dispositivo: </b>
+                        <br>Una vez procesada la interrupción, la CPU puede enviar un código al dispositivo para indicarle que la interrupción ha sido manejada correctamente.</li>
+                    <li><b>Restauración del estado previo: </b>
+                        <br>Se restauran los registros que fueron guardados para que la CPU vuelva exactamente al estado en el que estaba antes de la interrupción.</li>
+                    <li><b>Reaundación del trabajo: </b>
+                        <br>Finalmente, la CPU ejecuta una instrucción especial que la devuelve al estado anterior y continúa ejecutando el programa desde donde fue interrumpido.</li>
+                </ol>
+                
+                <p>
+                    Este proceso ocurre muy rápido, casi de manera instantánea, y por eso se puede, por ejemplo escribir en un teclado, seguir escribiendo sin notar ningún retraso. 
+                </p>
+                <br>
+
+                <h3>Interrupciones Anidadas</h3>
+                <p>
+                    Las interrupciones anidadas permite que una interrupción de baja prioridad sea interrumpida por otra de alta prioridad, creando así una pila de interrupciones donde cada nivel se guarde su propio estado.<br>
+                    Este mecanismo permite que los eventos más críticos puedan ser atendidos de inmediato. <br>
+                    Cuando una ocurre la interrupción durante el manejo de otra interrupción, el estado de la CPU (registros, contador de programa y la palabra del estado del programa), se guarda en una estructura de pila. Esta pila sigue el principio de LIFO (Last In, First Out), lo que significa que la ultima interrupción en ser atendida es la primera en ser completada.
+                </p>
+                <br>
+
+                <h3>Interrupciones Secuenciales</h3>
+                <p>
+                    Las interrupciones secuenciales se basa en manejar una interrupción a la vez antes de atender la siguiente, completando la ISR (Interrupt Service Routine).<br>
+                    Aunque este método es simple, puede existir ciertas desventajas ya que existen interrupciones de diferentes prioridades. <br>
+                    En estos casos, el sistema debe esperar que se complete la interrupción actual antes de antender la siguiente, lo que puede resultar demoras significativas si una interrupción de alto prioridad ocurre mientras se está manejando una interrupción de baja prioridad.<br>
+                    Esto puede generar efectos negativos en la capacidad de respuesta del sistema y su desempeño general, especialmente en aplicaciones de tiempo real donde la rapidez es crítica.
+                </p>
+                <br>
+
+                <h2>Ampliación de conceptos: Prioridades, Rutinas de Servicio (ISR), su ubicación y acceso a ellas</h2>
+                <h3>Prioridades</h3>
+                <p>
+                    En un sistema de interrupciones, es crucial tener un mecnaismo para poder priorizar y manejar interrupciones mas urgentes. Existen varias alternativas para la gestión de interrupciones: 
+                    <ul class="lista">
+                        <li> <b>Interrupciones anidadas:</b> Permiten que una interrupción sea interrumpida por otra de mayor gravedad. Esto se logra guardadno el estado de la interrupción actual y atendiendo primero la interrupción más crítica. Este método asegura que las interrupciones más urfentes sean tratadas inmediatamente, mejorando la capacidad de respuesta del sistema.</li>
+                        <li> <b>Inhabilitación de interrupciones:</b> Consiste en deshablitar todas las interrupciones mientras se está atendiendo una. Este enfoque simplifica el manejo de interrupciones, pero resulta ineficiente en sistemas donde las interrupciones mas críticas deben ser atendidas sin demora.</li>
+                    </ul>
+                    <br>
+                    
+                    <i>Tener interrupciones manejadas por prioridad es más efectivo y logra un sistema mas equilibrado mejorando así el rendimiento del sistema en aplicaciones de tiempo real.</i>
+                </p>
+                <br>
+
+                <h3>Rutinas de Servicio de Interrupciones (ISR)</h4>
+                <p>
+                    Las <b>ISR (Interrupt Service Routines)</b> son programas especiales que se ejecutan automáticamente para <i>atender eventos específicos</i> llamados <b>interrupciones</b>. El objetivo principal de cada ISR es <i>gestionar el evento que causó la interrupción y restaurar el sistema</i> para que continúe funcionando normalmente. 
+                    <div class="cuadro">
+                        <b>Ejemplo Claro de ISR:</b><br>
+                        Imagina que estás viendo una película en tu computadora y recibes un mensaje en WhatsApp.<br>
+                        La interrupción es el mensaje entrante. El sistema operativo pausa la película momentáneamente, abre WhatsApp para mostrarte la notificación, y luego retoma la película donde se quedó.
+                    </div>
+                    <br>
+                    
+                    <ul class="lista">
+                        <li>
+                            <b>Ubicación de la ISR:</b> Las direcciones de las ISR se encuentran en una estructura conocida como vector de interrupciones que es una tabla en memoria. Cada entrada de la tabla contiene la dirección de inicio de una ISR específica.
+                            <div class="cuadro">
+                                Si presionas una tecla en tu teclado, la CPU consulta el vector de interrupciones para encontrar la dirección exacta de la ISR que maneja las pulsaciones. Luego, esa ISR registra la tecla que presionaste y permite que sigas usando la computadora sin problemas.
+                            </div>
+                        </li>
+                        <br>
+                        
+                        <li>
+                            <b>Acceso a las ISR:</b> Cuando ocurre la interrupción, el procesador consulta el vector de interrupciones utilizando el número de interrupción para obtener la dirección de la ISR correspondiente. Este número de interrupción actúa como un índice en la tabla del vector. EL procesador luego transfiere el control a la ISR para manejar la interrupción.
+                        </li>
+                        <br>
+                        
+                        <i>
+                            El diseño eficiente y la correcta ubicación de las ISR son cruciales para el manejo efectivo de las interrupciones. <br> 
+                            Al tener una tabla centralizada, el sistema puede acceder de forma rápida a la ISR necesaria, garantizando así la respuesta rápida al evento.   
+                        </i>
+                    </ul>
+                </p>
+                <br>
+                
+                <h3>Beneficios de la Prioridad en Interrupciones y ISR</h3>
+                <ul class="lista">
+                    <li><b>Mejora de la Respuesta del Sistema:</b> Las interrupciones más urgentes se manejan primero, garantizando que eventos críticos, como alarmas, reciban atención inmediata.</li>
+                    <li><b>Optimización de Recursos:</b> La CPU no pierde tiempo en tareas menos importantes si hay eventos prioritarios que atender.</li> <li><b>Mantenimiento de la Integridad del Sistema:</b> Al procesar interrupciones en el orden adecuado, se evita que el sistema falle o se vuelva inestable.</li> <li><b>Flexibilidad en el Manejo de Interrupciones:</b> La prioridad permite adaptar el comportamiento del sistema según las necesidades del momento, garantizando que siempre se atiendan las tareas críticas a tiempo.</li> 
+                </ul>
+                <br>
+                
+                <h3>Técnicas para Determinar el Dispositivo que provocó la interrupción</h3>
+                <ul class="lista">
+                    <li><b>Múltiples lineas de Interrupciones:</b> Cada dispositivo tiene su propia línea de interrupción hacia el procesador, permitiendo identificar rápidamente el origen del evento.</li>
+                    <li><b>Consulta de software (polling):</b> La CPU revisa constantemente cada dispositivo para verificar si ocurrió una interrupción, aunque esto consume más tiempo y recursos.</li>
+                    <li><b>Consulta de hardware:</b> Se emplea un controlador de interrupciones que consulta automáticamente qué dispositivo generó la señal y notifica al procesador.</li>
+                    <li><b>Arbitraje de Bus:</b> Los dispositivos compiten por el control del bus; un mecanismo de prioridad decide cuál tiene permiso para enviar la interrupción primero.</li>
+                </ul>
+                <br>
+                
+                <h3>Propiedades de las Interrupciones</h3>
+                <ul class="lista">
+                    <li><b>Asincronía:</b> Las interrupciones pueden ocurrir en cualquier momento, ya que no dependen del flujo del programa en ejecución.</li>
+                    <li><b>Prioridad:</b> Las interrupciones tienen diferentes niveles de prioridad para garantizar que los eventos más críticos se atiendan primero.</li>
+                    <li><b>Anidamiento:</b> Una interrupción puede ser interrumpida por otra de mayor prioridad, lo que permite una gestión eficiente de eventos urgentes.</li>
+                    <li><b>Restauración del estado:</b> La CPU guarda y recupera el estado del programa interrumpido para continuar la ejecución sin pérdida de datos.</li>
+                    <li><b>Eficiencia:</b> Las interrupciones permiten que la CPU no desperdicie tiempo verificando constantemente los dispositivos; sólo actúa cuando es necesario.</li>
+                    <li><b>Manejo de errores:</b> Las interrupciones permiten detectar y gestionar errores en operaciones de E/S o hardware, mejorando la robustez del sistema.</li>
+                </ul>
+                
+                <button onclick="scrollToTop('interrupciones')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- ********************************************************************************************************** MICROCONTROLADORES -->
+            <section id="microcontroladores" class="contenido">
+                <h2>Microcontroladores</h2>
+                <p>Introducción al mundo de los microcontroladores y su uso en sistemas embebidos.</p>
+                <button onclick="scrollToTop('microcontroladores')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- ********************************************************************************************************** PIPELINE -->
+            <section id="pipeline" class="contenido">
+                <h2>Pipeline</h2>
+                <p>Conceptos relacionados con el pipeline y su funcionamiento en los procesadores.</p>
+                <button onclick="scrollToTop('pipeline')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- ********************************************************************************************************** ENTRADA - SALIDA -->
+            <section id="entrada-salida" class="contenido">
+                <h2 class="titulo2">Entrada - Salida</h2>
+                
+                <button onclick="scrollToTop('entrada-salida')">▲</button>
+            </section>
+
+            <!-- ********************************************************************************************************** PARALELISMO -->
+            <section id="paralelismo" class="contenido">
+                <h2>Paralelismo</h2>
+                <p>PARALELISMO</p>
+                <button onclick="scrollToTop('paralelismo')">▲</button>
+            </section>
+
+            <!-- ********************************************************************************************************** SECUENCIADORES -->
+            <section id="secuenciadores" class="contenido">
+                <h2>SECUENCIADORES</h2>
+                <p>Descripción detallada sobre los sistemas de SECUENCIADORES</p>
+                <button onclick="scrollToTop('secuenciadores')">▲</button>
+            </section>
+
+            
+
+            <!-- ********************************************************************************************************** MEMORIA CACHE -->
+            <section id="memoria-cache" class="contenido">
+                <h2>Memoria Caché</h2>
+                <p>Funcionamiento de la memoria caché y su importancia en la arquitectura de computadoras.</p>
+                <button onclick="scrollToTop('memoria-cache')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- ********************************************************************************************************** COHERENCIA CACHE -->
+            <section id="coherencia-cache" class="contenido">
+                <h2>Coherencia Caché</h2>
+                <p>Funcionamiento de la memoria caché y su importancia en la arquitectura de computadoras.</p>
+                <button onclick="scrollToTop('coherencia-cache')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- ********************************************************************************************************** EXAMENES -->
+            <section id="examenes" class="contenido">
+                <h2>Exámenes</h2>
+                <p>
+                    Listado de los exámenes recolectados.
+                </p>
+                <br>
+
+                <!-- MICROCONTROLADORES -->
+                <h2 class="titulo2">MICROCONTROLADORES</h2>
+                <b class="negrita-color">AÑO 2023</b>
+                <ul class="lista">
+                    <li>¿Qué son y que los diferencia de los microprocesadores?</li>
+                    <li>¿Qué tipo de Arquitectura tienen?</li>
+                    <li>Son CISC o RISC? Detalle porqué y que caracteristicas incluye.</li>
+                    <li>¿Cómo es el pipeline en los microcontroladores?</li>
+                </ul>
+                <br>
+                
+                <b class="negrita-color">AÑO 2024</b>
+                <ul class="lista">
+                    <li>Describa las principales características de los microcontroladores.</li>
+                </ul>
+                <br>
+
+                <!-- INTERRUPCIONES-->
+                <h2 class="titulo2">INTERRUPCIONES</h2>
+                <b class="negrita-color">AÑO 2023 | 2024</b>
+                <ul class="lista">
+                    <li>Describa el funcionamiento general y su utilidad.</li>
+                    <li>Describa en detalle cómo es el mecnaismo de interrupciones, incluyendo el uso de la pila.</li>
+                    <li>Interrupciones anidadas y secuenciales.</li>
+                    <li>Propiedades.</li>
+                    <li>Rutinas de Servicio (ISR), su localización y acceso a ellas.</li>
+                </ul>
+                <br>
+
+                <!-- PIPELINE -->
+                <h2 class="titulo2">PIPELINE</h2>
+                <b class="negrita-color">AÑO 2023 | 2024</b>
+                <ul class="lista">
+                    <li>En que consiste y cual es el beneficio que brinda.</li>
+                    <li>Que instrucciones generan problemas, por qué, y que soluciones utiliza.</li>
+                    <li>Grafique un pipeline genérico de cinco etapas de una máquina CISC y describa la función de cada una de ellas.</li>
+                    <li>Grafique un diagrama de tiempo indicando la ejecución de instrucciones en ese pipeline de 5 etapas.</li>
+                </ul>
+                <br>
+
+                <!-- SECUENCIADORES -->
+                <h2 class="titulo2">SECUENCIADORES</h2>
+                <b class="negrita-color">AÑO 2023</b>
+                <ul class="lista">
+                    <li>¿Para qué arquitecturas son adecuados los secuenciadores micrprogramados?</li>
+                    <li>¿Para qué arquitecturas son adecuados los secuenciadores cableados?</li>
+                </ul>
+                <b class="negrita-color">AÑO 2024</b>
+                <ul class="lista">
+                    <li>Describa los secuenciadores de tipo cableados en detalles.</li>
+                    <li>Describa los secuenciadores microprogramados.</li>
+                    <li>Modelo de Wilkes.</li>
+                    <li>Direccionamiento implícito y explícito.</li>
+                    <li>Microprogramación vertical y horizontal.</li>
+                    <li>Microinstrucciones por micro orden o por campo.</li>
+                </ul>
+
+                <!-- PARALELISMO -->
+                <h2 class="titulo2">PARALELISMO</h2>
+                <b class="negrita-color">AÑO 2023 | 2024</b>
+                <ul class="lista">
+                    <li>Describa la clasificación de Flynn</li>
+                    <li>Respecto a MIMD, describa en detalle multicomputadores y multiprocesadores</li>
+                    <li>Caracteristicas</li>
+                    <li>Diferencias</li>
+                </ul>
+
+                <!-- MEMORIA CACHÉ -->
+                <h2 class="titulo2">MEMORIA CACHE</h2>
+                <b class="negrita-color">AÑO 2024</b>
+                <ul class="lista">
+                    <li>Describa el objetivo de las memorias caché y como se implementan.</li>
+                    <li>Describa su funcionamiento, funciones de mapeo y algoritmos de reemplazo.</li>
+                </ul>
+
+
+
+
+
+
+
+
+                <button onclick="scrollToTop('examenes')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <div id="content-display" class="contenido">Selecciona una materia para ver su contenido aquí.</div>
+        </main>
+
+    </div>
+
+    <script src="scriptM.js"></script>
+</body>
+</html>

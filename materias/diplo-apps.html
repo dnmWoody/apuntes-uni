@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diplomatura de Aplicaciones</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styleM.css">
+
+    <!-- PARA PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <h2>Contenido</h2>
+            <ul>
+                <li><a href="#inicio" onclick="hideMenu()">Inicio</a></li>
+                <hr>
+                <br><p style="color: #1abc9c;"> MÓDULOS</p>
+                <li><a href="#modulo-1" onclick="hideMenu()">Módulo I</a></li>
+                <li><a href="#modulo-2" onclick="hideMenu()">Módulo II</a></li>
+                <li><a href="#modulo-3" onclick="hideMenu()">Módulo III</a></li>
+                <hr>
+                <br><p style="color: #1abc9c;"> TRABAJOS PRACTICOS</p>
+                <li><a href="#tpp" onclick="hideMenu()">TP - Presentación</a></li>
+                <li><a href="#tp1" onclick="hideMenu()">TP1</a></li>
+                <li><a href="#tp2" onclick="hideMenu()">TP2</a></li>
+                <li><a href="#tp3" onclick="hideMenu()">TP3</a></li>
+                <hr>
+                <li><a href="#examenes" onclick="hideMenu()">Exámenes</a></li>
+                <li><a href="../index.html" onclick="hideMenu()" style="color: rgb(207, 89, 89);">← Volver atrás</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">Cambiar Tema</button>
+        </aside>
+
+        <!-- Botón para mostrar el menú cuando esté oculto en modo responsive -->
+        <button id="show-menu-btn" class="show-menu-btn" onclick="toggleMenu()">Menú</button>
+        <!--<button id="show-atras-btn" class="show-atras-btn"><a href="../index.html">Volver atrás</a></button>-->
+
+
+        <main class="main-content" id="main-content">
+            <!-- INICIO -->
+            <section id="inicio" class="contenido">
+                <h2>INICIO</h2>
+                <p>
+                    Iniciamos la Diplomatura, <b>"Programación de Aplicaciones"</b>  y el <b>Módulo I: Introducción al Lenguaje C.</b><br>
+                    <b>Acerca de la capacitación:</b>
+                    Somos  <b>Nando Ardiles y Florencia Greco</b> y tenemos el agrado de acompañarl@s en esta primera etapa a fin de cimentar el camino que luego transitarán  con<br>
+                    <b>Módulo II:</b> Bases de datos y<br> 
+                    <b>Módulo III:</b> Programación de Apps.
+                    <br><br>
+                    <b>¡Deseamos que este recorrido genere las herramientas necesarias para conocer acerca del maravilloso mundo de la programación y l@s incentive a continuar creciendo en esta disciplina!</b><br>
+                    <br><br>
+                    <b>Características de la capacitación:</b><br>
+                    <h3>🔆 Módulo I: Introducción al Lenguaje C</h3>
+                    <ul class="lista">
+                        <li><b>Duración:</b> 8 semanas.</li>
+                        <li><b>Encuentros sincrónicos semanales (Google Meet)</b></li>
+                        <li><b>Actividades:</b> semanales, publicadas todos los miércoles, con 10 días para su realización.</li>
+                        <li><b>Condiciones de aprobación:</b> todas las actividades entregadas y aprobadas.</li>
+                        <li><b>Inicio:</b>  24/09/2024 - 19:00 hs</li>
+                    </ul>
+                    <br><br>
+                    <b>Trayecto Inicial</b>
+                    <ol>
+                        <li>
+                            👉<b>Principios básicos de programación</b><br>
+                            ♦️ ¿Qué significa programar?<br>
+                            ♦️ ¿Qué es un algoritmo?<br>
+                            ♦️ ¿Qué es un pseudocódigo?<br>
+                            ♦️ ¿Qué es un diagrama de flujo?<br>
+                            ♦️ ¿Qué es un lenguaje de programación?<br>
+                        </li>
+                        <li>
+                            👉<b>¿Qué es PSeInt?</b><br>
+                            ♦️ Descarga e instalación.<br>
+                            ♦️ Entorno de desarrollo.<br>
+                        </li>
+                        <li>
+                            👉<b>Adjuntos:</b><br>
+                            ♦️ Descarga e instalación de <a href="http://pseint.sourceforge.net/?page=descargas.php" style="text-decoration: none; color: blue;" target="_blank">PSeInt</a> para las distintas plataformas (incluye videos explicativos),
+                        </li>
+                    </ol>
+                </p>
+
+                <button onclick="scrollToTop('inicio')">▲</button>
+            </section>
+
+            <!-- MODULO 1 -->
+            <section id="modulo-1" class="contenido">
+                <h2>MODULO 1 - Principios básicos de Programación</h2>
+                <p>
+                    Introducción a MODULO 1.
+                    <ol>
+                        <li>
+                            👉<b>Principios básicos de programación</b><br>
+                            ♦️ ¿Qué significa programar?<br>
+                            ♦️ ¿Qué es un algoritmo?<br>
+                            ♦️ ¿Qué es un pseudocódigo?<br>
+                            ♦️ ¿Qué es un diagrama de flujo?<br>
+                            ♦️ ¿Qué es un lenguaje de programación?<br>
+                        </li>
+                    </ol>
+                </p>
+                <select onchange="loadPDF(this.value, 1)">
+                    <option value="">-- Selecciona un PDF --</option>
+                    <option value="/materias/pdf/01.Modulo1.pdf">1- Introducción de PSeint</option>
+                    <option value="/materias/pdf/02.Modulo1.pdf">2- Condicional SI</option>
+                    <option value="/materias/pdf/03.Modulo1.pdf">3- Estructuras</option>
+                </select>
+
+                <!-- Incluir un PDF usando canvas -->
+                <div class="pdf-container">
+                    <canvas id="pdf-canvas-1"></canvas>
+                    <br><span id="page-info-1"></span>
+                    <div>
+                        <button onclick="goToPage(1, -1)">Anterior</button>
+                        <button onclick="goToPage(1, 1)">Siguiente</button>
+                    </div>
+                </div>
+                <button onclick="scrollToTop('modulo-1')">▲</button>
+
+                <!--    CON IFRAME
+                    <div class="pdf-container">
+                        <iframe src="pdf/01.Modulo1.pdf" width="100%" height="600px"></iframe>
+                    </div>
+                -->
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- MODULO 2 -->
+            <section id="modulo-2" class="contenido">
+                <h2>MODULO 2</h2>
+                <p>Introducción a MODULO 2</p>
+                <!-- Contenedor para el PDF -->
+                
+                <p> Modulo en construcción </p>
+                <button onclick="scrollToTop('pipeline')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- MODULO 3 -->
+            <section id="modulo-3" class="contenido">
+                <h2>MODULO 3</h2>
+                <p>Introducción a MODULO 3</p>
+                <p> Modulo en construcción </p>
+                <button onclick="scrollToTop('modulo-3')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- TRABAJO PRACTICO (PRESENTACIÓN) -->
+            <section id="tpp" class="contenido">
+                <h2>TRABAJO PRÁCTICO - PRESENTACIÓN</h2>
+                
+                </p>
+                <div class="code-container">
+                    <h4>Código:</h4>
+                    <pre><code>
+                        Algoritmo Presentacion
+                            Definir Nombre, Apellido, Localidad Como Caracter
+                            Definir altura, edad Como Real
+                            
+                            Escribir "Ingrese su nombre y apellido"
+                            Leer Nombre
+                            Leer Apellido
+
+                            Escribir "Ingrese su edad"
+                            Leer edad
+
+                            Escribir "Ingrese estatura"
+                            Leer altura
+
+                            Escribir "Ingrese su localidad"
+                            Leer Localidad
+                            
+                            Escribir "Soy " Nombre " " Apellido " tengo " edad " años, mido " altura " vivo en " Localidad "."
+                        FinAlgoritmo
+                    </code></pre>
+                </div>
+                <button onclick="scrollToTop('tpp')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- TRABAJO PRACTICO 1 -->
+            <section id="tp1" class="contenido">
+                <h2>TRABAJO PRÁCTICO 1</h2>
+                <p>
+                    Realizar un Algoritmo en pseudocódigo que simule una Calculadora.<br> 
+                    Para ello se deberán ingresar por teclado (Leer) dos números de los cuales se deberá realizar e informar (Escribir) las siguientes operaciones: Suma, Resta, Multiplicación y División.
+                    <br><br>
+                    
+                    <b><i>
+                        LA TAREA SE ENTREGA CON UNA IMAGEN  CON CAPTURA DE PANTALLA DEL CÓDIGO Y DE LA VENTANA DE EJECUCIÓN.
+                        <br>
+                        **********NO ADJUNTAR EL ARCHIVO con extensión .psc DE PSeInt**************
+                    </i></b>
+                </p>
+                <div class="code-container">
+                    <h3>Código:</h3>
+                    <pre><code>
+                        Algoritmo Calculadora
+                            Definir  num1, num2, resultado Como Entero 
+                            
+                            Escribir "CALCULADORA"
+	
+                            Escribir  "Ingrese el primer nmero: "
+                            Leer num1
+                            
+                            Escribir  "Ingrese el segundo número: "
+                            Leer num2
+                            
+                            resultado = num1+num2
+                            Escribir "La suma es: " resultado
+                            
+                            resultado = num1-num2
+                            Escribir "La resta es: " resultado
+                            
+                            resultado = num1*num2
+                            Escribir "La multiplicación es: " resultado
+                            
+                            resultado = num1 / num2
+                            Escribir "La división es: " resultado
+                        FinAlgoritmo
+                    </code></pre>
+                </div>
+                <button onclick="scrollToTop('tp1')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- TRABAJO PRACTICO 2 -->
+            <section id="tp2" class="contenido">
+                <h2>TRABAJO PRÁCTICO 2</h2>
+                <p>
+                    Realizar un algoritmo que valide a través de una esctructura <b>Si Entonces</b> un usuario y contraseña que se ingresa por teclado.<br> 
+                    El usuario a validar es "Messi" y la contraseña "1234".
+                    <br><br>
+                    
+                    <b><i>
+                        ****Recordar entregar captura de pantalla de codigo y Ventana de Ejecución******
+                        <br>
+                        ****No entregar Archivo psc******
+                    </i></b>
+                </p>
+                <div class="code-container">
+                    <h3>Código:</h3>
+                    <pre><code>
+                        Algoritmo loggeo
+                            Definir usr Como Caracter
+                            Definir psw Como Entero
+                            
+                            Escribir "Ingrese Usuario y Contraseña";
+                            Leer usr;
+                            Leer psw;
+
+                            Si(usr =="messi") Y (psw=1234) Entonces
+                                Escribir "Acceso";
+                            Sino
+                                Escribir "Error al ingresar";
+                            FinSi
+                        FinAlgoritmo
+                    </code></pre>
+                </div>
+                <button onclick="scrollToTop('tp2')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- TRABAJO PRACTICO 3 -->
+            <section id="tp3" class="contenido">
+                <h2>TRABAJO PRÁCTICO 3</h2>
+                <p>
+                    Realizar un algoritmo que dado un nro que se ingresa por teclado (Leer) imprima la tabla de multipliar de dicho nro. Ejemplo:<br>
+                    <br>Si el nro ingresado es 7 deberá imprimir:
+                    <br>7x1 =   7
+                    <br>7x2 =  14
+                    <br>7x3 =   21
+                    <br>7x4 =   28
+                    <br>7x5 =   35
+                    <br>7x6 =   42
+                    <br>7x7 =   49
+                    <br>7x8 =   56
+                    <br>7x9 =   63
+                    <br>7x10 = 70
+                    <br>Si se ingresa otro nro debera imprimir la tabla de ese nro.
+                    <br><br>
+                    
+                    <b><i>
+                        ****Recordar entregar captura de pantalla de codigo y Ventana de Ejecución******
+                        <br>
+                        ****No entregar Archivo psc******
+                    </i></b>
+                </p>
+                <div class="code-container">
+                    <h3>Código:</h3>
+                    <pre><code>
+                        Algoritmo tablaMultiplicacion
+                        Definir n1, n2, resultado Como Entero;
+                        Definir decision Como Entero;
+                        Definir continuo Como Logico;
+                        
+                        continuo <- Verdadero;
+                        
+                        Escribir "*** TABLA MULTIPLICACIÓN BY: GRUPO-9 ***";
+                        
+                        Repetir
+                            Escribir "Ingrese el numero a multiplicar";
+                            Leer n1;
+                            
+                            Escribir "TABLA DEL ", n1;
+                            
+                            Para n2 <- 0 Hasta 10 Con Paso 1 Hacer
+                                resultado <- n1 * n2;
+                                Escribir n1, " * ", n2 " = ", resultado;
+                            FinPara
+                            
+                            Escribir "Desea conocer otra tabla de multiplicación? (1 = SI | 2 = NO)"
+                            Leer decision;
+                            
+                            Segun decision hacer
+                                1: continuo <- Verdadero;
+                                2: Escribir "Operación finalizada.";
+                                    continuo <- Falso;
+                            FinSegun
+                        Hasta Que continuo = Falso;
+                    FinAlgoritmo
+                    
+                    
+                    </code></pre>
+                </div>
+                <button onclick="scrollToTop('tp3')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <section id="examenes" class="contenido">
+                <h2>Exámenes</h2>
+                <p>Posibles examenes (sección en construcción).</p>
+                <button onclick="scrollToTop('examenes')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <div id="content-display" class="contenido">Selecciona una materia para ver su contenido aquí.</div>
+        </main>
+    </div>
+
+    <script src="scriptM.js"></script>
+</body>
+</html>

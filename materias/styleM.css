@@ -1,0 +1,306 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Contenedor Principal */
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f0f2f5;
+    transition: background-color 0.3s;
+}
+
+.lista{
+    list-style-type: disc; /* Establece el tipo de viñeta */
+    margin-left: 20px; /* Asegura que las viñetas tengan un margen */
+}
+
+ol {
+    margin-left: 20px; /* Asegura que los números tengan un margen */
+    padding-left: 20px; /* Padding para el contenido de la lista */
+}
+
+.titulo2{
+    background-color: #be6c80;
+}
+
+.negrita-color{
+    background-color: #a25bb1;
+}
+
+.cuadro {
+    background-color: #f5f5f5; /* Fondo claro */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    margin-top: 20px; /* Separación superior */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Versión en modo oscuro */
+body.dark .cuadro {
+    background-color: #2c3e50; /* Fondo más oscuro */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más marcada */
+}
+
+
+/* Barra Lateral */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+/* Enlaces del menú */
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 0;
+    display: block;
+    transition: color 0.3s;
+}
+
+.sidebar ul a:hover {
+    color: #1abc9c;
+}
+
+/* Botón de tema */
+.theme-toggle {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Estilo del Contenido Principal */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Ocultar todas las secciones por defecto */
+.contenido {
+    display: none;
+    overflow-y: auto; /* Permite el scroll */
+}
+
+/* Mostrar solo la sección activa */
+.contenido:target {
+    display: block;
+}
+
+/* Botón Volver Atrás */
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Tema Oscuro */
+body.dark .sidebar {
+    background-color: #1a242f;
+}
+
+body.dark .main-content {
+    background-color: #34495e;
+    color: white;
+}
+
+body.dark button {
+    background-color: #2980b9;
+}
+
+/* Botón para mostrar el menú en pantallas pequeñas */
+.show-menu-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.show-menu-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Botón para volver atrás en pantallas pequeñas 
+.show-atras-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.show-atras-btn a{
+    text-decoration: none;
+    color: white;
+}
+
+.show-atras-btn:hover {
+    background-color: #2980b9;
+}
+*/
+/* Botón flotante para subir */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    z-index: 100;
+}
+
+.scroll-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* Estilo del canvas */
+#pdf-canvas {
+    border: 1px solid black; /* Opcional: agregar borde */
+    margin-top: 20px; /* Espacio superior */
+    width: 100%; /* Ancho completo */
+    height: auto; /* Altura automática */
+}
+
+.pdf-container {
+    margin-top: 20px; /* Espacio superior para separación */
+    border: 1px solid #ccc; /* Opcional: borde para el contenedor */
+    border-radius: 5px; /* Opcional: bordes redondeados */
+    overflow: hidden; /* Oculta el desbordamiento */
+    padding: 10px; /* Agregar padding para más espacio interno */
+    background-color: #fff; /* Fondo blanco para el contenedor */
+}
+.pdf-iframe {
+    width: 100%; /* Ancho completo */
+    height: 80vh; /* Altura de 80% de la ventana de visualización */
+    border: none; /* Sin borde */
+}
+
+/* Estilo del contenedor de código */
+.code-container {
+    background-color: #f7f7f7; /* Fondo gris claro para el contenedor de código */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado interno */
+    margin-top: 20px; /* Margen superior */
+    overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+}
+
+/* Estilo para preformateado */
+pre {
+    margin: 0; /* Elimina márgenes predeterminados */
+    white-space: pre-wrap; /* Permite el ajuste de línea dentro de los bloques de código */
+    word-wrap: break-word; /* Asegura que las palabras largas se dividan */
+    font-family: 'Courier New', Courier, monospace; /* Establece la fuente para simular una consola */
+    font-size: 14px; /* Tamaño de fuente del código */
+    color: #333; /* Color del texto */
+}
+
+/* Tema oscuro */
+body.dark .code-container {
+    background-color: #2c3e50; /* Fondo oscuro para el contenedor de código */
+    border: 1px solid #1abc9c; /* Borde en color claro */
+}
+
+body.dark pre {
+    color: #ecf0f1; /* Color del texto en modo oscuro */
+}
+
+/* Responsive Design */
+
+/* En pantallas pequeñas, la barra lateral se oculta al seleccionar un tema */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: absolute;
+        z-index: 10;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    /* Mostrar el botón para abrir el menú cuando el menú está oculto */
+    .show-menu-btn {
+        display: block;
+    }
+
+        /* Mostrar el botón para volver atras cuando el menú está oculto */
+        .show-atras-btn {
+            display: block;
+        }
+    
+    .main-content {
+        padding: 15px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Otros estilos para pantallas pequeñas */
+    button {
+        padding: 8px 12px; /* Ajusta el tamaño de los botones */
+        font-size: 14px; /* Ajusta el tamaño de la fuente */
+    }
+
+    select {
+        width: 100%; /* Botón de selección de ancho completo */
+    }
+}
