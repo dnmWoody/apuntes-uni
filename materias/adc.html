@@ -510,8 +510,319 @@
 
             <!-- ********************************************************************************************************** PIPELINE -->
             <section id="pipeline" class="contenido">
-                <h2>Pipeline</h2>
-                <p>Conceptos relacionados con el pipeline y su funcionamiento en los procesadores.</p>
+                <h2 class="titulo2">PIPELINE</h2>
+                <p>
+                    Pipeline es una técnica utilizada en los procesadores para mejorar su rendimiento, permitiendo que varias instrucciones se ejecuten al mismo tiempo pero en diferentes <b>etapas</b> del proceso.</b><br>
+                    La ejecución de <b>una instrucción se divide en varias etapas, y múltiples instrucciones pueden estar en diferentes etapas simultáneamente</b>, lo que permite que el procesador trabaje en varias instrucciones al mismo tiempo.
+                </p>
+                <br>
+
+                <h3>Beneficios</h3>
+                <ul class="lista">
+                    <li><b>Aumento del rendimiento:</b> Incrementa el número de instruccioens que se pueden ejecutar por unidad de tiempo.</li>
+                    <li><b>Paralelismo implícito:</b> Cada etapa del pipeline traba en una instrucción diferente simultáneamente.</li>
+                    <li><b>Aprovechameinto de recursos:</b> Permite un uso más eficiente de los recursos del procesador.</li>
+                    <li><b>Reducción del tiempo de ejecución promedio:</b> Reduce el tiempo promedio por instrucción en un flujo continuo de instrucciones.</li>
+                    <li><b>Frecuencia de reloj mas alta:</b> Al dividir el trabajo en etapas más pequeñas, cada etapa puede completarse más rápidamente, permitiendo una frecuencia de reloj potencialmente más alta.</li>
+                </ul>
+                <br>
+
+                <h3>Aplicaciones</h3>
+                <ul class="lista">
+                    <li><b>Procesadores de Alto Rendimiento:</b> Utilizado ampliamente en procesadores modernos para mejorar el rendimiento en aplicaciones de alta demanda, como gráficos, juegos, procesamiento de datos y servidores</li>
+                    <li><b>Microcontroladores Avanzados:</b> Algunos microcontroladores también incorporan pipelines para mejorar su eficiencia en apilcaciones embebidas críticas.</li>
+                </ul>
+                <br>
+
+                <h3>Instrucciones que generan problemas:</h3>
+                <p>
+                    Las instrucciones de salto (tanto condicionales como incondicionales) son aquellas que alteran el flujo normal de ejecución de un programa.<br>
+                    Por ejemplo, si tienes una instrucción que dice <i>"si la condición se cumple, ve a la línea X"</i>, esto puede causar que el procesador se detenga y cambie de dirección, lo que interrumpe el flujo del pipeline.<br>
+                    Si se efectúa un salto, las etapas que se hayan ejecutado de las instrucciones siguientes del pipeline <b>no sirven y se deben limpiar todos los registros.</b>
+                </p>
+                <br>
+
+                <h3>Soluciones</h3>
+                <ul class="lista">
+                    <li>
+                        <b>Dejar de cargar el pipeline hasta atender el salto (Detener el Pipeline):</b><br>
+                        - <b>Descripción:</b> Cuando se detecta un salto, el pipeline se detiene y espera a que se procese el salto antes de continuar.<br>
+                        - <b>Desventaja:</b> Este método es ineficiente porque hay un período de tiempo en el que no se están ejecutando instrucciones, lo que disminuye el rendimiento.
+                            <!--Esto no es muy efectivo debido a que la espera tarda mucho tiempo y no se ahce nada durante la misma.-->
+                    </li>
+                    <br>
+
+                    <li>
+                        <b>Tratar el salto como una instrucción Normal (y seguir cargando el pipeline).</b><br>
+                        - <b>Descripción:</b> Continuar cargando el pipeline incluso si hay un salto. Si se ejecuta el salto, se limpia el pipeline y se empieza a cargar desde la nueva dirección.<br>
+                        - <b>Desventaja:</b> Similar al primero, limpiar el pipeline también toma tiempo y recursos, ya que debes restaurar los registros a su estado anterior.
+                        
+                        <!--
+                            Si el salto es existoso, se limpia el pipeline y se cargar a partir de la posición a la que lleva el salto.<br>
+                            Sin embargo, tampoco es muy efectiva, debido a que la limpieza del pipeline demanda mucho tiempo. Limpiar consiste en volver a cargar el valor de los registros que las instrucciones hayan modificado; para esto se necesita guardar los valores previos.
+                        -->
+                    </li>
+                    <br>
+
+                    <li>
+                        <b>Predicción de saltos:</b><br>
+                        - <b>Descripción:</b> Intentar anticipar si un salto se realizará o no. Esto se puede hacer de dos maneras:
+                        <div class="contenedor-imagen-tabla">
+                            <u>Estática:</u> El compilador predice el comportamiento de los saltos basándose en el análisis del código. Por ejemplo, puede asumir que un salto condicional a menudo se cumple.<br><br> 
+                            <u>Dinámica:</u> Se registran las decisiones de salto en tiempo de ejecución. Se crea una tabla que guarda el historial de saltos anteriores, utilizando un contador (o bits) para ayudar a predecir si el salto ocurrirá. Si el salto se efectúa, se incrementa el contador; si no, se decrementa.<br>
+                        </div><br>
+                        - <b>Ventaja:</b> Esta técnica puede reducir el número de veces que se necesita limpiar el pipeline, mejorando el rendimiento en general.
+                        </li>
+                        <!--
+                            Consiste en predecir los saltos anotando el comportamiento del programa en saltos anteriores. Puede ser estática o dinámica.
+                            <ul>
+                                <li><b>Estática:</b> El compilador hace una suposición por cad auan de las isntrucciones de salto que genera.</li>
+                                <li><b>Dinámica:</b> En tiempo de ejecución, el microprograma constituye una tabla con las direcciones que contiene saltos y guarda un registro de comportamientos de cada uno (si se efectuó o no). Se asocian dos o más bits a cada isntrucción de salto, que actúan como un contador: si el salto se efectúa se suma, si no se efectuó se resta.</li>
+                            </ul></li>
+                        -->
+                </ul>
+                <br>
+
+                <h3>PIPELINE genérico de cinco etapas de una máquina-CISC</h3>
+                <p>En un procesador clásico, la ejecución de una instrucción se divide en varias etapas, como:</p>
+                <ol>
+                    <li><b>Fetch (Búsqueda):</b> Obtener la instrucción de la memoria. Se obtiene la instrucción de la memoria de instrucciones y se carga en el registro de instrucciones.</li>
+                    <li><b>Decode (Decodificación):</b> Decodificar la instrucción y lees los registros fuente. La instrucción se decodifica (interpreta) para determinar qué operación se va a realizar, y se leen los registros fuentes necesarios.</li>
+                    <li><b>Execute (Ejecución):</b> Realizar la operación aritmética o lógica (ALU). Se realiza la operación aritmética o lógica especificada por la instrucción.</li>
+                    <li><b>Memory Acces (Memoria):</b> Acceder a la memoria para leer o escribir datos. <b>Si la instrucción es una opearción de carga o almacenamiento,</b> se accede a la memoria para leer o escribir datos.</li>
+                    <li><b>Write Back (Escritura):</b> Escribir el resultado en los registros. <b>El resultado de la operación se escribe</b> en el registro de destino.</li>
+                </ol>
+                <br>
+                <!--
+                    Fetch (Búsqueda): Se lee la instrucción de la memoria.
+                    Decode (Decodificación): Se interpreta qué hace la instrucción.
+                    Execute (Ejecución): Se realiza la operación (por ejemplo, una suma).
+                    Memory (Memoria): Se leen o escriben datos en la memoria (si es necesario).
+                    Write-back (Escritura): Se guarda el resultado en un registro.
+                    Sin pipeline, cada instrucción se ejecutaría por completo antes de pasar a la siguiente, como si una persona tuviera que terminar un producto antes de comenzar otro.
+                -->
+                <div class="cuadro">
+                    <p>
+                        <h4><u>Ejemplo en acción</u></h4>
+                        <br>
+                        Supongamos que tenemos las siguientes instrucciones en secuencia:
+                        <ul class="lista">
+                            <li>CARGAR A: Carga un valor en el registro A.</li>
+                            <li>CARGAR B: Carga un valor en el registro B.</li>
+                            <li>SUMAR A, B: Suma los valores de A y B.</li>
+                            <li>ALMACENAR C: Almacena el resultado en la dirección de memoria C.</li>
+                        </ul>
+                        <br>
+
+                        <h4><u>Funcionamiento del Pipeline:</u></h4>
+                        <ul class="lista">
+                            <li>Ciclo 1: En el ciclo de reloj 1, se obtiene (fetch) la instrucción "CARGAR A".</li>
+                            <li>Ciclo 2: En el ciclo 2, se decodifica (decode) "CARGAR A" y se obtiene la instrucción "CARGAR B".</li>
+                            <li>Ciclo 3: En el ciclo 3, se ejecuta (execute) "CARGAR A" y se obtiene "SUMAR A, B".</li>
+                            <li>Ciclo 4: En el ciclo 4, se accede a la memoria (memory access) para "CARGAR B" y se ejecuta "SUMAR A, B".</li>
+                            <li>Ciclo 5: En el ciclo 5, se escribe de vuelta (write back) el resultado de "SUMAR A, B" y se accede a la memoria para "ALMACENAR C".</li>
+                        </ul>
+                    </p>
+                </div>
+            <p>
+                Cada etapa de pipeline puede procesar una instrucción diferente simultáneamente. Esto significa que mientras una instrucción está en la etapa de decodificación, otra puede estar en la etapa de búsqueda y otra en la etapa de ejecución. De esta manera, múltiples instrucciones pueden estar en diferentes etapas del pipeline al mismo tiempo, permitiendo que el procesador trabaje en varias instrucciones simultáneamente.
+            </p>
+            <br>
+
+            <h3>Diagrama de tiempo indicando la ejecución de instrucciones en ese PIPELINE de 5 etapas:</h3>
+                <img src="images/adc-pipeline.png" alt="pipeline" style="width: 600px;">
+                <div class="contenedor-imagen-tabla">
+                    <table>
+                        <tr>
+                            <th> CICLO</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Fetch</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                            <td>F</td>
+                            <td>G</td>
+                            <td>H</td>
+                            <td>I</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Decode</td>
+                            <td>-</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                            <td>F</td>
+                            <td>G</td>
+                            <td>H</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Execute</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                            <td>F</td>
+                            <td>G</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Memory Access</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                            <td>F</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">Write Back</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+
+                <h4>Explicación:</h4>
+                    <ol>
+                        <li><b>Ciclo 1:</b> Se inicia el <b>Fetch</b> de la instrucción <b style="color: brown;">A</b></li>
+                        <li><b>Ciclo 2:</b> <b style="color: brown;"> A</b> pasa a <b>Decode</b>, mientras <b style="color: rgb(43, 82, 43);">B</b> inicia su <b>Fetch</b></li>
+                        <li><b>Ciclo 3:</b> <b style="color: brown;"> A</b> pasa a <b>Execute</b>, <b style="color: rgb(43, 82, 43);">B</b> a <b>Decode</b>, <b style="color: rgb(100, 100, 185);"">C</b> inicia su <b>Fetch</b></li>
+                        <li><b>Ciclo 4:</b> <b style="color: brown;"> A</b> pasa a <b>Memory Access</b>, <b style="color: rgb(43, 82, 43);">B</b> a <b>Execute</b>, <b style="color: rgb(100, 100, 185);"">C</b> a <b>Decode</b>,<b style="color: rgb(185, 176, 100);""> D</b> inicia su <b>Fetch</b></li>
+                        <li><b>Ciclo 5:</b> <b style="color: brown;"> A</b> pasa a <b>Write Back</b>, <b style="color: rgb(43, 82, 43);">B</b> a <b>Memory Access</b>, <b style="color: rgb(100, 100, 185);"">C</b> a <b>Execute</b>,<b style="color: rgb(185, 176, 100);""> D</b> a <b>Decode</b>, <b style="color: rgb(100, 179, 185);""> E</b> inicia su <b>Fetch</b></li>
+                    </ol>
+                    A partir del ciclo 5, el pipeline está completamente lleno y se están procesanto 5 instrucciones simultánemaente, una en cada etapa.
+                    <br><br>
+
+                    Este diagrma muestra claramente:
+                    <ol>
+                        <li>Las 5 etapas de pipeline CISC (Fetch, Decode, Execute, Memory Access, Write Back)</li>
+                        <li>Cómo múltiples instrucciones (A, B, C, etc.) avanzan por las etapas del pipeline.</li>
+                        <li>El paralelismo alcanzado, con una nueva instrucción iniciando cada ciclo.</li>
+                        <li>Que a partir del ciclo 5, se completa una instrucción por ciclo (aunque cada instrucción tarda 5 ciclos en completarse).</li>
+                    </ol>
+                    <br>
+
+                <h4>Cuadro con ejemplo dado previamente:</h4>
+                <div class="contenedor-imagen-tabla">
+                    <table>
+                        <tr>
+                            <th>CICLO DE RELOJ</th>
+                            <th>CARGAR A</th>
+                            <th>CARGAR B</th>
+                            <th>SUMAR A,B</th>
+                            <th>ALMACENAR C</th>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">1</td>
+                            <td>Fetch</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">2</td>
+                            <td>Decode</td>
+                            <td>Fetch</td>
+                            <td>-</td>
+                            <td>-</td>
+
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">3</td>
+                            <td>Execute</td>
+                            <td>Decode</td>
+                            <td>Fetch</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">4</td>
+                            <td>Memory Access</td>
+                            <td>Execute</td>
+                            <td>Decode</td>
+                            <td>Fetch</td>
+                        </tr>
+                        <tr>
+                            <td class="fila-descripcion">5</td>
+                            <td>Write Back</td>
+                            <td>Memory Acces</td>
+                            <td>Execute</td>
+                            <td>Decode</td>
+                        </tr>
+                        <tr></tr>
+                            <td class="fila-descripcion">5</td>
+                            <td>-</td>
+                            <td>Write Back</td>
+                            <td>Memory Acces</td>
+                            <td>Execute</td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+
+                <h4>Ciclos de reloj:</h4>
+                <ul class="lista">
+                    <li>Ciclo 1: CARGAR A (Fetch): La instrucción CARGAR A se está obteniendo de la memoria. En este ciclo, el procesador está buscando la instrucción y cargándola en el registro de instrucciones..</li>
+                    <li>Ciclo 2: "CARGAR A" se decodifica (Decode), mientras que "CARGAR B" se obtiene (Fetch).</li>
+                    <li>Ciclo 3: "CARGAR B" se decodifica (Decode) y "SUMAR A, B" se obtiene (Fetch).</li>
+                    <li>Ciclo 4: "SUMAR A, B" se decodifica (Decode) y "CARGAR A" se ejecuta (Execute). También, "ALMACENAR C" se obtiene (Fetch).</li>
+                    <li>Ciclo 5: "ALMACENAR C" se decodifica (Decode), "SUMAR A, B" se ejecuta (Execute) y "CARGAR A" realiza la operación de acceso a memoria (Memory Access).</li>
+                    <li>Ciclo 6: "CARGAR A" escribe de vuelta el resultado (Write Back).</li>
+                </ul>
+                <br>
+                
+                <h3>Pipeline en RISC</h3>
+                <p>
+                    El pipeline en arquitecturas RISC (Reduced Instruction Set Computing) se caracteriza por su simplicidad y eficiencia, consta de solos dos etapas principales:
+                    <ol>
+                        <li><b>Búsqueda del operando:</b> En esta fase, el procesador localiza y obtiene los datos necesarios para ejecutar la instrucción. Estos datos suelen estar en <b>registros</b>, lo que permite un acceso rápido.</li>
+                        <li><b>Ejecución de la instrucción:</b> Una vez obtenidos los operandos, el procesador realiza la operación especificada por la instrucción.</li>
+                    </ol><br>
+
+                    A diferencia de las arquitecturas CISC (Complex Instruction Set Computing), RISC, no necesariamente utiliza una etapa de análisis de instrucciones compleja.<br>
+                    Esto se debe a que, en muchos casos, <b>RISC no emplea micropogramación</b>, sino que puede traba con secuenciadores cableados, lo que significa que las instrucciones están directamente implementadas en hardware.<br>
+                    Las operaciones en RISC se realizan principalmente entre registros, lo que incluye el cálculo de direcciones de operandos y las transferencias de datos. Este enfoque de registros a registro contribuye a la velocidad y eficiencia del pipeline.<br>
+                    La arquitectura RISC se beneficia aún más cuando se implementa en una arquitectura Harvard. Esta combinación permite la separación física de las memorias de instruccioens y datos, posiblitando el acceso simultáneo a ambas y aumentando así el rendimiento del pipeline.
+                    <br><br>
+
+                    Aunque optimizada, la segmentación en RISC, sigue presentando ciertos problemas. Anteriorimente, vimos que las instrucciones de salto y las lecturas a memoria generan complicaciones al segmentar instrucciones.<br>
+                    Para soluciones estos problemas, el compilador o ensamblador puede insertar una operación NOOP en el flujo de instrucciones. La instrucción <b>NOOP, irónicamente, no realiza ninguna operación sobre los datos. En cambio, resulta útil para generar un retardo en el flujo de instrucciones.</b> Esto es necesario cuando, en una operación segmentada, se necesita evaluar una condición de salto o cuando una instrucción depende de un dato que está a punto de ser actualizado, y usualmente se coloca después de que todos los registros involucrados han sido cargados o escritos.
+                    <br><br>
+
+                    Existe una forma de optimizar el programa mediante estos retardos, especificamente utilizando lo que se conoce como salto retardado y salto retardado optimizado.
+                    <ul class="lista">
+                        <li><b>Salto Retardado:</b> Consiste en colocar un NOOP después del salto. Esto tiene la ventaja de que, para cuando el flujo del programa alcanza el NOOP, la instrucción de salto ya se está ejecutando y el salto ya se habrá realizado. Además, el programa no tiene que esperar hasta completar una operación de lectura/escritura realizada previamente para saltar, <b>garantizando que nose comience a buscar la operación siguiente al salto antes de tiempo.</b></li>
+                        <li><b>Salto con Retardo Optimizado:</b> Hace algo similar, pero reemplaza el NOOP por la instrucción previa al salto, intercambiando sus lugares. Así, primero se evalúa y ejecuta el salto. Dado que la instrucción anterior era necesaria y al mismo tiempo es la próxima a ejecutarse, se garantiza que el salto se realice correctamente y que la instrucción con la que se cambío de lugar ya esté en proceso de búsqueda para su ejecución.</li>
+                    </ul><br>
+
+                    <b>Cabe destacar que este último método sólo se aplica a saltos incondicionales, llamdas y retornos.</b> Para saltos condicionales, el compilador utiliza un salto con retardo normal, insterando el NOOP después del salto. De esta forma, al evaluar la condición del salto, no se realiza ninguna otra operación que comprometa el estado del procesador y de los registros.
+                </p>
                 <button onclick="scrollToTop('pipeline')">▲</button>
                 <!--<button onclick="goBack()">Volver Atrás</button>-->
             </section>
