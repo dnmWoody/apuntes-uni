@@ -829,7 +829,146 @@
 
             <!-- ********************************************************************************************************** ENTRADA - SALIDA -->
             <section id="entrada-salida" class="contenido">
-                <h2 class="titulo2">Entrada - Salida</h2>
+                <h2 class="titulo2">ENTRADA - SALIDA</h2>
+                <p>
+                    Además del procesador y los módulos de memoria, las computadoras tienen otros componentes importantes llamados <b>módulos de entrada/salida.</b> Estos módulos se encargan de controlar los dispositivos externos (como el teclado, la impresora, o unidad USB) y permitir que se comuniquen con el resto del sistema a través del <b>bus del sistema.</b> El bus del sistema es una especie de <b>autopista de datos</b> que conecta todos los componentes clave de la computadora, permitiendo el intercambio de información entre el procesador, la memoria y los dispositivos de entrada/salida.
+                    <br><br>
+                    Imagina que el módulo de entrada/salida es como un <b>puente</b> que conecta un dispositivo externo con la computadora. No es solo un cable que conecta un periférico (como un teclado o una impresora) al sistema, sino que también tiene cierta "inteligencia", lo que significa que tiene la <b>capacidad de tomar decisiones</b> y gestionar el flujo de datos entre el dispositivo y la computadora.
+                    <br><br>
+                    En lugar de que la computadora tenga que hacer todo el trabajo cada vez que envía o recibe datos de un periférico, el módulo de entrada/salida puede <b>organizar</b> la comunicación y hacerla más eficiente. Así, se asegura de que los datos vayan y vengan de manera ordenada, sin que el procesador (la parte principal que hace los cálculos) se tenga que preocupar por los detalles de cómo se comunican los periféricos.
+                </p>
+                
+                <h3>Módulos de entrada/salida</h3>
+                <p>
+                    Las principales funciones y requisitos de un módulo de entrada/salida se agrupan en las siguientes categorías:
+                    <ul class="lista">
+                        <li style="color: rgb(77, 165, 165);"><b>Control y temporización(1)</b></li>
+                        <li style="color: rgb(86, 182, 86);"><b>Comunicación con el procesador(2)</b></li>
+                        <li style="color: rgb(216, 216, 79);"><b>Comunicación con los dispositivos(3)</b></li>
+                        <li style="color: rgb(214, 164, 71);"><b>Almacenamiento temporal de datos(4)</b></li>
+                        <li style="color: rgb(88, 89, 190);"><b>Detección de errores(5)</b></li>
+                    </ul>
+                    <br>
+
+                    <!--1- Control y temporización-->
+                    <h4 style="color: rgb(77, 165, 165);">1- Control y temporización</h4>
+                    En cualquier momento, el procesador puede comunicarse con uno o más dispositivos externos, dependiendo de las necesidades de entrada/salida del programa. Los recursos internos, como la memoria principal y el bus del sistema, deben compartirse entre diversas actividades, incluida la entrada y salida de datos. Por lo tanto, la función de entrada/salida requiere mecanismos de <b style="color: rgb(77, 165, 165);">control y temporización</b> para coordinar el tráfico de datos entre los recursos internos y los dispositivos externos.
+                    <br>
+                    <b>Los módulos de E/S gestionan este tráfico de datos entre el procesador, la memoria y los dispositivos externos (como impresoras o discos duros) para asegurar un funcionamiento eficiente y evitar conflictos.</b>
+                    
+                    <div class="contenedor-imagen-tabla">
+                        <h4>Ejemplo:</h4> Imaginá que estás en un cruce de calles. El semáforo controla quién pasa primero, ya sea los autos o los peatones. De la misma forma, el módulo de E/S asegura que los datos se muevan de manera ordenada entre la computadora y los dispositivos, sin causar "choques" de información.<br>
+                        En este caso, si se tiene un teclado y una impresora conectados, el módulo de E/S decide cuándo enviar los datos que escribes y cuándo recibir información de la impresora, sin que haya interferencias.
+                    </div>
+                    <br>
+
+                    <h3>ESCRITURA DE UN MÓDULO DE ENTRADA/SALIDA</h3>
+                    <!-- 2- Comunicación con el procesador -->
+                    <b style="color: rgb(86, 182, 86);">2- Comunicación con el procesador</b><br>
+                    La lógica en un módulo de entrada/salida interactúa con el procesador a través de una serie de líneas de control. Estas líneas son utilizadas por el procesador para proporcionar órdenes al módulo de E/S. Algunas de las líneas de control también pueden ser empleadas por el propio módulo.<br><br>
+                    El módulo de E/S debe recibir órdenes del procesador (como "escribe este dato en la impresora") y reportar el estado de los dispositivos (por ejemplo, "la impresora está lista"). Cada módulo de entrada/salida tiene una dirección única o, si controla más de un dispositivo externo, un conjunto único de direcciones. Por último, el módulo de E/S posee la lógica específica para la interfaz con cada uno de los dispositivos que controla.
+                    
+                    <div class="contenedor-imagen-tabla">
+                        <h4>Ejemplo:</h4> Supongamos que el procesador es como un jefe de cocina y el módulo de E/S es un mesero. El jefe (procesador) le dice al mesero (módulo de E/S) qué hacer, como "lleva esta comida a la mesa 3", y el mesero reporta si la mesa está lista o necesita algo más (el estado del dispositivo).
+                    </div>
+                    <br>
+                    
+                    <!-- 3- Comunicación con los dispositivos -->
+                    <b style="color: rgb(216, 216, 79);">3- Comunicación con los dispositivos</b><br>
+                    El módulo de E/S necesita hablar el "idioma" de cada dispositivo (como impresoras, discos duros, teclados, etc.) para poder controlarlos. Debe ser capaz de reconocer y generar las direcciones asociadas a los dispositivos que controla.<br><br>
+                    
+                    <div class="contenedor-imagen-tabla">
+                        <h4>Ejemplo:</h4> Es como tener un control remoto universal que puede hablar con diferentes aparatos electrónicos, ya sea una televisión, una radio o un aire acondicionado. El módulo de E/S debe saber cómo manejar cada dispositivo de forma correcta. Por ejemplo, cuando el procesador ordena al módulo que envíe un documento a la impresora, el módulo envía los datos y asegura que la impresora entienda la información.
+                    </div>
+                    <br>
+
+                    <!-- 4- Almacenamiento temporal de datos-->
+                    <b style="color: rgb(214, 164, 71);">4- Almacenamiento temporal de datos</b><br>
+                    El módulo de entrada/salida se conecta al resto de la computadora a través de un conjunto de líneas de bus. Los datos que viajan entre el procesador y los dispositivos externos se <b style="color: rgb(214, 164, 71);"> guardan temporalmente</b> en pequeños registros dentro del módulo de E/S, conocidos como registros de datos. Estos registros permiten almacenar los datos antes de enviarlos al dispositivo externo o de recibirlos desde el procesador.
+                    
+                    <div class="contenedor-imagen-tabla">
+                        <h4>Ejemplo:</h4> Imagina un camarero que recibe varios platos de comida para llevar a diferentes mesas. Como no puede llevarlos todos al mismo tiempo, los coloca temporalmente en una bandeja (el "almacenamiento temporal") hasta que pueda entregarlos a las mesas correspondientes.
+                    </div>
+                    <br>
+
+                    <!-- 5- Detección de errores -->
+                    <b style="color: rgb(88, 89, 190);">5- Detección de errores</b><br>
+                    Además, puede haber uno o más registros de estado en el módulo de E/S que proporcionan información sobre el estado actual de la comunicación. Estos registros de estado también pueden funcionar como <b style="color: rgb(88, 89, 190);">registros de control</b>, recibiendo información de control del procesador.<br>
+                    <b>El módulo de E/S verifica que la comunicación con los dispositivos externos sea correcta, detectando cualquier error que pueda ocurrir durante la transferencia de datos.</b>
+                    
+                    <div class="contenedor-imagen-tabla">
+                        <h4>Ejemplo:</h4> Si un archivo no se transfiere correctamente desde una unidad USB, el módulo de E/S lo detecta y alerta al sistema para que se realice la corrección necesaria.<br>
+                        <u>Otra Analogía:</u> imagina que estás enviando un mensaje de texto y parte de este no llega correctamente. El teléfono, actuando como un módulo de E/S, se da cuenta del error y reenvía la parte que faltó para asegurarse de que el mensaje llegue completo.                
+                    </div>
+                </p>
+                <br>
+
+                <h3>Técnicas de entrada/salida: Existen tres técnicas posibles para las operaciones de entrada/salida:</h3>
+                <ul class="lista">
+                    <li><b>Entrada/Salida programada:</b> Los datos se intercambian entre el procesador y el módulo de entrada/salida. El procesador ejecuta un programa que controla directamente la operación de entrada/salida, incluyendo la comprobación del estado del dispositivo, el envío de una orden de lectura o escritura y la transferencia de datos. Cuando el procesador envía una orden al módulo de entrada/salida, debe esperar hasta que la operación de entrada/salida se complete.<br><br>
+                        Ejemplo: Supón que estás haciendo cola en una tienda. Cada vez que haces una compra, debes esperar tu turno y no puedes hacer nada más mientras tanto. El procesador debe esperar a que termine la E/S antes de continuar con otras tareas.</li>
+                    <li><b>Entrada/Salida mediante interrupciones:</b> El procesador proporciona la orden de entrada/salida y continúa ejecutando otras instrucciones. El módulo de entrada/salida interrumpe al procesador cuando ha terminado su trabajo. Tanto en la entrada/salida programada como en la entrada/salida mediante interrupciones, el procesador es responsable de extraer los datos de la memoria principal para una operación de salida y de almacenar los datos en la memoria principal para una operación de entrada.<br><br>
+                        Ejemplo: Imagínate que estás cocinando y mientras esperas a que hierva el agua, te pones a limpiar la cocina. El agua hierve (la E/S termina) y la olla silba (interrupción) para avisarte que está lista, así puedes seguir con lo que estabas haciendo.</li>
+                    <li><b>DMA (Acceso Directo a Memoria):</b> Es una alternativa en la que el módulo de entrada/salida y la memoria principal intercambian datos directamente, sin la intervención del procesador. En esta técnica, el procesador solo inicia la transferencia y es liberado para realizar otras tareas mientras la operación de entrada/salida se lleva a cabo de manera autónoma por el módulo de DMA.<br><br>
+                        Ejemplo: Es como delegar tareas a un asistente de confianza. El asistente se encarga de toda la tarea (transfiriendo datos directamente), y solo te avisa cuando ya está hecho. Así tú (el procesador) puedes concentrarte en otras cosas sin estar involucrado en cada detalle.</li>
+                </ul>
+                <br>
+
+                <h4>Técnicas de entrada/salida (más a detalle)</h4>
+                <h3>E/S programadas:</h3>
+                <p>
+                    Cuando el procesador está ejecutando un programa y encuentra una instrucción relacionada con una entrada/salida, ejecuta dicha instrucción enviando una orden al módulo de entrada/salida apropiado. Con entrada/salida programada, el módulo de entrada/salida realizará la acción solicitada y después activará los bits apropiados en el registro de estado de entrada/salida. El módulo de entrada/salida no realiza ninguna otra acción para avisar al procesador. En concreto, no interrumpe al procesador. De esta forma, el procesador es responsable de comprobar periódicamente el estado del módulo de entrada/salida hasta que encuentre que la operación ha terminado.<br>
+                    Al ejecutar una instrucción relacionada con una entrada/salida, el procesador proporciona una dirección especificando el módulo de entrada/salida particular y el dispositivo externo, así como una orden de entrada/salida. Hay 4 tipos de órdenes:<br>
+                    <ul class="lista">
+                        <li><b>Control:</b> Se utiliza para activar el periférico e indicarle qué hacer.</li>
+                        <li><b>Test:</b> Se utiliza para comprobar diversas condiciones de estado asociadas con el módulo de entrada/salida y sus periféricos.</li>
+                        <li><b>Lectura:</b> Hace que el módulo capte un dato de un periférico y lo sitúe en el buffer interno.</li>
+                        <li><b>Escritura:</b> Hace que el módulo de entrada/salida capte un dato del bus de datos y lo transmita al periférico.</li>
+                    </ul>
+                    <br>
+
+                    Normalmente, habrá muchos dispositivos de entrada/salida conectados al sistema a través de los módulos de entrada/salida. Cada dispositivo tiene asociado un identificador único o dirección. Cuando el procesador envía una orden de entrada/salida, la orden contiene la dirección del dispositivo deseado. Así, cada módulo de entrada/salida debe interpretar las líneas de dirección para determinar si la orden es para él. Cuando el procesador, la memoria principal y las entradas/salidas comparten un bus común, son posibles dos modos de direccionamiento:<br>
+                    <ul class="lista">
+                        <li><b>Asignado en memoria:</b> Existe un único espacio de direcciones para las posiciones de memoria y los dispositivos de entrada/salida. El procesador considera los registros de estado y de datos de los módulos de entrada/salida como posiciones de memoria y utiliza las mismas instrucciones máquina para acceder tanto a la memoria como a los dispositivos de entrada/salida.</li>
+                        <li><b>Aislado:</b> Con las entradas/salidas asignadas en memoria se necesitará una sola línea de lectura y una sola de escritura en el bus. Alternativamente, el bus puede disponer de líneas de lectura y escritura en memoria junto con líneas para órdenes de entrada y salida. En este caso, las líneas de órdenes especifican si las direcciones se refieren a una posición de memoria o a un dispositivo de entrada/salida. Como el espacio de direcciones de entrada/salida está aislado del de memoria, este modo de direccionamiento se conoce como 'entrada/salida aislada'.</li>
+                    </ul>
+                </p>
+                <br>
+
+                <h3>E/S con interrupciones:</h3>
+                <p>
+                    El problema de la entrada/salida programada es que el procesador tiene que esperar un tiempo considerable a que el módulo de entrada/salida en cuestión esté preparado para recibir o transmitir los datos. Mientras espera, el procesador debe comprobar repetidamente el estado del módulo de entrada/salida. Como consecuencia, se degrada el nivel de prestaciones de todo el sistema.<br>
+                    Una alternativa consiste en que el procesador, tras enviar una orden de entrada/salida a un módulo, continúe realizando algún trabajo útil. Después, el módulo de entrada/salida interrumpirá al procesador para solicitar su servicio cuando esté preparado para intercambiar datos con él. El procesador entonces ejecuta la transferencia de datos, como antes, y después continúa con el procesamiento previo.<br>
+                    Supongamos que un módulo de entrada/salida recibe una orden de lectura del procesador. Entonces, el módulo de entrada/salida procede a leer el dato desde el periférico asociado. Una vez que el dato está en el registro de datos del módulo, éste envía una interrupción al procesador a través de una línea de control. Luego, espera a que el procesador solicite su dato. Cuando ha recibido la solicitud, el módulo sitúa su dato en el bus de datos y pasa a estar preparado para otra operación de entrada/salida.<br>
+                    Desde el punto de vista del procesador, las acciones para una entrada son: el procesador envía una orden de lectura y pasa a hacer otro trabajo. Al final de cada ciclo de instrucciones, el procesador comprueba las interrupciones. Cuando se pide la interrupción desde el módulo de entrada/salida, el procesador guarda el contenido (el PC y los demás registros) del programa actual y procesa la interrupción (lee la palabra de datos del módulo de entrada/salida y la almacena en memoria). Luego recupera el contexto y continúa con su ejecución.<br>
+                    En la implementación de las entradas/salidas mediante interrupciones aparecen dos cuestiones. Primero, como que casi invariablemente habrá múltiples módulos de entrada/salida, ¿cómo determina el procesador qué dispositivo ha provocado la interrupción? Y segundo, si se producen varias, ¿cómo decide el procesador las que debe atender? Consideremos en primer lugar la identificación del dispositivo. <b>Se utilizan 4 técnicas comúnmente:</b>
+                    <ul class="lista">
+                        <li><b>Múltiples líneas de interrupción:</b> poco práctico por la posible gran cantidad de módulos.</li>
+                        <li><b>Consulta software (polling):</b> al detectar una interrupción, se produce una bifurcación a una rutina de servicio de interrupción que se encarga de consultar a cada módulo de entrada/salida para determinar cuál la eligió.</li>
+                        <li><b>Conexión en cadena:</b> como la consulta software consume mucho tiempo, surge la conexión en cadena de los módulos de entrada/salida que nos proporciona una consulta hardware. Entonces, cuando el procesador recibe una interrupción, activa el reconocimiento de interrupción. Esta señal se propaga a través de la secuencia de módulos hasta que llega al que solicitó la interrupción. Este módulo responde colocando una palabra en las líneas de datos, denominada "vector", y que es la dirección del módulo de entrada/salida o algún otro tipo de identificador específico. El procesador utiliza el vector como un puntero a la rutina de servicio de dispositivo apropiada. Esta técnica se conoce como "interrupción vectorizada".</li>
+                        <li><b>Arbitraje de bus:</b> con el arbitraje de bus, un módulo de entrada/salida debe en primer lugar disponer del control del bus antes de poder activar la línea de petición de interrupción. Así, sólo un módulo puede activar la línea en un instante. Cuando el procesador detecta la interrupción, responde mediante la línea de reconocimiento de interrupción. Después, el módulo que solicitó la interrupción sitúa su vector en las líneas de datos.</li>
+                    </ul>
+                </p>
+                <br>
+
+                <h3>Acceso Directo a Memoria (DMA):</h3>
+                <p>
+                    La entrada/salida con interrupciones, aunque más eficiente que la programada, también requiere la intervención activa del procesador para transferir datos entre la memoria y el módulo de entrada/salida, y cualquier transferencia de datos debe seguir un camino a través del procesador.<br>
+                    Cuando hay que transferir grandes volúmenes de datos, se requiere una técnica más eficiente: el acceso directo a memoria (DMA). El DMA requiere un módulo adicional en el bus del sistema. Dicho módulo es capaz de imitar al procesador y, de hecho, de recibir el control del sistema cedido por el procesador (necesario para transferir datos a, y desde, la memoria a través del bus del sistema). Para hacerlo, el módulo de DMA debe utilizarse sólo cuando el procesador no lo necesita, o debe forzar al procesador a que suspenda temporalmente su funcionamiento. Esta última técnica es la más común y se denomina "robo de ciclo" puesto que, en efecto, el módulo de DMA roba un ciclo del bus.<br>
+                    Cuando el procesador desea leer o escribir un bloque de datos, envía una orden al módulo de DMA, incluyendo la siguiente información:
+                    <ul class="lista">
+                        <li><b>Si se solicita una lectura o escritura,</b> utilizando la línea de control correspondiente.</li>
+                        <li><b>Dirección del dispositivo de entrada/salida,</b> indicada a través de líneas de datos.</li>
+                        <li><b>Posición inicial de memoria</b> a partir de la que se lee o escribe, indicada a través de las líneas de datos y almacenada por el módulo de DMA en su registro de direcciones.</li>
+                        <li><b>Número de palabras</b> a leer o escribir, almacenado en el registro de cuenta de datos e indicado a través de las líneas de datos.</li>
+                    </ul>
+                    <br>
+
+                    Después, el procesador continúa con otro trabajo. Ha delegado la operación de entrada/salida al módulo de DMA, que se encargará de ella. El módulo de DMA transfiere el bloque completo de datos, palabra a palabra, directo desde o hacia la memoria, sin que tenga que pasar a través del procesador. Cuando la transferencia se ha terminado, el módulo de DMA envía una señal de interrupción al procesador. De esta forma, el procesador solo interviene al comienzo y al final de la transferencia.<br>
+                    No se trata de una interrupción de la acción en sí; el procesador no guarda el contexto ni hace nada más cuando el módulo de DMA le roba el ciclo. En cambio, espera durante un ciclo de bus. El efecto resultante es que el procesador es más lento ejecutando programas. El número de ciclos de bus necesarios puede reducirse sustancialmente si se integran las funciones de DMA y entrada/salida.<br>
+                    Esto significa que existe un camino entre el módulo de DMA y uno o más módulos de Entrada/salida que no incluye al bus del sistema. La lógica de DMA puede ser parte de un módulo de entrada/salida, o puede ser un módulo separado que controla a uno o más módulos de entrada/salida. Este concepto se puede llevar algo más lejos conectando los módulos de entrada/salida al DMA mediante un bus de entrada/salida en el módulo de entrada/salida y produce una configuración fácilmente ampliable.<br>
+                    En todos estos casos el bus del sistema, que el módulo de DMA comparte con el procesador y la memoria, es usado por el módulo de DMA solo para intercambiar datos con la memoria. El intercambio de datos entre los módulos de DMA y entrada/salida se produce fuera del bus del sistema.
+                </p>
                 
                 <button onclick="scrollToTop('entrada-salida')">▲</button>
             </section>
@@ -852,16 +991,344 @@
 
             <!-- ********************************************************************************************************** MEMORIA CACHE -->
             <section id="memoria-cache" class="contenido">
-                <h2>Memoria Caché</h2>
-                <p>Funcionamiento de la memoria caché y su importancia en la arquitectura de computadoras.</p>
+                <h2 class="titulo2"> MEMORIA CACHÉ (MC)</h2>
+                <p>
+                    Es un tipo de memoria de <u>acceso rápido</u> que se encuentra entre la CPU y la memoria principal de una computadora. Su función principal es almacenar temporalmente datos e instrucciones que se utilizan con frecuencia, lo que ayuda a acelerar el acceso a ellos y mejorar el rendimiento del sistema.<br>
+                    El paradigma principal en que se basa el funcionamiento de la memoria caché es el principio de <b>localidad de referencia</b>.
+                    <br><br>
+                    Este principio se divide en:
+                    <ul class="lista">
+                        <li><b>Localidad temporal:</b> Los datos a los que se ha accedido recientemente es probable que se vuelvan a necesitar en un futuro cercano.</li>
+                        <li><b>Localidad espacial:</b> Los datos cercanos en memoria a los que ha accedido recientemente es probable que se necesiten pronto.</li>
+                    </ul>
+                    <br>
+                    La mejora efectiva que se logra usando la memoria caché es la <u>reducción del tiempo promedio de acceso a la memoria</u>, lo que incrementa el rendimiento del sistema. Esto se debe a que la caché almacena temporalmente los datos más frecuentes utilizados, permitiendo que el procesador acceda a estos de manera mucho más rápida que si tuviera que acceder a la memoria principal (RAM) cada vez.<br>
+                    La memoria caché es principalmente una <b>implementación de hardware</b>.  Sin embargo, su eficacia también puede ser mejorada con estrategias de software que optimicen el uso de la caché, como las técnicas de programación que promueven la <u>localización de referencia</u>.<br>
+                </p>
+                <br>
+
+                <h3>Función de mapeo:</h3>
+                <p>
+                    Es el mecanismo fundamental que determina cómo los bloques de memoria principal se asignan a las líneas de la memoria caché.<br> 
+                    Esta función es crucial para el funcionamiento eficiente de la memoria caché por las siguientes razones:
+                    <ol>
+                        <li><b>Asignación de bloques:</b> Define cómo se distribuyen los datos de la memoria principal en la estructura más pequeña de la caché.</li>
+                        <li><b>Optimización del acceso:</b> Busca equilibrar la velocidad de acceso con la utilización eficiente del espacio en caché.</li>
+                        <li><b>Gestión de conflictos:</b> Ayuda a manejar situaciones donde múltiples bloques de memoria principal podrían mapear a la misma ubicación en caché.</li>
+                        <li><b>Impacto en el rendimiento:</b> La elección de la función de mapeo afecta directamente la tasa de aciertos (hit rate) de la caché, lo que influye en el rendimiento global del sistema.</li>
+                        <li><b>Flexibilidad vs. Complejidad:</b> Diferentes funciones de mapeo ofrecen distintos grados de flexibilidad en la asignación, pero también pueden variar en su complejidad de implementación.</li>
+                    </ol>
+                    <br>
+
+                    La función de mapeo es esencial para determinar:
+                    <ul class="lista">
+                        <li>Dónde se almacena un bloque específico de memoria principal dentro de la caché.</li>
+                        <li>Cómo se localiza un dato cuando el procesador lo solicita.</li>
+                        <li>Qué estrategia se utiliza para reemplazar datos en la caché cuando está llena.  </li>
+                    </ul>
+                </p>
+                <br>
+
+                <h4><u>Existen tres principales tipos de funciones de mapeo:</u></h4>
+                <ol>
+                    <li>Mapeo Directo</li>
+                    <li>Mapeo Asociativo</li>
+                    <li>Mapeo Asociativo por Conjunto</li>
+                </ol>
+                <br>
+
+                <h3>Mapeo Directo</h3>
+                <p>
+                    El Mapeo Directo es una técnica de función de mapeo en la memoria caché que <b>asigna cada bloque de la memoria principal a una única ubicación en la caché</b>.<br>
+                    En este esquema, múltiples bloques de memoria principal pueden corresponder a la misma línea de caché, pero solo uno a la vez.<br> 
+                    Utiliza una fórmula simple, típicamente (Dirección del bloque) mod (Número de líneas en caché), para determinar la ubicación.<br> 
+                    Cada línea de caché se estructura con una etiqueta, un índice y un desplazamiento.<br> 
+                    Para acceder a los datos, el índice localiza la línea, la etiqueta verifica el bloque correcto, y el desplazamiento encuentra el byte específico.<br> 
+                    <i style="color: rgb(60, 163, 60)">Aunque es rápido y fácil de implementar,</i>  <i style="color: rgb(238, 91, 91);">el Mapeo Directo puede generar conflictos cuando varios bloques compiten por la misma línea, lo que puede resultar en reemplazos frecuentes y una utilización ineficiente del espacio de caché, potencialmente aumentando la tasa de fallos en ciertos patrones de acceso a memoria.</i><br>
+                    Este tipo de función de mapeo no requiere de algoritmos de reemplazo.
+                </p>
+                <br>
+                
+                <h4>Ventajas</h4>
+                <ul class="lista">
+                    <li>Es fácil de implementar</li>
+                    <li>La búsqueda dentro de la memoria caché es rápida.</li>
+                </ul>
+                <br>
+
+                <h4>Desventajas</h4>
+                <ul class="lista">
+                    <li>No se aprovecha la memoria caché al máximo, debido a que se van a reemplazar bloques así sea que esta no está llena.</li>
+                    <li>Es muy probable que exista competencia por una misma línea en memoria caché, aun cuando esta no esté llena. <br> Esto va a pasar cuando dos o más bloques tengan asignado la misma línea en meoria caché. Lo que termina reduciendo la tasa de aciertos y provocando miss de caché.</li>
+                </ul>
+                
+                <img src="images/adc-mapeoDirecto.png" alt="Mapeo Directo" style="width: 600px; padding: 30px;">
+                
+                <h3>Mapeo Asociativo</h3>
+                <p>
+                    El Mapeo Asociativo es una técnica de función de mapeo en la memoria caché que <b>permite que cualquier bloque de la memoria principal pueda ser almacenado en cualquier línea de la caché.</b><br> 
+                    Este enfoque <i style="color: rgb(60, 163, 60);">ofrece máxima flexibilidad, eliminando los conflictos de ubicación presentes en el mapeo directo</i>.<br> 
+                    En este esquema, cada línea de caché contiene tanto los datos como una etiqueta que identifica el bloque de memoria principal correspondiente.<br> 
+                    Para encontrar un dato, <i style="color: rgb(238, 91, 91);">se debe buscar en toda la caché, comparando la etiqueta de cada línea con la dirección solicitada.</i><br> 
+                    <i style="color: rgb(60, 163, 60);">Esto resulta en un uso más eficiente del espacio de caché y una tasa de aciertos potencialmente mayor, especialmente para patrones de acceso a memoria irregulares.</i><br> 
+                    <i style="color: rgb(238, 91, 91);">Sin embargo, la búsqueda exhaustiva necesaria para localizar los datos puede aumentar la complejidad del hardware y el tiempo de acceso.</i><br> 
+                    El mapeo asociativo es particularmente <i style="color: rgb(60, 163, 60);">útil en cachés pequeñas o en situaciones donde la predicción de patrones de acceso a memoria es difícil</i> pero su implementación <b>es más costosa</b> en términos de hardware comparado con otras técnicas de mapeo.
+                </p>
+                <br><br>
+
+                <h4>Ventajas:</h4>
+                <ul class="lista">
+                    <li>Se aprovecha al máximo a la memoria caché, no se reemplaza un bloque de la misma a no ser que esta esté llena.</li>
+                    <li>Aumenta la tasa de aciertos.</li>
+                </ul>
+
+                <h4>Desventajas:</h4>
+                <ul class="lista">
+                    <li>La búsqueda en memoria caché es más lenta que en el caso anterior.</li>
+                    <li>Se debe recorrer la memoria caché comparando el TAG de cada línea con el TAG de la palabra que se busca.</li>
+                </ul>
+                <img src="images/adc-mapeoAsociativo.png" alt="Mapeo Asociativo" style="width: 600px; padding: 30px;">
+
+                <h3>Mapeo Asociativo por Conjunto</h3>
+                <p>
+                    El Mapeo Asociativo por Conjunto es una técnica de administración de la memoria caché que combina las ventajas del mapeo directo y el mapeo totalmente asociativo.<br> 
+                    Esta estrategia <b>divide la caché en conjuntos, cada uno conteniendo múltiples líneas.</b> Un bloque de memoria principal se asigna a un conjunto específico (como en el mapeo directo), pero puede ocupar cualquier línea dentro de ese conjunto (como en el mapeo asociativo).<br>
+                    <i style="color: rgb(60, 163, 60);">Esta técnica ofrece un equilibrio entre velocidad de acceso y tasa de aciertos. La búsqueda se limita a un conjunto específico, lo que es más rápido que una búsqueda completa de la caché, mientras que la flexibilidad dentro del conjunto reduce los conflictos de ubicación.</i><br>
+                    El <b>grado de asociatividad (N)</b> determina cuántas líneas hay en cada conjunto.<br> 
+                    Cuando N=1, equivale al mapeo directo; cuando N iguala el número total de líneas en la caché, se convierte en mapeo totalmente asociativo. En la práctica, se elige un valor intermedio de N para optimizar el rendimiento, aprovechando tanto la rapidez de búsqueda del mapeo directo como la alta tasa de aciertos del mapeo asociativo.<br>
+                    Esta implementación proporciona un compromiso eficaz entre complejidad de hardware, velocidad de acceso y eficiencia en el uso del espacio de caché, haciéndola una opción popular en muchos sistemas modernos.
+                </p>
+                <img src="images/adc-mapeoAsociativoPorConjunto.png" alt="Mapeo Asociativo" style="width: 600px; padding: 30px;">
+
+
+                <h3>Algoritmo de Reemplazo</h3>
+                <p>
+                    Es una estrategia crucial en la gestión de la memoria caché que determina qué línea de la caché debe ser reemplazada cuando se necesita almacenar un nuevo bloque y la caché está llena. Este algoritmo es fundamental para mantener la eficiencia y el rendimiento de la memoria caché por las siguientes razones:
+                </p>
+                <ol>
+                    <li><b>Optimización del rendimiento:</b> Busca mantener en la caché los datos que tienen más probabilidades de ser utilizados en el futuro cercano.</li>
+                    <li><b>Gestión de conflictos:</b> Resuelve situaciones donde múltiples bloques compiten por el mismo espacio en la caché.</li>
+                    <li><b>Balanceo de prioridades:</b> Equilibra la necesidad de mantener datos frecuentemente utilizados con la de incorporar nuevos datos potencialmente importantes.</li>
+                    <li><b>Impacto en la tasa de aciertos:</b> La elección del algoritmo afecta directamente la tasa de aciertos de la caché, influyendo así en el rendimiento global del sistema.</li>
+                    <li><b>Adaptabilidad:</b> Algunos algoritmos pueden adaptarse a diferentes patrones de acceso a memoria para optimizar su eficacia.</li>
+                    <li><b>Complejidad vs. Eficacia:</b> Los algoritmos varían en su complejidad de implementación y en su eficacia para diferentes escenarios de uso.</li>
+                </ol>
+                <br>
+
+                <p>Los algoritmos de reemplazo consideran factores como:</p>
+                <ul class="lista">
+                    <li>Frecuencia de uso de los bloques</li>
+                    <li>Tiempo transcurrido desde el último acceso</li>
+                    <li>Patrones de acceso a memoria</li>
+                </ul>
+                <br>
+
+                <h4><u>Algunos de los algoritmos de reemplazo mas compunes incluyen:</u></h4>
+                <div class="contenedor-imagen-tabla">
+                    <h3>FIFO (First In, First Out)</h3>
+                <p>
+                    Es un algoritmo de reemplazo en memoria caché que opera bajo el principio de que el primer bloque que entró en la caché será el primero en ser reemplazado cuando se necesite espacio para un nuevo bloque. Este método trata la caché como una cola, donde los bloques más antiguos se encuentran al frente y son los primeros candidatos para ser eliminados.<br>
+                    <b>Funcionamiento:</b> Mantiene un registro del orden en que los bloques fueron cargados en la caché. Cuando se necesita espacio, selecciona para reemplazo el bloque que ha estado en la caché por más tiempo.No considera la frecuencia de uso o el tiempo desde el último acceso a los bloques.<br><br>
+                    <h4>Ventaja: </h4>
+                    <ul class="lista">
+                        <li>Es simple de implementar.</li>
+                        <li>Tiene un bajo costo computacional.</li>
+                        <li>Overhead mínimo en términos de procesamiento y almacenamiento.</li>
+                    </ul>
+                    <h4>Desventaja: </h4>
+                    <ul class="lista">
+                        <li>Puede ser ineficiente si los bloques más antiguos son también los más frecuentemente utilizados.</li>
+                        <li>No se adapta a patrones cambiantes de acceso a memoria.</li>
+                    </ul>
+                </p>
+                </div>
+                <br>
+
+                <div class="contenedor-imagen-tabla">
+                    <h3>LRU (Least Recently Used)</h3>
+                    <p>
+                        Es un algoritmo de reemplazo en memoria caché que opera bajo el principio de reemplazar el bloque que no ha sido accedido durante el período más largo. Este método prioriza mantener en caché los datos que se han utilizado más recientemente, asumiendo que es más probable que se necesiten de nuevo en un futuro cercano.<br>
+                        <b>Funcionamiento:</b> Mantiene un <b>registro del tiempo</b> de último acceso para cada bloque en la caché. Cuando se necesita espacio, selecciona para reemplazo el bloque que tiene el tiempo de último acceso más antiguo. Se actualiza este registro cada vez que se accede a un bloque.<br><br>
+                        <h4>Ventajas:</h4>
+                        <ul class="lista">
+                            <li>Tiende a eliminar los bloques menos utilizados, lo que puede mejorar el rendimiento al mantener en caché los datos más relevantes.</li>
+                            <li>Se adapta bien a patrones de acceso a memoria cambiantes.</li>
+                            <li>Aprovecha eficazmente el principio de <b>localidad temporal</b>.</li>
+                        </ul><br>
+
+                        <h4>Desventajas:</h4>
+                        <ul class="lista">
+                            <li>Podría tener un overhead de seguimiento, especialmente en sistemas con un gran número de bloques en la caché y un alto volumen de accesos.</li>
+                            <li>Requiere hardware más complejo para su implementación comparado con algoritmos más simples como FIFO.</li>
+                            <li>Puede ser menos efectivo en situaciones donde el patrón de acceso no sigue el principio de localidad temporal.</li>
+                        </ul>
+                    </p>
+                </div>
+                <br>
+
+                <div class="contenedor-imagen-tabla">
+                    <h3>LFU (Least Frequently Used)</h3>
+                    <p>
+                        Es un algoritmo de reemplazo en memoria caché que opera bajo el principio de reemplazar el bloque que ha sido accedido con menor frecuencia. Este método prioriza mantener en caché los datos que se han utilizado más a menudo, asumiendo que los bloques frecuentemente accedidos tienen más probabilidades de ser necesarios en el futuro.<br>
+                        <b>Funcionamiento:</b> Mantiene un <b>contador de accesos</b> para cada bloque en la caché. Cuando se necesita espacio, selecciona para reemplazo el bloque que tiene el contador de accesos más bajo. Se incrementa este contador cada vez que se accede a un bloque.<br><br>                    
+                        <h4>Ventajas:</h4>
+                        <ul class="lista">
+                            <li>Elimina los bloques que se han accedido con menos frecuencia, lo que puede ser útil para optimizar el uso de la caché en aplicaciones con patrones de acceso irregulares.</li>
+                            <li>Puede ser muy efectivo en situaciones donde ciertos datos son consistentemente más importantes o frecuentemente utilizados que otros.</li>
+                            <li>Proporciona una buena medida de la importancia a largo plazo de los bloques de datos.</li>
+                        </ul>
+                        <br>
+
+                        <h4>Desventajas:</h4>
+                        <ul class="lista">
+                            <li>Es complicado de implementar, requiriendo hardware adicional para mantener y actualizar los contadores de frecuencia.</li>
+                            <li>Puede ser lento para adaptarse a cambios en los patrones de acceso, ya que los bloques con alta frecuencia histórica pueden permanecer en la caché incluso si ya no se utilizan.</li>
+                            <li>Puede sufrir del problema de "envejecimiento de caché", donde bloques nuevos pero importantes son expulsados rápidamente debido a sus bajos contadores de frecuencia.</li>
+                        </ul>
+                    </p>
+                </div>
+                
+                <div class="contenedor-imagen-tabla">
+                    <h3>Aleatorio</h3>
+                <p>
+                    Es un algoritmo de reemplazo en memoria caché que opera bajo el principio de seleccionar al azar un bloque para ser reemplazado cuando se necesita espacio para un nuevo bloque. Este método no considera la frecuencia de uso, el tiempo de permanencia en la caché, ni ningún otro factor para tomar la decisión de reemplazo.<br>
+                    <b>Funcionamiento:</b> Cuando se necesita espacio en la caché, simplemente selecciona de manera aleatoria uno de los bloques existentes para ser reemplazado. No requiere mantener ningún tipo de registro o contador asociado a los bloques.<br><br>
+                    <h4>Ventajas:</h4>
+                    <ul class="lista">
+                        <li>Es fácil de implementar, requiriendo muy poco hardware adicional.</li>
+                        <li>Es eficiente en términos de tiempo de decisión, ya que no necesita comparar o analizar datos.</li>
+                        <li>No tiene sobrecarga (overhead) de mantenimiento de información sobre los bloques.</li>
+                        <li>Puede funcionar bien en situaciones donde los patrones de acceso son impredecibles o muy variados.</li>
+                    </ul>
+                    <br>
+
+                    <h4>Desventajas:</h4>
+                    <ul class="lista">
+                        <li>El número de bloques debe ser elevado para demostrar la eficacia, ya que con pocos bloques la probabilidad de reemplazar datos importantes aumenta.</li>
+                        <li>No garantiza un rendimiento óptimo, ya que puede reemplazar bloques frecuentemente utilizados.</li>
+                        <li>Su rendimiento puede ser inconsistente y difícil de predecir.</li>
+                        <li>No aprovecha los principios de localidad temporal o espacial que suelen ser beneficiosos en el manejo de caché.</li>
+                    </ul>
+                </p>
+                </div>
+                <br>
+
+                <h3>Casos Especiales en la Gestión de Memoria Caché</h3>
+                <p>
+                    <h4><b>Lectura de una dirección que se encuentra en la Memoria Caché (MC):</b></h4>
+                    <ol>
+                        <li>El controlador de caché recibe la solicitud de lectura.</li>
+                        <li>El controlador busca la línea de caché correspondiente a la dirección solicitada usando la función de mapeo.</li>
+                        <li>Verifica el tag de la línea para confirmar que es el dato correcto.</li>
+                        <li>Si hay una coincidencia (HIT de caché), los datos son leídos directamente de la caché y enviados al procesador.</li>
+                        <li>El acceso es rápido y el tiempo de respuesta es bajo.</li>
+                    </ol>
+                    <br>
+                    
+                    <h4><b>Lectura de una dirección que NO se encuentra en la Memoria Caché (MC):</b></h4>
+                    <ol>
+                        <li>El controlador de caché recibe la solicitud de lectura.</li>
+                        <li>El controlador busca la línea de caché correspondiente a la dirección solicitada usando la función de mapeo.</li>
+                        <li>Verifica el tag de la línea y detecta que no hay coincidencia (MISS de caché).</li>
+                        <li>La solicitud se envía a la memoria principal para leer el bloque de datos requerido.</li>
+                        <li>El bloque de datos es cargado en la caché y el tag correspondiente es actualizado.</li>
+                        <li>El dato es leído de la caché y enviado al procesador.</li>
+                        <li>El acceso es más lento comparado con un HIT en caché debido a la latencia de la memoria principal.</li>
+                    </ol>
+                    <br>
+                    
+                    <h4><b>Escritura de una dirección que se encuentra en la Memoria Caché (MC):</b></h4>
+                    <ol>
+                        <li>El controlador de caché recibe la solicitud de escritura.</li>
+                        <li>El controlador busca la línea de caché correspondiente a la dirección solicitada usando la función de mapeo.</li>
+                        <li>Verifica el tag de la línea para confirmar que es el dato correcto.</li>
+                        <li>Si hay coincidencia (HIT de caché), los datos son escritos directamente a la línea de caché.</li>
+                        <li>Dependiendo de la política de escritura, los cambios pueden ser inmediatamente escritos en la memoria principal (write-through) o marcados para escribir más tarde (write-back).</li>
+                    </ol><br>
+
+                    <h4><b>Políticas de Escritura:</b></h4>
+                    <ul class="lista">
+                        <li><b>Write-through:</b> Se escribe de manera simultánea en memoria caché y en memoria principal. Esto da la ventaja de que, al reemplazar ese bloque en memoria caché, simplemente se reemplaza rápidamente. Sin embargo, la desventaja es que cada proceso de escritura tarda más, ya que debe acceder a la memoria principal, lo que puede ralentizar el proceso si hay muchas escrituras.</li>
+                        <li><b>Write-back:</b> Se escribe solo en memoria caché y la memoria principal se actualiza solo cuando se va a reemplazar el bloque de memoria caché. La ventaja es que la escritura es rápida, lo cual es recomendable cuando se realizan muchas actualizaciones en los datos. La desventaja es que al reemplazar un bloque de memoria caché, el proceso es más lento, porque se debe reemplazar el bloque completo en la memoria principal.</li>
+                    </ul>
+                    <br>
+
+                    <h4><b>Escritura de una dirección que NO se encuentra en la Memoria Caché (MC):</b></h4>
+                    <ol>
+                        <li>El controlador de caché recibe la solicitud de escritura.</li>
+                        <li>El controlador busca la línea de caché correspondiente a la dirección solicitada usando la función de mapeo.</li>
+                        <li>Verifica el tag de la línea y detecta que no hay coincidencia (MISS de caché).</li>
+                        <li>El dato es escrito directamente en la memoria principal sin modificar la caché, ya que no es probable que la próxima escritura sea en el bloque activo, por lo que no vale la pena traerlo a la MC.</li>
+                    </ol>
+
+                </p>
+
+
+
+
+
+
+
                 <button onclick="scrollToTop('memoria-cache')">▲</button>
                 <!--<button onclick="goBack()">Volver Atrás</button>-->
             </section>
 
             <!-- ********************************************************************************************************** COHERENCIA CACHE -->
             <section id="coherencia-cache" class="contenido">
-                <h2>Coherencia Caché</h2>
-                <p>Funcionamiento de la memoria caché y su importancia en la arquitectura de computadoras.</p>
+                <h2 class="titulo2">COHERENCIA CACHE</h2>
+                <p>
+                    La coherencia de caché se refiere al problema que surge cuando existe múltiples copias del mismo dato en diferentes cachés y los procesadores actualizan sus copias, lo que puede producir una visión incosistente de la memoria.
+                    <br>
+                    Según las dos políticas de escritura de caché, <b>Write-Back(WB)</b> y <b>Write-Throug(WT)</b>, la política WB puede causar problemas de coherencia. Si dos cachés contienen la misma línea de datos y una de ellas la actualiza, la otra puede operar con un dato desactualizado. Aunque este problema también puede ocurrir con WT, se puede mitigar si las cachés reciben notificaciones de escritura en la memoria. Es posible usar WT con modificaciones para mejorar la coherencia.
+                    <br>
+                    Existen dos tipos de soluciones para el problema de coherencia de caché: basadas en software y basadas en hardwares
+                </p>
+                <br>
+
+                <h3>Soluciones Basadas en Software</h3>
+                <p>
+                    Las soluciones de software delegan el problema al compilador y al sistema operativo. Estos clasifican los datos como compartidos o no compartidos, y de solo lectura o de lectura-escritura.
+                    <ul class="lista">
+                        <li><b>Datos no compartidos:</b> No presentan problemas de coherencia ya que son de uso exclusivo del procesador.</li>
+                        <li><b>Datos de solo lectura:</b> Tampoco presentan problemas, ya que no se modifican.</li>
+                    </ul>
+                    El problema surge con los datos compartidos y de escritura. La solución es marcarlos como no-cacheables, evitando que se almacenaen en la caché.
+                </p>
+                <br>
+
+                <h3>Soluciones Basadas en Hardware</h3>
+                <p>
+                    Las soluciones de hardware se denominan protocolos de coherencia de cahé. Estas soluciones permiten reconocer dinámicamente en el momento de la ejecución, las situaciones potenciales de inconsistencia. A diferencia de las soluciones basadas en software, estos protocolos gestionan el problema cuando realmente ocurre, optimizando el uso de la caché.
+                    <br><br>
+
+                    Existen dos grandes grupos de protocolos: de directorio y de sondeo.
+                    <ol>
+                        <li><b>Protocolos de Directorio:</b> Recogen y mantienen información sobre dónde residen las copias de las lines de datos. El directorio centralizado contiene el estado global de los contenidos de las diferentes cachés locales.</li>
+                        <ul class="lista">
+                            <li><b>Ventajas:</b> Control centralizado.</li>
+                            <li><b>Desventajas:</b> Cuello de botella en el controlador central y costos de comunicación entre el controlador central y las cachés.</li>
+                        </ul><br>
+                        <li><b>Protocolos de Sondeos:</b> Distribuyen la responsabilidad de mantener la coherencia de caché entre todos los controladores de caché del multiprocesador. Cada caché debe reconocer cuando posee una linea que está siendo compartida con otras cachés. Cuando una caché modifica una linea, lo anuncia a las demás mediante un mecanismo de difusión (broadcastin). Cada controlador de caché puede sondear la red para observar las notificaciones y reaccioens rápidamente.</li>
+                        <ul class="lista">
+                            <li><b>Ventajas:</b> Distribución de la carga de mantenimiento de coherencia y rápida reacción a las modificaciones.</li>
+                            <li><b>Desventajas:</b> Requiere un mecanismo eficiente de broadcasting.</li>
+                        </ul>
+                    </ol>
+                </p>
+                <br>
+                
+                <h3>Protocolo MESI: (MOESI 🠚 O = Ocupado)</h3>
+                <p>
+                    Un ejemplo de protocolo de coherencia de caché es el protocolo MESI, donde cada bloque de la caché puede estar en uno de los siguientes estados:
+                    <ul class="lista">
+                        <li><b>Modificado (M):</b> El bloque ha sido modificado y no es consistente con la memoria principal.</li>
+                        <li><b>Exlusivo (E):</b> El bloque está presente solo en esta caché y es consistente con la memoria principal.</li>
+                        <li><b>Compartido (S):</b> El bloque está presente en múltiples cachés y es consistentes con la memoria principal.</li>
+                        <li><b>Inválido (I):</b> El bloque no contiene datos válidos</li>
+                    </ul>
+                    <br>
+                    Este protocolo mejora la eficienca y la coherencia en sistemas multiprocesador, manejando de manera efectiva las actualizaciones y los estados de los bloques en las cachés.
+                </p>
                 <button onclick="scrollToTop('coherencia-cache')">▲</button>
                 <!--<button onclick="goBack()">Volver Atrás</button>-->
             </section>
