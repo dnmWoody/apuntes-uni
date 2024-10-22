@@ -32,10 +32,13 @@
                 <li><a href="#modulo-3" onclick="hideMenu()">Módulo III</a></li>
                 <hr>
                 <br><p style="color: #1abc9c;"> TRABAJOS PRACTICOS</p>
+                <p style="background-color: #1abc9c;">PSEUDOCÓDIGO</p>
                 <li><a href="#tpp" onclick="hideMenu()">TP - Presentación</a></li>
                 <li><a href="#tp1" onclick="hideMenu()">TP1</a></li>
                 <li><a href="#tp2" onclick="hideMenu()">TP2</a></li>
                 <li><a href="#tp3" onclick="hideMenu()">TP3</a></li>
+                <p style="background-color: #1abc9c;">LENGUAJE C</p>
+                <li><a href="#tp4" onclick="hideMenu()">TP4</a></li>
                 <hr>
                 <li><a href="#examenes" onclick="hideMenu()">Exámenes</a></li>
                 <li><a href="../index.html" onclick="hideMenu()" style="color: rgb(207, 89, 89);">← Volver atrás</a></li>
@@ -162,7 +165,6 @@
             <section id="tpp" class="contenido">
                 <h2>TRABAJO PRÁCTICO - PRESENTACIÓN</h2>
                 
-                </p>
                 <div class="code-container">
                     <h4>Código:</h4>
                     <pre><code>
@@ -187,6 +189,48 @@
                         FinAlgoritmo
                     </code></pre>
                 </div>
+
+                <div class="code-container">
+                    <h4>Código 2 - FUNCION AZAR:</h4>
+                    <pre><code>
+                        Algoritmo FuncionAzar
+                        Definir nro_aleatorio Como Entero;
+                        Definir nro_usuario Como Entero;
+                        Definir intentos Como Entero;
+                        
+                        nro_aleatorio = Azar(100);
+                        intentos = 0;
+                        
+                        Escribir "Adivina que número soy (de 0 - 100): ";
+                        Escribir "                                           *INTENTOS: 5*";
+                        Leer nro_usuario;
+                        
+                        Mientras (nro_usuario <> nro_aleatorio) Y (intentos < 10) Hacer
+                            Si nro_aleatorio  > nro_usuario Entonces
+                                Escribir "No es el número, prueba otra vez";
+                                Escribir "Pista: Mas Alto";
+                            SiNo
+                                Escribir "No es el número, prueba otra vez";
+                                Escribir "Pista: Mas Bajo";
+                            FinSi
+                            
+                            intentos <- intentos + 1;
+                            Escribir "                                           *Cantidad de intentos: ", intentos "*";
+                            Leer nro_usuario;
+                        FinMientras
+                        
+                        Si nro_aleatorio == nro_usuario Entonces
+                            Escribir "ACERTASTE";
+                            Escribir "Intentos: ", intentos;
+                        SiNo
+                            Escribir "El número era: ", nro_aleatorio;
+                            Escribir "Intentos: ", intentos;
+                        FinSi
+                            
+                    FinAlgoritmo
+                    </code></pre>
+                </div>
+
                 <button onclick="scrollToTop('tpp')">▲</button>
                 <!--<button onclick="goBack()">Volver Atrás</button>-->
             </section>
@@ -337,6 +381,30 @@
                     </code></pre>
                 </div>
                 <button onclick="scrollToTop('tp3')">▲</button>
+                <!--<button onclick="goBack()">Volver Atrás</button>-->
+            </section>
+
+            <!-- TRABAJO PRACTICO 4 -->
+            <section id="tp4" class="contenido">
+                <h2>TRABAJO PRÁCTICO 4</h2>
+                <p>
+                    PROGRAMA EN C PROXIMAMENTE
+                    <br><br>
+                    
+                    <b><i>
+                        ****Recordar entregar captura de pantalla de codigo y Ventana de Ejecución******
+                        <br>
+                        ****No entregar Archivo psc******
+                    </i></b>
+                </p>
+                <div class="code-container">
+                    <h3>Código:</h3>
+                    <pre><code>
+                        Algoritmo C
+                        FinAlgoritmo C
+                    </code></pre>
+                </div>
+                <button onclick="scrollToTop('tp2')">▲</button>
                 <!--<button onclick="goBack()">Volver Atrás</button>-->
             </section>
 

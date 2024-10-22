@@ -975,8 +975,95 @@
 
             <!-- ********************************************************************************************************** PARALELISMO -->
             <section id="paralelismo" class="contenido">
-                <h2>Paralelismo</h2>
-                <p>PARALELISMO</p>
+                <h2 class="titulo2">Paralelismo</h2>
+                <p>
+                    El <b>paralelismo</b> es la capacidad de realizar múltiples tareas o ejecutar varias operaciones al mismo tiempo.<br> 
+                    Su objetivo es reducir el tiempo de ejecución de un programa al dividirlo en partes que se procesan simultáneamente, mejorando así la eficiencia y el uso de los recursos del sistema.
+                    <br><br>
+                    Existen dos tipos principales de organización de sistemas con múltiples procesadores: los <b>sistemas fuertemente acoplados</b> y los <b>débilmente acoplados</b>. La forma en que los procesadores se comunican y coordinan entre sí afecta la manera en que se logra el paralelismo.
+                    <ul class="lista">
+                        <li>
+                            En un <b>sistema fuertemente acoplado</b>, varios procesadores comparten una memoria principal y un reloj global. Esto permite una comunicación rápida entre ellos, ya que todos acceden a la misma memoria.<br>
+                            Este tipo de sistema es común en CPUs multinúcleo o servidores multiprocesador. En este contexto, el paralelismo es fino, lo que significa que las tareas suelen requerir una sincronización constante. Por ejemplo, en un programa que simula fenómenos físicos, cada núcleo realiza una parte del cálculo y accede a la memoria compartida para intercambiar resultados con otros núcleos.
+                        </li>
+                        <li>
+                            Un <b>sistema débilmente acoplado</b>, cada procesador tiene su propia memoria y su propio reloj. La comunicación entre procesadores es más lenta y se realiza mediante el envío de mensajes o a través de redes.<br> 
+                            Estos sistemas son típicos en clusters de servidores o sistemas distribuidos. En este caso, el paralelismo es más grueso, ya que las tareas tienden a ser más independientes y no requieren tanta comunicación constante. Un ejemplo sería una simulación climática, donde cada servidor procesa datos de una región específica y sólo ocasionalmente intercambia información con otros servidores.
+                        </li>
+                    </ul>
+                </p>
+                <br>
+
+                <h3>Clasificación de Flynn (Michael J. Flynn - 1966)</h3>
+                <p>
+                    La <b>Clasificación de Flynn</b> está directamente relacionada con el paralelismo porque establece cómo una arquitectura de computadora puede manejar múltiples instrucciones y datos simultáneamente, lo que es esencial para entender las diferentes formas en que se implementa el procesamiento paralelo.<br>
+                    Flynn identifica cuatro categorías basadas en dos dimensiones: el <u>flujo de instrucciones</u> y el <u>flujo de datos</u>. Estas categorías muestran las distintas maneras en que un sistema puede ejecutar tareas en paralelo, desde arquitecturas más simples hasta complejos sistemas distribuidos.
+                </p>
+                <br>
+
+                <!-- SSID (Single Instruction, Single Data) -->
+                <h4>SSID (Single Instruction, Single Data)</h4>
+                <p class="cuadro-chico">
+                    Flujo de Instrucciones: 1<br>
+                    Flujo de Datos: 1<br>
+                    Aquí, el procesador ejecuta <b>una sola instrucción</b> en <b>un conjunto de datos</b> por vez, de manera completamente secuencial. No hay paralelismo.
+                </p>
+                <p>
+                    En la arquitectura <b>SISD</b>, una única unidad de procesamiento (CPU) ejecuta <b>una instrucción a la vez</b> sobre un conjunto de datos. Es como seguir una lista de tareas paso a paso, donde cada paso se hace en orden, sin que se pueda hacer nada al mismo tiempo.
+                    <ul class="lista">
+                        <li>No hay paralelismo: Todo sucede de forma secuencial, una operación tras otra, sin simultaneidad.</li>
+                        <li>Estructura simple: Este tipo de diseño es más fácil de programar y entender porque no se necesitan mecanismos complejos para coordinar varios procesadores o datos.</li>
+                        <li>Limitaciones: El rendimiento está limitado por la velocidad del único procesador y por la rapidez con la que se transfieren los datos. Si se necesita mucho cálculo, puede volverse lento.</li>
+                    </ul>
+
+                    <div class="contenedor-imagen-tabla">
+                        <u>Ejemplo sencillo:</u><br>
+                        Imagina que eres un chef trabajando solo en la cocina. Tu tarea es hacer un sandwich siguiendo estos pasos:
+                        <ol>
+                            <li>Tomas el pan.</li>
+                            <li>Colocas una rebanada de queso.</li>
+                            <li>Añades jamón.</li>
+                            <li>Cierras el sandwich.</li>
+                        </ol>
+                        Cada acción se hace <b>una por vez</b>, y no puedes empezar un paso nuevo hasta que termines el anterior. No hay nadie más que pueda ayudarte ni tampoco puedes hacer dos cosas a la vez, como cortar el pan mientras buscas el queso.
+                        <br><br>
+
+                        <u>Relación con computadoras:</u><br>
+                        Una PC tradicional con un solo núcleo de procesador funciona como ese chef. Ejecuta cada instrucción del programa en orden, paso a paso, hasta completarlo. Este enfoque es adecuado para tareas simples que no necesitan mucha velocidad ni múltiples procesos al mismo tiempo, como un editor de texto o una calculadora.
+                    </div>
+                    <br>
+                    Este modelo es adecuado para tareas que no requieren procesamiento paralelo y es la base de muchos sistemas computacionales tradicionales. Sin embargo, su rendimiento puede ser insuficiente para aplicaciones modernas que demandan mayor velocidad y eficiencia.
+
+                </p>
+                <br>
+
+                <h4>SIMD (Single Instruction, Multiple Data)</h4>
+                <p class="cuadro-chico">
+                    Flujo de Instrucciones: 1<br>
+                    Flujo de datos: Múltiple<br>
+                    En esta arquitectura, <b>una única instrucción</b> se aplica simultáneamente a <b>múltiples datos</b>. Es útil para operaciones que involucran matrices o vectores, como en aplicaciones gráficas o científicas.
+                </p>
+                <br>
+
+                <h4>MISD (Multiple Instruction, Single Data)</h4>
+                <p class="cuadro-chico">
+                    Flujo de Instrucciones: Múltiple<br>
+                    Flujo de datos: 1<br>
+                    <b>Varias instrucciones</b> distintas se ejecutan sobre <b>un mismo conjunto de datos</b>. Este tipo de arquitectura es poco común, pero se utiliza en sistemas de control críticos, donde diferentes algoritmos analizan los mismos datos.
+                </p>
+                <br>
+
+                <h4>MIMD (Multiple Instruction, Multiple Data)</h4>
+                <p class="cuadro-chico">
+                    Flujo de Instrucciones: Múltiple<br>
+                    Flujo de datos: Múltiple<br>
+                    Aquí, <b>múltiples procesadores ejecutan instrucciones</b> distintas sobre <b>diferentes conjuntos de datos simultáneamente</b>. Este modelo es común en sistemas distribuidos o multiprocesadores modernos, como supercomputadoras.
+                </p>
+                <br>
+
+
+
+
                 <button onclick="scrollToTop('paralelismo')">▲</button>
             </section>
 
