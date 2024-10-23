@@ -994,72 +994,300 @@
                 </p>
                 <br>
 
-                <h3>Clasificación de Flynn (Michael J. Flynn - 1966)</h3>
-                <p>
-                    La <b>Clasificación de Flynn</b> está directamente relacionada con el paralelismo porque establece cómo una arquitectura de computadora puede manejar múltiples instrucciones y datos simultáneamente, lo que es esencial para entender las diferentes formas en que se implementa el procesamiento paralelo.<br>
-                    Flynn identifica cuatro categorías basadas en dos dimensiones: el <u>flujo de instrucciones</u> y el <u>flujo de datos</u>. Estas categorías muestran las distintas maneras en que un sistema puede ejecutar tareas en paralelo, desde arquitecturas más simples hasta complejos sistemas distribuidos.
-                </p>
-                <br>
+                <h3 class="titulo3">Clasificación de Flynn (Michael J. Flynn - 1966)</h3>
+                <div class="texto-desarrollo">
+                    <p>
+                        La <b>Clasificación de Flynn</b> está directamente relacionada con el paralelismo porque establece cómo una arquitectura de computadora puede manejar múltiples instrucciones y datos simultáneamente, lo que es esencial para entender las diferentes formas en que se implementa el procesamiento paralelo.<br>
+                        Flynn identifica cuatro categorías basadas en dos dimensiones: el <u>flujo de instrucciones</u> y el <u>flujo de datos</u>. Estas categorías muestran las distintas maneras en que un sistema puede ejecutar tareas en paralelo, desde arquitecturas más simples hasta complejos sistemas distribuidos.
+                        
+                        <!-- SSID (Single Instruction, Single Data) -->
+                        <h4 class="titulo4">SSID (Single Instruction, Single Data)</h4>
+                        <p>
+                            <p class="cuadro-chico">
+                                Flujo de Instrucciones: 1<br>
+                                Flujo de Datos: 1<br>
+                                Aquí, el procesador ejecuta <b>una sola instrucción</b> en <b>un conjunto de datos</b> por vez, de manera completamente secuencial. No hay paralelismo.
+                            </p>
+                            
+                            En la arquitectura <b>SISD</b>, una única unidad de procesamiento (CPU) ejecuta <b>una instrucción a la vez</b> sobre un conjunto de datos. Es como seguir una lista de tareas paso a paso, donde cada paso se hace en orden, sin que se pueda hacer nada al mismo tiempo.
+                            <ul class="lista">
+                                <li><b>No hay paralelismo:</b> Todo sucede de forma secuencial, una operación tras otra, sin simultaneidad.</li>
+                                <li><b>Estructura simple:</b> Este tipo de diseño es más fácil de programar y entender porque no se necesitan mecanismos complejos para coordinar varios procesadores o datos.</li>
+                                <li><b>Limitaciones:</b> El rendimiento está limitado por la velocidad del único procesador y por la rapidez con la que se transfieren los datos. Si se necesita mucho cálculo, puede volverse lento.</li>
+                            </ul>
+                            
+                            <div class="contenedor-imagen-tabla">
+                                <u>Ejemplo sencillo:</u><br>
+                                Imagina que eres un chef trabajando solo en la cocina. Tu tarea es hacer un sandwich siguiendo estos pasos:
+                                <ol>
+                                    <li>Tomas el pan.</li>
+                                    <li>Colocas una rebanada de queso.</li>
+                                    <li>Añades jamón.</li>
+                                    <li>Cierras el sandwich.</li>
+                                </ol>
+                                Cada acción se hace <b>una por vez</b>, y no puedes empezar un paso nuevo hasta que termines el anterior. No hay nadie más que pueda ayudarte ni tampoco puedes hacer dos cosas a la vez, como cortar el pan mientras buscas el queso.
+                                <br><br>
+                                <u>Relación con computadoras:</u><br>
+                                Una PC tradicional con un solo núcleo de procesador funciona como ese chef. Ejecuta cada instrucción del programa en orden, paso a paso, hasta completarlo. Este enfoque es adecuado para tareas simples que no necesitan mucha velocidad ni múltiples procesos al mismo tiempo, como un editor de texto o una calculadora.
+                            </div>
+                            <br>
+                            
+                            Este modelo es adecuado para tareas que no requieren procesamiento paralelo y es la base de muchos sistemas computacionales tradicionales. Sin embargo, su rendimiento puede ser insuficiente para aplicaciones modernas que demandan mayor velocidad y eficiencia.
+                        </p>
 
-                <!-- SSID (Single Instruction, Single Data) -->
-                <h4>SSID (Single Instruction, Single Data)</h4>
-                <p class="cuadro-chico">
-                    Flujo de Instrucciones: 1<br>
-                    Flujo de Datos: 1<br>
-                    Aquí, el procesador ejecuta <b>una sola instrucción</b> en <b>un conjunto de datos</b> por vez, de manera completamente secuencial. No hay paralelismo.
-                </p>
-                <p>
-                    En la arquitectura <b>SISD</b>, una única unidad de procesamiento (CPU) ejecuta <b>una instrucción a la vez</b> sobre un conjunto de datos. Es como seguir una lista de tareas paso a paso, donde cada paso se hace en orden, sin que se pueda hacer nada al mismo tiempo.
-                    <ul class="lista">
-                        <li>No hay paralelismo: Todo sucede de forma secuencial, una operación tras otra, sin simultaneidad.</li>
-                        <li>Estructura simple: Este tipo de diseño es más fácil de programar y entender porque no se necesitan mecanismos complejos para coordinar varios procesadores o datos.</li>
-                        <li>Limitaciones: El rendimiento está limitado por la velocidad del único procesador y por la rapidez con la que se transfieren los datos. Si se necesita mucho cálculo, puede volverse lento.</li>
-                    </ul>
 
-                    <div class="contenedor-imagen-tabla">
-                        <u>Ejemplo sencillo:</u><br>
-                        Imagina que eres un chef trabajando solo en la cocina. Tu tarea es hacer un sandwich siguiendo estos pasos:
-                        <ol>
-                            <li>Tomas el pan.</li>
-                            <li>Colocas una rebanada de queso.</li>
-                            <li>Añades jamón.</li>
-                            <li>Cierras el sandwich.</li>
-                        </ol>
-                        Cada acción se hace <b>una por vez</b>, y no puedes empezar un paso nuevo hasta que termines el anterior. No hay nadie más que pueda ayudarte ni tampoco puedes hacer dos cosas a la vez, como cortar el pan mientras buscas el queso.
-                        <br><br>
+                        <!-- SIMD (Single Instruction, Multiple Data) -->
+                        <h4 class="titulo4">SIMD (Single Instruction, Multiple Data)</h4>
+                        <p>
+                            <p class="cuadro-chico">
+                                Flujo de Instrucciones: 1<br>
+                                Flujo de datos: Múltiple<br>
+                                En esta arquitectura, <b>una única instrucción</b> se aplica simultáneamente a <b>múltiples datos</b>. Es útil para operaciones que involucran matrices o vectores, como en aplicaciones gráficas o científicas.
+                            </p>
+                            En la arquitectura <b>SIMD</b>, una misma instrucción se aplica <b>simultáneamente a varios conjuntos de datos</b>. Esto es útil cuando se deben realizar las mismas operaciones repetidas en grandes volúmenes de datos, como en gráficos o procesamiento de audio.
+                            <ul class="lista">
+                                <li><b>Paralelismo de datos:</b> Aprovecha la capacidad de trabajar con varios datos al mismo tiempo aplicando la misma instrucción a todos ellos.</li>
+                                <li><b>Sincronización:</b> Todos los procesadores ejecutan la misma operación al mismo tiempo sobre diferentes datos.</li>
+                                <li><b>Eficiencia:</b> Es ideal para tareas que implican operaciones matemáticas repetitivas, como la manipulación de vectores o matrices.</li>
+                                <li><b>Limitaciones:</b> Menos flexible, ya que todas las unidades procesan la misma instrucción. Si se necesita hacer algo diferente para un dato en particular, no será posible.</li>
+                            </ul>
+                            
+                            <div class="contenedor-imagen-tabla">
+                                <u>Ejemplo sencillo:</u><br>
+                                Imagina que eres un entrenador en un gimnasio, y tu tarea es dirigir un grupo de 10 personas para que hagan el <b>mismo ejercicio al mismo tiempo</b>.
+                                <ol>
+                                    <li>Das la instrucción: "¡Hagan 10 flexiones de brazos!"</li>
+                                    <li>Todos los participantes comienzan a hacer flexiones a la vez.</li>
+                                </ol>
+                                Cada persona es como un conjunto de datos, y tú como entrenador das una instrucción única que todos siguen simultáneamente. No puedes dar instrucciones diferentes a cada persona; todos deben seguir la misma.
+                                <br><br>
+    
+                                <u>Relación con computadoras:</u><br>
+                                Este es el tipo de funcionamiento que usan las GPU (unidades de procesamiento gráfico). Por ejemplo, al renderizar una imagen, se realiza la misma operación (como aplicar un color) sobre muchos píxeles simultáneamente.
+                            </div>
+                            <br>
+                            Esta arquitectura es ideal para aplicaciones que pueden aprovechar el paralelismo de datos para mejorar significativamente el rendimiento, especialmente en tareas intensivas en cálculo donde la misma operación debe aplicarse repetidamente a grandes conjuntos de datos.
+                        </p>
 
-                        <u>Relación con computadoras:</u><br>
-                        Una PC tradicional con un solo núcleo de procesador funciona como ese chef. Ejecuta cada instrucción del programa en orden, paso a paso, hasta completarlo. Este enfoque es adecuado para tareas simples que no necesitan mucha velocidad ni múltiples procesos al mismo tiempo, como un editor de texto o una calculadora.
-                    </div>
-                    <br>
-                    Este modelo es adecuado para tareas que no requieren procesamiento paralelo y es la base de muchos sistemas computacionales tradicionales. Sin embargo, su rendimiento puede ser insuficiente para aplicaciones modernas que demandan mayor velocidad y eficiencia.
 
-                </p>
-                <br>
+                        <!-- MISD (Multiple Instruction, Single Data) -->
+                        <h4 class="titulo4">MISD (Multiple Instruction, Single Data)</h4>
+                        <p>
+                            <p class="cuadro-chico">
+                                Flujo de Instrucciones: Múltiple<br>
+                                Flujo de datos: 1<br>
+                                <b>Varias instrucciones</b> distintas se ejecutan sobre <b>un mismo conjunto de datos</b>. Este tipo de arquitectura es poco común, pero se utiliza en sistemas de control críticos, donde diferentes algoritmos analizan los mismos datos.
+                            </p>
 
-                <h4>SIMD (Single Instruction, Multiple Data)</h4>
-                <p class="cuadro-chico">
-                    Flujo de Instrucciones: 1<br>
-                    Flujo de datos: Múltiple<br>
-                    En esta arquitectura, <b>una única instrucción</b> se aplica simultáneamente a <b>múltiples datos</b>. Es útil para operaciones que involucran matrices o vectores, como en aplicaciones gráficas o científicas.
-                </p>
-                <br>
+                            En la arquitectura <b>MISD</b>, varias unidades de procesamiento aplican <b>diferentes instrucciones al mismo dato de forma simultánea</b>. Esta configuración es poco común porque su implementación es compleja y tiene aplicaciones muy específicas.
 
-                <h4>MISD (Multiple Instruction, Single Data)</h4>
-                <p class="cuadro-chico">
-                    Flujo de Instrucciones: Múltiple<br>
-                    Flujo de datos: 1<br>
-                    <b>Varias instrucciones</b> distintas se ejecutan sobre <b>un mismo conjunto de datos</b>. Este tipo de arquitectura es poco común, pero se utiliza en sistemas de control críticos, donde diferentes algoritmos analizan los mismos datos.
-                </p>
-                <br>
+                            <ul class="lista">
+                                <li><b>Paralelismo de instrucciones:</b> Varias instrucciones distintas operan sobre el mismo dato simultáneamente.</li>
+                                <li><b>Aplicaciones específicas:</b> Se utiliza en sistemas de alta fiabilidad, donde el mismo dato se procesa varias veces de distintas maneras para obtener redundancia y evitar errores.</li>
+                                <li><b>Complejidad:</b> Es difícil de implementar y no tiene ventajas claras en la mayoría de los contextos cotidianos.</li>
+                                <li><b>Ejemplo:</b> Se puede encontrar en sistemas de tolerancia a fallos o procesamiento crítico, como en naves espaciales o entornos donde la seguridad es esencial.</li>
+                            </ul>
 
-                <h4>MIMD (Multiple Instruction, Multiple Data)</h4>
-                <p class="cuadro-chico">
-                    Flujo de Instrucciones: Múltiple<br>
-                    Flujo de datos: Múltiple<br>
-                    Aquí, <b>múltiples procesadores ejecutan instrucciones</b> distintas sobre <b>diferentes conjuntos de datos simultáneamente</b>. Este modelo es común en sistemas distribuidos o multiprocesadores modernos, como supercomputadoras.
-                </p>
-                <br>
+                            <div class="contenedor-imagen-tabla">
+                                <u>Ejemplo sencillo:</u><br>
+                                Imagina que un equipo de médicos recibe el mismo análisis de sangre de un paciente. Cada médico hace un diagnóstico diferente usando su propia técnica o método: uno busca infecciones, otro chequea niveles hormonales, y otro analiza la presencia de toxinas. Aunque todos trabajan sobre la misma muestra, aplican procedimientos distintos para garantizar que el diagnóstico sea lo más preciso posible.
+                                <br><br>
+        
+                                <u>Relación con computadoras:</u><br>
+                                Este tipo de arquitectura se utiliza en sistemas críticos, donde varios procesadores realizan operaciones distintas sobre el mismo dato para detectar cualquier fallo. Un ejemplo serían los sistemas de control de una aeronave o nave espacial, donde la seguridad es tan importante que deben repetirse los cálculos bajo diferentes métodos para confirmar que los resultados sean correctos.
+                            </div><br>
+                            
+                            Esta arquitectura es ideal para entornos que requieren una alta fiabilidad y tolerancia a fallos, aunque su complejidad limita su uso en aplicaciones más comunes.
+                        </p>
+
+
+                        <!-- MIMD (Multiple Instruction, Multiple Data) -->
+                        <h4 class="titulo4">MIMD (Multiple Instruction, Multiple Data)</h4>
+                        <p>
+                            <p class="cuadro-chico">
+                                Flujo de Instrucciones: Múltiple<br>
+                                Flujo de datos: Múltiple<br>
+                                Aquí, <b>múltiples procesadores ejecutan instrucciones</b> distintas sobre <b>diferentes conjuntos de datos simultáneamente</b>. Este modelo es común en sistemas distribuidos o multiprocesadores modernos, como supercomputadoras.
+                            </p>
+                            
+                            En una arquitectura <b>MIMD</b>, varios procesadores independientes ejecutan <b>diferentes instrucciones</b> sobre diferentes conjuntos de datos de manera simultánea.<br>
+                            Es el modelo más general y flexible, predominante en sistemas multiprocesadores y supercomputadoras modernas.
+                            <ul class="lista">
+                                <li><b>Paralelismo Total:</b> Explota tanto el paralelismo de datos como el de instrucciones.</li>
+                                <li><b>Flexibilidad:</b> Cada procesador ejecuta su propio programa y gestiona su conjunto de datos.</li>
+                                <li>
+                                    <b>Arquitecturas de Memoria:</b>
+                                    <ul class="lista">
+                                        <li><u>Memoria compartida:</u> Procesadores acceden a una memoria común.</li>
+                                        <li><u>Memoria distribuida:</u> Cada procesador tiene su memoria privada y se comunica mediante mensajes.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Eficiencia:</b> Ideal para dividir tareas en subtareas independientes.</li>
+                            </ul>
+
+                            <div class="contenedor-imagen-tabla">
+                                <u>Ejemplos de Uso:</u><br>
+                                <ul class="lista">
+                                    <li>Supercomptuadoras modernas.</li>
+                                    <li>Sistemas de servidores de alto rendimiento.</li>
+                                    <li>Clusters de computadoras, empleados para computación científica, análisis de grandes volúmenes de datos, e inteligencia artificial.</li>
+                                </ul> 
+                            </div>
+                            <br>
+                            
+                            Esta arquitectura es ideal para aplicaciones que requieren un alto rendimiento y capacidad de procesamiento paralelo, siendo fundamental en áreas como la computación científica, el análisis de grandes volúmenes de datos y las aplicaciones de inteligencia artificial.<br>
+                            
+                            <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Tipos de MIMD en Detalle</h4>
+                            <p>
+                                <b>Multicomputadoras (Memoria Privada o Distribuida):</b><br>
+                                Las CPUs (Unidades Centrales de Procesamiento) independientes realizan diferentes trabajos sobre diferentes conjuntos de datos simultáneamente.<br>
+                                Cada CPU tiene su memoria privada.<br>
+                                La comunicación entre CPUs se realiza mediante mensajes (acoplamiento débil).<br>
+                                <ul class="lista">
+                                    <li>
+                                        <b>Divisiones:</b>
+                                        <ul class="sub-item">
+                                            <li>
+                                                <b>MPP (Massively Parallel Processors):</b> 
+                                                <ul class="sub-item">
+                                                    <li>Estructura: Organizados en cuadrículas o hipercubos.</li>
+                                                    <li>Uso: Cálculos científicos y tareas intensivas en datos.</li>
+                                                    <li>Ventajas: Alta capacidad de procesamiento.</li>
+                                                    <li>Desventajas: Costosos y complejos de programar.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <b>COW (Clusters de Estación de Trabajo):</b>
+                                        <ul class="sub-item">
+                                            <li><b>Estructura:</b> Computadoras independientes conectadas por red.</li>
+                                            <li>
+                                                <b>Ventajas:</b>
+                                                <ul class="sub-item">
+                                                    <li><b>Escalabilidad alta: </b>Se pueden añadir más nodos.</li>
+                                                    <li><b>Tolerancia a fallos:</b> Cada nodo es independiente.</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <b>Desventajas:</b>
+                                                    <ul class="sub-item">
+                                                        <li>Comunicación más lenta por mensajes.</li>
+                                                        <li>Red y latencia pueden afectar la eficiencia.</li>
+                                                    </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                
+
+    
+                                <b>Multiprocesadores (Memoria Compartida)</b><br>
+                                Las CPUs están fuertemente acopladas y comparten una <b>memoria común</b> y se comunican a través de ella.<br> 
+                                Permiten la comunicación directa y rápida entre procesadores a través de la memoria compartida.<br> 
+                                Se divide en <b>SMP (UMA [Acceso a Memoria Uniforme])</b> y <b>NUMA (Acceso a Memoria No Uniforme).</b>
+                                <ul class="lista">
+                                    <li>
+                                        <b>Divisiones:</b>
+                                        <ul class="sub-item">
+                                            <li>
+                                                <b>SMP (Symmetric Multiprocessing - Multiprocesadores Simétricos):</b> 
+                                                <ul class="sub-item">
+                                                    <li><b>Estructura:</b> Dos o más procesadores idénticos.</li>
+                                                    <li><b>Interconexión:</b> Mediante un bus compartido.</li>
+                                                    <li>
+                                                        <b>Ventajas:</b>
+                                                        <ul class="sub-item">
+                                                            <li>Comunicación rápida y sincronización sencilla.</li>
+                                                            <li>Facilita la programación.</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <b>Desventajas:</b> 
+                                                        <li>Competencia por el bus, limitando el número de procesadores.</li>
+                                                        <li>Cuello de botella al acceder a la memoria principal.</li>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <b>NUMA (Non-Uniform Memory Access):</b>
+                                        <ul class="sub-item">
+                                            <li><b>Estructura:</b> Cada procesador tiene acceso a una memoria <b>local</b> más rápida.</li>
+                                            <li>
+                                                <b>Ventajas:</b>
+                                                <ul class="sub-item">
+                                                    <li>Recude el cuello de botella en el acceso a la memoria princial.</li>
+                                                    <li>Reduce la latencia y mejora el rendimiento.</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <b>Desventajas:</b>
+                                                    <ul class="sub-item">
+                                                        <li>La gestión de memoria es compleja y requiere protocolos avanzados para coherencia.</li>
+                                                    </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </p>
+                        </p>
+
+                        <div class="contenedor-imagen-tabla">
+                            <table>
+                                <tr>
+                                    <th style="background-color: #63880d;"> </th>
+                                    <th>Multicomputadoras</th>
+                                    <th>Multiprocesadores</th>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"><b>Memoria</b></td>
+                                    <td> Usan memoria privada y se comunican a través de mensajes.</td>
+                                    <td>Usan memoria compartida</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"><b>Escalabilidad</b></td>
+                                    <td>Alta escalabilidad debido a la independencia de nodos.</td>
+                                    <td>Limitada escalabilidad por el cuello de botella en el acceso a la memoria</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"><b>Comunicación</b></td>
+                                    <td>Más lenta debido a la transparencia de mensajes.</td>
+                                    <td> Cálculos científicos y aplicaciones de alto rendimiento que requieren alta escalabilidad.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"><b>Aplicaciones</b></td>
+                                    <td>Cálculos científicos y aplicaciones de alto rendimiento que requieren alta escalabilidad.</td>
+                                    <td>Servidores y sistemas de bases de datos que requieren accesos rápido y simultáneo a grandes cantidades de datos compartidos.</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </p>
+                </div>
+
+                <h3 class="titulo3">Memoria Privada vs. Memoria Compartida</h3>
+                <div class="texto-desarrollo">
+                    <p>
+                        desarrollo.
+                    </p>
+                </div>
+
+                <h3 class="titulo3">Interconexión: Bus vs. Conmutado</h3>
+                <div class="texto-desarrollo">
+                    <p>
+                        desarrollo.
+                    </p>
+                </div>
+
+
+
+
+
+
 
 
 
