@@ -1271,25 +1271,175 @@
 
                 <h3 class="titulo3">Memoria Privada vs. Memoria Compartida</h3>
                 <div class="texto-desarrollo">
+                    <h4 class="titulo4">Memoria Privada (Distribuida)</h4>
                     <p>
-                        desarrollo.
+                        Son CPUs <b>debilmente acoplados</b>, se comunican a través de mensajes (ej. MPI) por lo que la comunicación es lenta. También conocida como <b>memoria distribuida</b>, en los sistemas de memoria privada cada procesador o nodo de computación tiene su propia memoria local exclusiva. Los procesadores no pueden acceder directamente a la memoria de otros procesadores.
+                        <ul class="lista">
+                            <li><b>Espacios de direcciones separados:</b> Cada procesador tiene su propio espacio de direcciones de memoria independiente.</li>
+                            <li><b>Comunicación explícita:</b> Los procesadores deben intercambiar datos mediante el envío y recepción de mensajes a través de una <b>red de interconexión</b></li>
+                            <li><b>Paso de mensajes:</b> La comunicación y sincronización entre procesos se realiza mediante protocolos de paso de mensajes como MPI (Message Passing Interface)</li>
+                            <li><b>Escalabilidad:</b> Es más fácil añadir nuevos nodos o procesadores al sistema sin afectar significativamente el rendimiento global.</li>
+                            <li><b>Localidad de datos:</b> Cada procesador trabaja principalmente con datos en su memoria local, lo que puede mejorar la eficiencia en ciertos tipos de aplicaciones.</li>
+                            <li><b>Heterogeneidad:</b> Los sistemas pueden componerse de nodos con diferentes arquitecturas o capacidades, siempre que puedan comunicarse mediante un protocolo común.</li>
+                        </ul>
+                    </p>
+
+                    <h4 class="titulo4">Memoria Compartida</h4>
+                    <p>
+                        Son CPUs <b>fuertemente acoplados</b>, tienen una alta capacidad de comunicación.<br>
+                        En los sistemas de memoria compartida, múltiples procesadores o núcleos de procesamiento comparten un espacio de memoria común y unificado. <br>
+                        Este modelo de memoria permite que todos los procesadores acceden y manipulen <b>los mismos datos</b> en una única área de memoria global.
+                        <ol>
+                            <li><b>Espacio de direcciones único:</b> Todos los procesadores ven y acceden al mismo espacio de direcciones de memoria.</li>
+                            <li><b>Acceso directo y uniforme:</b> Cualquier procesador puede leer o escribir en cualquier ubicación de memoria sin necesidad de comunicación explícita con otros procesadores.</li>
+                            <li><b>Coherencia de caché:</b> Se requieren mecanismos para mantener la consistencia de los datos entre las cachés locales de los procesadores y la memoria principal compartida.</li>
+                            <li><b>Sincronización implícita:</b> La comunicación entre procesos se realiza a través de variables compartidas en la memoria común.</li>
+                            <li><b>Latencia de acceso uniforme o no uniforme:</b> Dependiendo de la arquitectura, el tiempo de acceso a la memoria puede ser igual para todos los procesadores (UMA - Uniform Memory Access) o variar según la ubicación física de la memoria (NUMA - Non-Uniform Memory Access).<br>
+                            <b>UMA:</b> Latencia uniforme en el acceso a la memoria.<br>
+                            <b>NUMA:</b> Latencia varía según la ubicación de la memoria.</li>
+                        </ol><br>
+
+                        <b>Existen 4 casos de memoria compartida:</b> teniendo en cuenta la memoria física (hardware) o lógica (software).
+                        <ol>
+                            <li><b>No comparten ni memoria física, ni lógica:</b> acoplamiento débil y se comunica por mensajes.</li>
+                            <li><b>Comparten memoria lógica:</b> existe una única memoria física, pero se realiza una emulación similar a la memoria virtual en SO, cada CPU tiene memoria propia pero física hay una sola.</li>
+                            <li><b>Comparten memoria física:</b> existen varios procesadores y una memoria física que es particionada y se distribuye a cada procesador. La comunicación es lenta, simula envío de mensajes pero a través de un buffer compartido.</li>
+                            <li><b>Comparten memoria lógica y física:</b> esta es la solución más rápida ya que la comunicación entre los procesadores es muy eficiente.</li>
+                        </ol>
                     </p>
                 </div>
 
                 <h3 class="titulo3">Interconexión: Bus vs. Conmutado</h3>
                 <div class="texto-desarrollo">
+                    <h4 class="titulo4">Interconexión por Bus</h4>
                     <p>
-                        desarrollo.
+                        Es un conjunto de líneas eléctricas que permite la comunicación entre procesadores, memoria y otros dispositivos en un sistema. Solo una transferencia puede ocurrir a la vez en un bus compartido.
+                        <ul class="lista">
+                            <li>
+                                <b>Ventajas:</b>
+                                <ul class="lista" style="list-style: circle;">
+                                    <li><b>Fácil reconfiguración:</b> Fácil de añadir o quitar dispositivos.</li>
+                                    <li><b>Costo:</b> Diseño sencillo.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Desventajas:</b>
+                                <ul class="lista" style="list-style: circle;">
+                                    <li><b>Cuello de botella:</b> Dado que sólo una transferencia puede ocurrir a la vez, el bus puede convertirse en un cuello de botella, limitando el rendimiento general del sistema.</li>
+                                    <li><b>Latencia:</b> Los dispositivos esperan su turno para usar el bus.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Variante:</b>
+                                <ul class="lista" style="list-style: circle;">
+                                    <li><b>Jerarquía de Buses:</b> Para mejorar el rendimiento, se puede utilizar una jerarquía de buses, permitiendo así usar los buses en diferentes niveles para mejorar el rendimiento.</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </p>
+
+                    <h4 class="titulo4">Interconexión Conmutada</h4>
+                    <p>
+                        Utiliza conmutadores y enlaces punto a punto para conectar procesadores con bloques de memoria principal. Este tipo de interconexión puede reservar caminos completos desde el origen al destino antes de enviar los datos.
+                        <ul class="lista">
+                            <li>
+                                <b>Ventajas:</b>
+                                <ul class="lista" style="list-style: circle;">
+                                    <li><b>No bloqueante:</b> Permite múltiples transferencias simultáneas sin que unas bloqueen a otras, lo que mejora significativamente el rendimiento.</li>
+                                    <li><b>Escalabilidad:</b> Es más fácil de escalar para grandes sistemas, ya que se pueden añadir más conmutadores y enlaces punto a punto para manejar incrementos en la cargar de trabajo.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Desventajas:</b>
+                                <ul class="lista" style="list-style: circle;">
+                                    <li><b>Complejidad y costo:</b> Requiere gran cantidad de conmutadores y enlaces, lo que puede aumentar la complejidad y el costo del sistema.</li>
+                                    <li><b>Configuración:</b> La configuración y gestión de la interconexión conmutada puede ser más complicada en comparación con un sistema basado en bus.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Ejemplo:</b> Conmutación de circuitos:<br>
+                                <div class="contenedor-imagen-tabla">
+                                    <img src="images/adc-interconexonConmutada.jpg" width="400px" alt="interconexiones title="interconexiones">     
+                                </div>
+                            </li>
+                        </ul>
+                    </p>
+
+                    <div class="contenedor-imagen-tabla">
+                        <table>
+                            <tr>
+                                <th style="background-color: #63880d;"> </th>
+                                <th>Bus</th>
+                                <th>Conmutado</th>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Estructura</b></td>
+                                <td> Un único canal compartido para todas las transferencias</td>
+                                <td>Múltiples caminos punto a punto gestionados por conmutadores.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Rendimiento</b></td>
+                                <td>Limitado por el ancho de banda del canal compartido y el tiempo de espera.</td>
+                                <td>Permite transferencias simultáneas y es no bloqueante.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Escalabilidad</b></td>
+                                <td>Menos escalable debido a la limitación del canal compartido.</td>
+                                <td>Más escalable con la adición de más conmutadores y enlaces.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"><b>Costo y complejidad</b></td>
+                                <td>Generalmente menos costoso y más simple.</td>
+                                <td>Más costoso y complejo debido a la cantidad de conmutadores y enlaces requeridos.</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
+                <h3 class="titulo3">Diseño de Comunicación en Multiprocesadores</h3>
+                <div class="texto-desarrollo">
+                    <h4 class="titulo4">Memoria Compartida</h4>
+                    <p>
+                        <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Interconexión por Bus</h4>
+                        <p>
+                            Existen 4 diseños:
+                            <div class="contenedor-imagen-tabla">
+                                <img src="images/adc-diseñoInterconexion.png" width="600px" alt="diseñoInterconexion" title="diseñoInterconexion">
+                            </div><br>
+                            <ol style="list-style-type: lower-alpha;">
+                                    <li><b>Diseño básico de memoria compartida:</b> Múltiples CPUs independientes comparten una memoria principal, todas conectadas a través de un único bus.<br>
+                                    Esta configuración es simple pero puede ser ineficiente debido a la contención del bus, ya que todas las CPUs deben competir por el acceso a la memoria a través del msimo canal.</li>
+                                    <li><b>Diseño mejorado con cachés:</b> Cada CPU tieen su propia memoria caché, lo que reduce la necesidad de acceder constantemente a la memoria principal compartida.<br>
+                                    Esto disminuye la contención del bus y mejora el rendimiento general del sistema, permitiendo a la CPUs acceder rápidamente a datos frecuentemente utilizados.</li>
+                                    <li><b>Diseño modular con CPUs y cachés en placas separadas:</b> Cada CPU y su caché asociada están ubicadas en una placa (board) individual.<br>
+                                    La memoria principal sigue siendo compartida y conectada al bus común. Esta configuración puede mejorar la modularidad, facilitando el mantenimiento y la actualización del sistema.</li>
+                                    <li><b>Diseño de memoria distribuida compartida:</b> Cada CPU tiene su memoria local, pero puede acceder a otras mediante el bus.</li>
+                            </ol>
+                        </p>
+                        
+                        <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Interconexión Conmutada</h4><br>
+                        <p>
+                            Surge para solucionar el problema de cuello de botella del bus compartido y mejorar la escalabilidad del sistema cuando éste crece.<br>
+                            Se divide la memoria principal en múltiples módulos (por ejemplo, cuatro), creando así varios caminos independientes para el acceso a memoria. Esto reduce el tráfico de cargas en un factor proporcional al número de módulos.<br>
+                            La conexión entre un procesador y un módulo de memoria no se produce mediante un bus compartido, sino a través de un enlace de punto a punto.<br>
+                            <b>Existe un conmutador por cada módulo de memoria</b>, que conecta distintos procesadores con la memoria principal. Cuando el conmutador recibe una señal de algún procesador, envía señales a otros procesadores conectados al mismo, indicándoles cuál es el dato que se está solicitando o modificando. Esto es fundamental para manejar la coherencia de caché.<br>
+                            En un momento dado, solo un procesador puede acceder a un bloque específico de memoria, pero es posible acceder a múltiples módulos de memoria simultáneamente.<br>
+                            La conexión puede ser de dos tipos:
+                            <ul class="lista">
+                                <b>No bloqueante:</b> Siempre puede acceder a un destino desocupado. Esto requiere una gran cantidad de conmutadores o "llaves" en la red de interconexión.
+                                <b>Bloqueante:</b> No siempre puede acceder a un destino desocupado, ya que el camino puede estar ocupado. Esto se debe a que en este caso se cuenta con menos conmutadores o "llaves" en la red.
+                            </ul>
+                        </p>
+                    </p>
 
 
 
 
+                    <h4 class="titulo4">Memoria Privada</h4><br>
+                    <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Interconexión por Bus</h4>
 
-
-
+                    <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Interconexión Conmutada</h4>
+                    
 
 
                 <button onclick="scrollToTop('paralelismo')">▲</button>
