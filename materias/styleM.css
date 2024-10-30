@@ -311,6 +311,7 @@ body.dark button {
     padding: 10px; /* Agregar padding para más espacio interno */
     background-color: #fff; /* Fondo blanco para el contenedor */
 }
+
 .pdf-iframe {
     width: 100%; /* Ancho completo */
     height: 80vh; /* Altura de 80% de la ventana de visualización */
