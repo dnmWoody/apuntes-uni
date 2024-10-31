@@ -1398,6 +1398,9 @@
 
                 <h3 class="titulo3">Diseño de Comunicación en Multiprocesadores</h3>
                 <div class="texto-desarrollo">
+                    <p>
+                        La comunicación de multiprocesadores puede realizarse de distintas maneras y depende principalmente del modelo de memoria que implementen:
+                    </p>
                     <h4 class="titulo4">Memoria Compartida</h4>
                     <p>
                         <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Interconexión por Bus</h4>
@@ -1432,14 +1435,51 @@
                         </p>
                     </p>
 
+                    <h4 class="titulo4">Memoria Privada</h4>
+                    <p>
+                        En estos sistemas, cada CPU tiene su propia memoria local, exclusiva para cada procesador. La comunicación ocurre mediante el envío de mensajes entre CPUs. Dos métodos de interconexión:
+                    </p>
 
+                    <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Interconexión por Bus (estructura matricial): </h4>
+                    <p>
+                        Procesadores organizados en una cuadrícula, cada uno con memoria propia. La comunicación es más lenta por la contención del bus compartido, aunque es escalable.<br>
+                        La comunicación entre procesadores se realiza mediante el envío de mensajes, lo que puede resultar en una comunicación más lenta en comparación con los sistemas de memoria compartida. Para compartir datos, es necesario enviar mensajes explícitos a través del bus. Aunque esta configuración puede ofrecer una mayor escalabilidad que los sistemas de memoria compartida, también introduce una mayor complejidad en la programación y potencial latencia en la comunicación.
 
-
-                    <h4 class="titulo4">Memoria Privada</h4><br>
-                    <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Interconexión por Bus</h4>
+                        <ul class="lista">
+                            <li><b>Estructura matricial:</b> Los procesadores están organizados en una especie de cuadrícula donde cada uno tiene su propia memoria local y acceso exclusivo a ella.</li>
+                            <li><b>Comunicación por mensajes:</b> Para que un procesador acceda a datos en la memoria de otro procesador, debe enviar mensajes a través de un bus compartido.</li>
+                            <li><b>Lentitud en la comunicación:</b> Dado que todos los procesadores comparten el mismo bus para comunicarse, esto puede resultar en cuellos de botella y comunicación más lenta, especialmente cuando varios procesadores intentan comunicarse al mismo tiempo.</li>
+                            <li><b>Escalabilidad:</b> Aunque el sistema es escalable (puedes añadir más procesadores), la programación se vuelve más compleja y la latencia de comunicación puede aumentar.</li>
+                            <li><b>Ejemplo de uso:</b> Esta arquitectura se usa en sistemas donde la simplicidad del bus compartido es preferida, a pesar de sus limitaciones en rendimiento y latencia.</li>
+                        </ul>
+                    </p>
+                    <br>
 
                     <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Interconexión Conmutada</h4>
+                    <p>
+                        Los procesadores se conectan a través de una red de switches que permite múltiples comunicaciones simultáneas, mejorando el ancho de banda y reduciendo la contención.<br>
+                        <ul class="lista"> 
+                            <li><b>Red conmutada:</b> En lugar de una estructura matricial, los procesadores están conectados a través de una red que utiliza switches (conmutadores) para dirigir los mensajes.</li>
+                            <li><b>Mayor flexibilidad y rendimiento:</b> Los switches permiten múltiples comunicaciones simultáneas, lo que mejora el ancho de banda y reduce los cuellos de botella comparado con la interconexión por bus.</li>
+                            <li><b>Topologías comunes:</b>
+                                <ul class="lista" style="list-style: circle;">
+                                    <li><b>Malla (mesh): </b>Cada procesador está conectado a varios otros en una red tipo malla, permitiendo rutas alternativas para la comunicación.</li>
+                                    <li><b>Toro (torus): </b>Similar a la malla, pero las conexiones se envuelven para formar una estructura toroidal, mejorando el balance de carga y reduciendo la latencia.</li>
+                                    <li><b>Hipercubo (hypercube): </b>Los procesadores están conectados en una topología de hipercubo, permitiendo rutas muy eficientes para la comunicación en redes grandes.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p><br>
+
+                    <h4 class="titulo4" style="display: inline-block; border-bottom: 2px solid #63880d; font-style: italic;">Comparación general</h4><br>
+                    <b>Escalabilidad:</b> La interconexión conmutada generalmente ofrece mejor escalabilidad y rendimiento para sistemas grandes debido a su capacidad para manejar múltiples comunicaciones simultáneas.<br>
+                    <b>Complejidad de programación:</b> La programación en sistemas con interconexión conmutada puede ser más compleja debido a la necesidad de gestionar múltiples rutas de comunicación y posibles colisiones de mensajes.<br>
+                    <b>Rendimiento:</b> En términos de latencia y throughput, la interconexión conmutada generalmente supera a la interconexión por bus, aunque a costa de una mayor complejidad de implementación y gestión de la red.<br><br>
                     
+                    En resumen, la elección entre interconexión por bus y conmutada dependerá de las necesidades específicas del sistema, incluyendo la cantidad de procesadores, la carga de trabajo, y los requisitos de rendimiento y escalabilidad.
+
+
+                </div>
 
 
                 <button onclick="scrollToTop('paralelismo')">▲</button>
