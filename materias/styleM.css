@@ -78,7 +78,7 @@ ol {
 
 
 .contenedor-imagen-tabla {
-    background-color: #f5f5f5; /* Fondo claro para el contenedor */
+    background-color: #f3dbdb; /* Fondo claro para el contenedor */
     border-radius: 15px; /* Bordes redondeados */
     padding: 20px; /* Espaciado interno */
     margin-top: 20px; /* Separación superior */
@@ -90,6 +90,11 @@ ol {
     max-width: 100%; /* Asegura que la imagen sea responsiva */
     border-radius: 10px; /* Bordes redondeados en la imagen */
     margin-bottom: 20px; /* Espaciado inferior */
+}
+
+.fila-descripcion{
+    background-color: #566b81;
+    font-weight: bold;
 }
 
 /* Versión en modo oscuro */
@@ -320,7 +325,7 @@ body.dark button {
 
 /* Estilo del contenedor de código */
 .code-container {
-    background-color: #f7f7f7; /* Fondo gris claro para el contenedor de código */
+    background-color: #f5bcbc; /* Fondo gris claro para el contenedor de código */
     border: 1px solid #ccc; /* Borde gris */
     border-radius: 5px; /* Bordes redondeados */
     padding: 15px; /* Espaciado interno */

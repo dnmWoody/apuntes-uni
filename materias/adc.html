@@ -1477,18 +1477,144 @@
                     <b>Rendimiento:</b> En términos de latencia y throughput, la interconexión conmutada generalmente supera a la interconexión por bus, aunque a costa de una mayor complejidad de implementación y gestión de la red.<br><br>
                     
                     En resumen, la elección entre interconexión por bus y conmutada dependerá de las necesidades específicas del sistema, incluyendo la cantidad de procesadores, la carga de trabajo, y los requisitos de rendimiento y escalabilidad.
-
-
                 </div>
-
-
                 <button onclick="scrollToTop('paralelismo')">▲</button>
             </section>
 
             <!-- ********************************************************************************************************** SECUENCIADORES -->
             <section id="secuenciadores" class="contenido">
-                <h2>SECUENCIADORES</h2>
-                <p>Descripción detallada sobre los sistemas de SECUENCIADORES</p>
+                <h2 class="titulo2">SECUENCIADORES</h2>
+                <p>
+                    Un secuenciador es un <b>circuito digital que controla el orden en que se ejecutan las instrucciones en un microcontrolador o microprocesador.</b><br>
+                    Es responsable de <b>generar las señales de control necesarias para dirigir el flujo de datos y operaciones dentro del procesador, asegurando que cada instrucción se ejecute en el momento adecuado y en el orden correcto.</b>
+                    <ol>
+                        <li><b>Control de orden:</b> El secuenciador se asegura de que las instrucciones se realicen en el orden correcto, es decir, que cada paso suceda en el momento adecuado.</li>
+                        <li><b>Generación de señales:</b> Envía pequeñas señales llamadas <b>microórdenees</b>. Cada microorden le dice a una parte específica del procesador qué hacer, como mover datos, hacer cálculos o enviar resultados.</li>
+                        <li><b>Sincronización de reloj:</b> Estas microórdenes están sincronizadas con el reloj del procesador, que marca el "ritmo" de ejecución. Como un metrónomo, el reloj asegura que cada paso se ejecute a un ritmo constante y sin errores.</li>
+                        <li><b>Registro de instrucciones (RI):</b> Este registro es como un "almacén" temporal que guarda la instrucción que se está ejecutando en ese momento. El secuenciador toma la instrucción del RI y la descompone en pequeños pasos, enviando las microórdenes necesarias para que se complete la tarea.</li>
+                    </ol>
+                    <div class="contenedor-imagen-tabla">
+                        <p>
+                            Imagina que el procesador debe realizar una operación de suma. El secuenciador sigue estos pasos:
+                            <ul class="lista">
+                                <li><b>Paso 1:</b> Toma los datos necesarios para la suma.</li>
+                                <li><b>Paso 2:</b> Envía una microorden a la unidad de cálculo para que sume los datos.</li>
+                                <li><b>Paso 3:</b> Manda una señal para que el resultado se guarde en el lugar adecuado.</li>
+                            </ul>
+                            Gracias al secuenciador, estos pasos suceden en el orden correcto y de manera organizada, lo que permite que el procesador funcione sin errores.<br>
+                            En resumen, el secuenciador es el "organizador" del procesador, asegurando que cada operación se ejecute de manera rápida y en el orden correcto.
+                        </p>
+                    </div><br>
+                </p>
+
+                <h3 class="titulo3">Secuenciadores de tipo cableados (Velocidad Fija y Alta)</h3>
+                <div class="texto-desarrollo">
+                    <p>
+                        Los secuenciadores de tipo cableado están constituidos principalmente por <b>puertas lógicas y otros componentes de lógica combinacional</b>, formando <b>circuitos electrónicos que generan las <u>señales de control</u></b> necesarias para ejecutar instrucciones en microcontroladores o microprocesadores.<br> 
+                        Su control se basa en una <b>arquitectura fija</b>, si se necesita cambiar el conjunto de instrucciones, hay que modificar físicamente el circuito, por lo que <b>son más rígidos</b>.<br> 
+                        Sin embargo, su ventaja es que funcionan a gran velocidad, ya que las señales de control se generan directamente a través de circuitos dedicados, sin necesidad de decodificación adicional. Esto hace que sean ideales para procesadores que no cambian mucho su conjunto de instrucciones, como las computadoras con arquitectura <b>RISC (que usa instrucciones sencillas y limitadas)</b>, donde el rendimiento crítico  y el conjunto de instrucciones es relativamente estable.<br><br>
+
+                        La naturaleza fija de su arquitectura implica que cada instrucción tiene un camino de ejecución predefinido y optimizado en hardware. Esto permite una ejecución muy eficiente de las instrucciones soportadas, lo que es particularmente beneficioso en arquitecturas RISC donde se busca maximizar la velocidad de procesamiento.<br>
+                        Sin embargo, la rigidez de su diseño también presenta desafíos. Modificar el conjunto de instrucciones en un secuenciador cableado es un proceso complejo que implica cambios físicos en el hardware. Esto limita la flexibilidad y adaptabilidad del sistema, haciendo que sea menos adecuado para entornos donde se requieren actualizaciones frecuentes del conjunto de instrucciones.<br>
+                        En el contexto de las arquitecturas RISC, los secuenciadores cableados encuentran su aplicación ideal. Estas arquitecturas, con su enfoque en un conjunto reducido de instrucciones simples y altamente optimizadas, se benefician enormemente de la velocidad y eficiencia que ofrecen los secuenciadores cableados. La simplicidad relativa del conjunto de instrucciones RISC se alinea bien con la naturaleza fija de estos secuenciadores, permitiendo una implementación eficiente y de alto rendimiento.<br>
+                        A pesar de sus limitaciones en términos de flexibilidad, los secuenciadores cableados siguen siendo una opción atractiva en sistemas donde la velocidad de ejecución y la eficiencia energética son prioritarias sobre la capacidad de modificación del conjunto de instrucciones. Su uso continúa siendo relevante en aplicaciones específicas y en sistemas embebidos donde el conjunto de tareas está bien definido y es poco probable que cambie significativamente durante la vida útil del dispositivo.
+
+                        <div class="contenedor-imagen-tabla">
+                            <p>
+                                <b>Ejemplo simple:</b> Imagina una línea de producción en una fábrica donde solo se hacen vasos de un tipo y tamaño. Si la línea está configurada para producir solo vasos, siempre hará lo mismo muy rápido, sin cambios. Si quieres que esa línea haga otro producto, tendrías que rediseñar físicamente la maquinaria.
+                            </p>
+                        </div><br>
+
+                        En una computadora RISC, los secuenciadores cableados son rápidos y eficientes, ya que solo deben ejecutar un conjunto reducido y optimizado de instrucciones, sin tener que hacer modificaciones en el hardware.
+                    </p>
+                </div>
+
+                <h3 class="titulo3">Secuenciadores microprogramados (Flexibles pero Lentos)</h3>
+                <div class="texto-desarrollo">
+                    <p>
+                        Los secuenciadores microprogramados son una <b>alternativa más flexible que utiliza una memoria ROM con microinstrucciones</b>, donde cada instrucción se ejecuta por <b>microprogramas</b> que generan las <u>señales</u> correspondientes para los componentes de la CPU, permitiendo modificar el microprograma para cambiar el conjunto de instrucciones, aunque este diseño es más lento y desapareció con la arquitectura de las máquinas RISC.<br>
+                        El funcionamiento de los secuenciadores microprogramados <b>se basa en la programación de transferencias entre registros y la secuencia en que estas se deben efectuar</b>. Utilizan una memoria adicional para alojar el microprograma, que contiene microinstrucciones para cada instrucción. Cada microinstrucción genera una o varias microórdenes.
+
+                        <div class="cuadro-chico">
+                            <p><i><b>Memoria ROM</b> (Aloja al) → <b>Microprograma</b> (Contiene)→ <b>Microinstrucción</b> (Genera)→ <b>Microorden</b>(Señal de control)</i></p>
+                        </div><br>
+
+                        Esta arquitectura ofrece una gran flexibilidad en el diseño y la implementación de conjuntos de instrucciones. Al almacenar las microinstrucciones en una memoria separada, es posible modificar el comportamiento de las instrucciones existentes o incluso añadir nuevas instrucciones sin cambiar el hardware subyacente. Esto permite una adaptabilidad significativa a diferentes requisitos de programación y facilita la creación de instrucciones complejas y poderosas.<br>
+                        La flexibilidad de los secuenciadores microprogramados los hace particularmente útiles en entornos donde el conjunto de instrucciones puede necesitar actualizaciones o modificaciones frecuentes. También son ventajosos en situaciones donde se requieren instrucciones altamente especializadas o complejas que serían difíciles de implementar eficientemente en hardware fijo.<br><br>
+
+                        Sin embargo, esta flexibilidad viene con un costo en términos de velocidad de ejecución. Los secuenciadores microprogramados son inherentemente más lentos que sus contrapartes cableadas. Esto se debe a que cada instrucción requiere múltiples accesos a la memoria de microprograma para recuperar y ejecutar las microinstrucciones correspondientes, lo que introduce latencias adicionales en el proceso de ejecución.<br><br>
+
+                        La llegada de las arquitecturas RISC (Reduced Instruction Set Computing) marcó un punto de inflexión para los secuenciadores microprogramados. Las arquitecturas RISC, con su enfoque en un conjunto reducido de instrucciones simples que se pueden ejecutar rápidamente en hardware, redujeron significativamente la necesidad de la flexibilidad ofrecida por la microprogramación. La simplicidad y la velocidad de ejecución de las instrucciones RISC superaron las ventajas de la flexibilidad de los secuenciadores microprogramados en muchas aplicaciones.<br>
+                        Aunque los secuenciadores microprogramados han sido en gran medida reemplazados en los procesadores de propósito general modernos, su legado persiste en ciertos nichos. Algunos sistemas especializados, particularmente aquellos que requieren conjuntos de instrucciones altamente personalizados o que necesitan mantener compatibilidad con sistemas legacy, aún pueden encontrar útil la flexibilidad ofrecida por la microprogramación.
+
+                        <div class="contenedor-imagen-tabla">
+                            <table>
+                                <tr>
+                                    <th> Características </th>
+                                    <th>Secuenciadores Cableados</th>
+                                    <th>Secuenciadores Microprogramados</th>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion">Componentes Principales</td>
+                                    <td>Puertas lógicas y componenetes de lógica combinacional</td>
+                                    <td>Memoria ROM que almacena microinstrucciones.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"> Control</td>
+                                    <td>Basado en una arquitectura fija, requiere cambios en el cableado para modificar el conjunto de instrucciones.</td>
+                                    <td>Basado en microprogramas almacenados en memoria ROM, permite modificar el conjunto de instrucciones sin cambiar el hardware.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"> Paralelismo</td>
+                                    <td>No explota el paralelismo, cada isntrucción tiene un camino de ejecución predefinido en hardware.</td>
+                                    <td>Cada instrucción se ejecuta por microprogramas que generan señales para los componenetes de la CPU.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"> Velocidad de Ejecución</td>
+                                    <td>Muy rápida, las señales de control se generan directamente a través de circuitos dedicados sin necesidad de decodificación adicional.</td>
+                                    <td>Más lenta, requiere múltiples accesos a la memoria de microprograma para ejecutar microinstrucciones, introduciendo latencias adicionales.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"> Flexibilidad</td>
+                                    <td>Rígido, modificar el conjunto de instrucciones es complejo y requiere cambios físicos en el hardware.</td>
+                                    <td>Alta flexibilidad, permite modificar el microprograma para cambiar el conjunto de instrucciones sin alterar el hardware subyacente.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"> Uso Típico</td> 
+                                    <td>Principalmente en computadores RISC con un conjunto pequeño y estable de instrucciones.</td>
+                                    <td>Útil en entornos que requieren actualizaciones frecuentes del conjunto de instrucciones o instrucciones complejas y especializadas.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"> Ventajas</td>
+                                    <td>Diseño sencillo<br>
+                                        Ejecución extremadamente rápida.</td>
+                                    <td>Gran flexibilidad.<br>
+                                        Adaptabilidad para actualizar o añadir nuevas instrucciones.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"> Limitaciones</td>
+                                    <td>Difícil de modificar.<br>
+                                        Menos adecuado para sistemas que requieren actualizaciones frecuentes.</td>
+                                    <td>Menor velocidad de ejecución comparada con secuenciadores cableados.<br>
+                                        Más complejo en términos de diseño y gestión de microprogramas.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fila-descripcion"> Impacto de las Arquitecturas RISC</td>
+                                    <td>Ideales para arquitecturas RISC que buscan maximizar la velocidad de procesamiento con un conjunto reducido de instrucciones.</td>
+                                    <td>La llegada de las arquitecturas RISC redujo su uso, ya que la simplicidad y velocidad de las instrucciones RISC disminuyeron la necesidad de la flexibilidad de la microprogramación.</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </p>
+                </div>
+
+                <h3 class="titulo3">Modelo Wilkes</h3>
+                <div class="texto-desarrollo">
+                    <p>
+                        
+                    </p>
+                </div>
+
                 <button onclick="scrollToTop('secuenciadores')">▲</button>
             </section>
 
