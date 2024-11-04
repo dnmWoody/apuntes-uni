@@ -54,6 +54,15 @@ ol {
     margin: 10px 20px 0px 0px;
 }
 
+.titulo4-subtitulo-verde {
+    display: inline-block;
+    border-bottom: 5px solid #880d47;
+    margin: 10px 20px 0px 0px;
+    display: inline-block; 
+    border-bottom: 2px solid #63880d; 
+    font-style: italic;
+}
+
 .negrita-color{
     background-color: #a25bb1;
 }

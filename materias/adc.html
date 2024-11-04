@@ -1611,10 +1611,78 @@
                 <h3 class="titulo3">Modelo Wilkes</h3>
                 <div class="texto-desarrollo">
                     <p>
-                        
+                        El <b>Modelo de Wilkes</b>, introducido por <b>Maurice Wilkes</b> en la década de 1950, es una técnica fundamental en el diseño de <b>secuenciadores microprogramados</b>.<br>
+                        Este modelo, también llamado <b>secuenciamiento explícito</b>, transforma la <b>unidad de control</b> de un procesador en una especie de "computadora en miniatura" que dirige cada operación mediante instrucciones de bajo nivel, llamadas <b>microinstrucciones</b>.<br>
+                        En este modelo, la unidad de control utiliza dos tablas:
+                        <ul class="lista">
+                            <li>Una para especificar el control de datos (control de las señales de cada componente de la CPU).</li>
+                            <li>Otra para gestionar el flujo de control (determina la secuencia de las microinstrucciones).</li>
+                        </ul><br>
+
+                        <h4 class="titulo4">Codificación horizontal y Control Detallado</h4>
+                        <p>
+                            El enfoque está vinculado a la <b>codificación horizontal</b>, donde cada microinstrucción incluye varios bits que:
+                            <ul class="lista">
+                                <li>Controlan directamente diferentes partes del procesador, como la ALU, los registros y el bus de datos.</li>
+                                <li>Especifican la dirección de la siguiente microinstrucción, permitiendo así un control explicito, preciso y detallado de cada operación a nivel de microinstrucción.</li>
+                            </ul>
+                        </p><br>
+
+                        <h4 class="titulo4">Ventajas y Relevancia</h4>
+                        <p>
+                            Este diseño otorga una gran flexibilidad, ya que permite adaptar el comportamiento de la unidad de control al actualizar el microprograma sin cambios físicos en el hardware. En su momento, esto fue un gran avance, especialmente para arquitecturas complejas y procesadores que requerían modificar o ampliar su conjunto de instrucciones.
+                        </p>
                     </p>
                 </div>
 
+                <h3 class="titulo3">Direccionamiento y Secuenciamiento de Microinstrucciones</h3>
+                <div class="texto-desarrollo">
+                    <p>
+                        <div class="cuadro-chico">
+                            <h4 class="titulo4-subtitulo-verde">Microinstrucción</h4>
+                            <p>
+                                Imagina que dentro de una CPU tienes tareas complejas, como una "suma", que en realidad se descomponen en varias acciones más simples, por ejemplo:
+                            <ul class="lista">
+                                <li>Traer los datos de la memoria.</li>
+                                <li>Ejecutar la suma en el procesador.</li>
+                                <li>Guardar el resultado.</li>
+                            </ul>
+                            Cada paso pequeño en este proceso es una <b>microinstrucción</b>. Cada microinstrucción activa ciertos circuitos en la CPU para realizar una tarea específica, como mover datos de un registro a otro o activar el circuito de suma.
+                            </p>
+                        </div><br>
+                        
+                        Existen dos métodos principales de direccionamiento y secuenciamiento en la ejecución de microinstrucciones: <b>implícito y explícito</b>. Estos métodos determinan cómo se selecciona la siguiente microinstrucción en el flujo de ejecución de un microprograma.<br>
+
+                        <h4 class="titulo4">Direccionamiento Implícito</h4>
+                        <p>
+                            En el direccionamiento implícito:<br>
+                            <b>Secuencia automática:</b> La siguiente microinstrucción a ejecutar se encuentra físicamente justo después de la actual en la memoria de control, siguiendo una secuencia natural.<br>
+                            <b>No incluye la dirección de la siguiente instrucción:</b> Las microinstrucciones no contienen información sobre la dirección de la próxima microinstrucción. En lugar de eso, se utiliza un contador de microprograma que incrementa automáticamente después de cada microinstrucción, apuntando a la siguiente posición en memoria.
+                        </p><br>
+
+                        <h4 class="titulo4-subtitulo-verde">Ventajas</h4>
+                        <p>
+                            <b>Simplicidad en el diseño:</b> No es necesario incluir información sobre la dirección en cada microinstrucción, lo que las hace más cortas y permite una memoria de control más compacta.
+                        </p><br>
+                        
+                        <h4 class="titulo4-subtitulo-verde">Desventajas</h4>
+                        <p>
+                            <b>Bifurcaciones más lentas:</b> Cuando se requiere un salto o bifurcación en el flujo de instrucciones, este método necesita microinstrucciones adicionales para realizar el cambio de secuencia, lo que introduce ciclos adicionales de reloj. Esto puede ralentizar el proceso si las bifurcaciones son frecuentes.
+                        </p><br>
+
+                        <h4 class="titulo4-subtitulo-verde">Funcionamiento</h4>
+                        <p>
+                            El direccionamiento implícito es similar a cómo un procesador convencional ejecuta instrucciones en secuencia, incrementando el contador de microprograma automáticamente después de cada instrucción. Sin embargo, el proceso de bifurcación necesita instrucciones adicionales, lo cual puede disminuir la eficiencia en ciertas aplicaciones.
+                        </p><br>
+                
+                        <h4 class="titulo4">Direccionamiento Explícito</h4>
+                        <p>
+
+                        </p>
+    
+                    </p>
+                </div>
+                
                 <button onclick="scrollToTop('secuenciadores')">▲</button>
             </section>
 
