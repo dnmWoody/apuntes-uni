@@ -1674,15 +1674,268 @@
                         <p>
                             El direccionamiento implícito es similar a cómo un procesador convencional ejecuta instrucciones en secuencia, incrementando el contador de microprograma automáticamente después de cada instrucción. Sin embargo, el proceso de bifurcación necesita instrucciones adicionales, lo cual puede disminuir la eficiencia en ciertas aplicaciones.
                         </p><br>
-                
-                        <h4 class="titulo4">Direccionamiento Explícito</h4>
-                        <p>
 
+                        <div class="contenedor-imagen-tabla">
+                            <p>
+                                <b>Ejemplo sencillo:</b> Piensa en una lista de pasos que sigues en orden. Si escribes:<br>
+                                <ol>
+                                    <li>Agarra la calculadora.</li>
+                                    <li>Presiona "1".</li>
+                                    <li>Presiona "+".</li>
+                                    <li>Presiona "2".</li>
+                                    <li>Presiona "=".</li>
+                                    <li>Anota el resultado.</li>
+                                </ol>
+                                En este caso, el paso 2 viene justo después del paso 1, y así sucesivamente. En un direccionamiento implícito, cada microinstrucción simplemente pasa a la siguiente en la lista, de forma automática. No necesita saber a dónde ir, porque cada instrucción está "implícitamente" justo después de la anterior.<br><br>
+                                
+                                Ventaja: Es rápido y sencillo cuando las instrucciones siguen una secuencia lineal sin interrupciones.<br><br>
+                                
+                                Desventaja: Si quieres saltar del paso 2 al paso 5, necesitas agregar una instrucción extra que te permita hacer el salto. Esto hace que las bifurcaciones (como los saltos o "ifs") sean más lentas y consuman ciclos de reloj adicionales.
+                            </p>
+                        </div>
+                
+                        <h4 class="titulo4">Direccionamiento Explícito (Modelo de Wilkes)</h4>
+                        <p>
+                            En el direccionamiento explícito:<br>
+                            <b>Dirección de la siguiente microinstrucción incluida:</b> Cada microinstrucción contiene un campo específico que indica la dirección de la próxima microinstrucción a ejecutar.
+                            <b>Mayor eficiencia en bifurcaciones:</b> Como la siguiente dirección ya está especificada dentro de la microinstrucción, el secuenciador no necesita ciclos adicionales para calcular o cargar la dirección en caso de bifurcaciones.
+                        </p><br>
+
+                        <h4 class="titulo4-subtitulo-verde">Ventajas</h4>
+                        <p>
+                            <b>Eficiencia en saltos:</b> La dirección de la próxima microinstrucción está siempre disponible, lo que elimina la necesidad de ciclos adicionales para manejar bifurcaciones. Esto permite que las instrucciones se ejecuten rápidamente, incluso cuando hay muchas bifurcaciones.
+                        </p><br>
+
+                        <h4 class="titulo4-subtitulo-verde">Desventajas</h4>
+                        <p>
+                            <b>Mayor uso de memoria:</b> Al incluir la dirección de la siguiente microinstrucción, cada microinstrucción es más grande, lo que aumenta la cantidad de memoria necesaria para almacenar el microprograma completo.
+                            <b>Mayor complejidad de diseño:</b> El hardware que maneja este tipo de direccionamiento es más complejo de implementar.
+                        </p><br>
+
+                        <h4 class="titulo4-subtitulo-verde">Funcionamiento</h4>
+                        <p>
+                            Este tipo de direccionamiento, también conocido como el Modelo de Wilkes, proporciona un control directo sobre el flujo de ejecución. Como la dirección de la siguiente microinstrucción se especifica en cada instrucción, el secuenciador puede ejecutar la secuencia sin esperar a cálculos adicionales, resultando en una ejecución más rápida en situaciones que incluyen muchos saltos.
                         </p>
-    
+
+                        <div class="contenedor-imagen-tabla">
+                            <p>
+                                <b>Ejemplo sencillo:</b> Ahora imagina que cada paso tiene escrito al final cuál es el próximo paso a ejecutar. Esto es como si el paso 1 dijera al final "ve al paso 2", y el paso 2 dijera "ve al paso 3", pero ahora el paso 3 pudiera decir "ve directamente al paso 5".<br><br>
+                                
+                                Con <b>direccionamiento explícito</b>, cada microinstrucción tiene la dirección exacta de la próxima microinstrucción. Así que, si el paso 3 quiere ir directamente al paso 5, tiene ya la información de a dónde debe saltar.<br><br>
+                                
+                                Ventaja: Las bifurcaciones son más rápidas porque cada instrucción ya sabe a cuál saltar, sin necesitar ciclos extra.<br><br>
+                                
+                                Desventaja: Este método requiere más espacio en memoria, ya que cada microinstrucción debe incluir la dirección de la siguiente. Además, es más complejo de implementar.
+                            </p>
+                        </div><br>
+                        
+                        <hr><br>
+                        En resumen:
+                        <ul class="lista">
+                            <li><b>Direccionamiento Implícito:</b> Más sencillo y compacto, ideal para secuencias lineales, pero menos eficiente en bifurcaciones.</li>
+                            <li><b>Direccionamiento Explícito:</b> Más rápido en bifurcaciones y saltos, pero requiere más memoria y es más complejo de diseñar.</li>
+                        </ul>
+                    </p>
+
+                    <div class="contenedor-imagen-tabla">
+                        <table>
+                            <tr>
+                                <th>Caracteristicas</th>
+                                <th>Direccionamiento Implícito</th>
+                                <th>Direccionamiento Explicito</th>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Definición</td>
+                                <td>La siguiente microinstrucción se encuentra físicamente después de la actual en la memoria de control.</td>
+                                <td>Cada microinstrucción indica explícitamente la dirección de la siguiente microinstrucción.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Contador de Microprograma</td>
+                                <td>Requiere un contador de microprograma que seincrementa automáticamente después de cada microisntrucción.</td>
+                                <td>NO requiere contador de microprograma, la dirección está incluida en cada microinstrucción.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion"> Velocidad de Ejecución</td>
+                                <td>Más lenta debido a las bifurcaciones que consumen ciclos adicionales de reloj.</td>
+                                <td>Más rápida en el manejo de bifurcaciones, evita ciclos adicionales de reloj.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Simplicidad en el diseño</td>
+                                <td>Simplifica el diseño de las microinstrucciones y resulta en una meoria de control más  compacta.</td>
+                                <td>El diseño es más complejo debido a la inclusión de la dirección de la siguiente microinstrucción en cada instrucción.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Tamaño de las Microinstrucciones</td>
+                                <td>Las microinstrucciones son más cortas porque no contienen la dirección de la siguiente instrucción.</td>
+                                <td>Las microinstrucciones son más largas debido a la inclusión de la dirección de la siguiente instrucción.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Eficiencia en Bifurcaciones</td>
+                                <td>Requiere microinstrucciones adicionales para manejar bifurcaciones, lo que puede ralentizar la ejecución.</td>
+                                <td>Maneja eficientemens las bifuraciones y saltos sin necesidad de ciclos adicionales.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Uso de Memoria</td>
+                                <td>Utiliza menos memoria debido a la ausencia de direcciones explícitas en las microinstrucciones</td>
+                                <td>Utiliza más memoria debido a las direcciones explícitas en cada microisntrucción.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Complejidad del Hardware</td>
+                                <td>Menos complejo, ya que no necesita manejar direcciones explícitas.</td>
+                                <td>Más complejo, debido a la necesidad de manejar direcciones explícitas en cada microinstrucción.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Aplicación Típica</td>
+                                <td>Adecuado para secuencias lineales de microinstrucciones con pocas bifurcaciones</td>
+                                <td>Adecuado para secuencias con muchas bifurcaciones y saltos, donde la eficiencia es crucial.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <h3 class="titulo3">Microprogramación</h3>
+                <div class="texto-desarrollo">
+                    <h4 class="titulo4">Codficación Horizontal</h4>
+                    <p>
+                        En la <b>codificación horizontal</b>, cada bit en una microinstrucción representa una señal de control específica (una microorden). Si el bit es 1, esa señal se activa; si es 0, permanece inactiva. Este método permite activar múltiples señales al mismo tiempo, pero es ineficiente en términos de memoria ya que la mayoria de los bits estarán en 0.<br> 
+                        La codificación horizontal, ofrece el máximo nivel de flexibilidad y paralelismo.<br>
+                        Cada señal de control puede ser activada o desactivada independientemete de las demás, permitiendo una gran variedad de combinaciones de microórdenes en una sola microinstrucción. Esto es especialmente útil para operaciones complejas que requieren la activación simultánea de múltiples componentes del sistema.<br>
+                        Sin embargo, esta flexibilidad tiene un costo significativo en términos de uso de memoria. Dado que cada bit corresponde a una señal de control específica, las microinstrucciones tienden a ser muy largas, con muchos bits en estado inactivo (0) en la mayoria de las operaciones.
+
+                        <div class="contenedor-imagen-tabla">
+                            <p>
+                                <b>Ejemplo:</b><br>
+                                Imagina que tienes un sistema con tres componentes: A, B y C. Cada uno puede ser activado o desactivado de forma independiente:
+                                <ul class="lista">
+                                    <li>Bit 0 controla A</li>
+                                    <li>Bit 1 controla B</li>
+                                    <li>Bit 2 controla C</li>
+                                </ul>
+                                Entonces, una microinstrucción como 101 significa:
+                                <ul class="lista">
+                                    <li>Activar A</li>
+                                    <li>Desactivar B</li>
+                                    <li>Activar C</li>
+                                </ul>
+                                Este método es útil si necesitamos activar muchos componentes simultáneamente, pero consume mucha memoria, ya que la mayoría de los bits son 0 cuando no se necesitan.
+                            </p>
+                        </div>
+                    </p><br>
+
+                    <h4 class="titulo4">Codficación Vertical</h4>
+                    <p>
+                        En la <b>codificación vertical</b>, en lugar de asignar un bit específico a cada señal (como en la horizontal), agrupamos varias señales en un solo código compacto y usamos un <b>decodificador</b> para activar la señal correcta. Esto ahorra memoria pero agrega un paso adicional para traducir el código a la señal deseada.
+                        <div class="contenedor-imagen-tabla">
+                            <p>
+                                <b>Ejemplo:</b><br>
+                                Supongamos que en vez de controlar cada componente (A, B, C) individualmente, ahora tenemos una sola microinstrucción como 01, donde:
+                                <ul class="lista">
+                                    <li>00 activa A</li>
+                                    <li>01 activa B</li>
+                                    <li>10 activa C</li>
+                                </ul>
+                                Entonces, una instrucción 01 significa activar B y el decodificador sabe cómo interpretar este código sin tener un bit separado para cada señal. Esto ahorra espacio de memoria, pero el proceso de decodificación toma un poco más de tiempo.
+                            </p>
+                        </div>  
+                    </p><br>
+
+                    <h4 class="titulo4">Codficación por Campo</h4>
+                    <p>
+                        La codificación por campo divide las señales en grupos (campos) y permite que cada campo controle un conjunto de microórdenes que no pueden activarse a la vez. De esta forma, se reduce el tamaño de las microinstrucciones manteniendo cierta capacidad de ejecución simultánea.
+
+                        <div class="contenedor-imagen-tabla">
+                            <p>
+                                <b>Ejemplo:</b><br>
+                                Imaginemos que queremos controlar dos grupos de componentes con una sola microinstrucción. Tenemos:
+                                <ul class="lista">
+                                    <li>Campo 1 (primer bit): 0 para A, 1 para B</li>
+                                    <li>Campo 2 (segundo bit): 0 para C, 1 para D</li>
+                                </ul>
+                                Entonces, la microinstrucción 10 significa:
+                                <ul class="lista">
+                                    <li>Activar B en el campo 1</li>
+                                    <li>Activar C en el campo 2</li>
+                                </ul>
+                                Esto permite una mayor flexibilidad que la codificación vertical, ya que varios campos pueden operar al mismo tiempo. Además, reduce el tamaño de las microinstrucciones sin un decodificador tan complejo.
+                            </p>
+                        </div>
+                    </p>
+
+                    <div class="contenedor-imagen-tabla">
+                        <table>
+                            <tr>
+                                <th>Caracteristicas</th>
+                                <th>Codificación Horizontal</th>
+                                <th>Codificación Vertical</th>
+                                <th>Codificación por Campo</th>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Definición</td>
+                                <td>Cada microinstrucción contiene tantos bits como señales de control</td>
+                                <td>Utiliza una codificación compacta, con un decodificador que traduce la microinstrucción en señales de control.</td>
+                                <td>Agrupa señales en campos, cada uno correspondiente a un grupo de microordenes que no pueden estar activas simultáneamente.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Paralelismo</td>
+                                <td>Máximo nivel de paralelismo, permite ejecuta órdenes simultáneamente</td>
+                                <td>Menor paralelismo debido al proceso de decodificación.</td>
+                                <td>Permite ejecución simultánea de microordenes dentro de cada campo.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Flexibilidad</td>
+                                <td>Alta, cada señal de control puede ser activada o desactivada.</td>
+                                <td>Menor, operaciones predefinidas que deben ser decodificadas.</td>
+                                <td>Intermedia, permite la activación de microordenes por campo.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Tamaño de Microinstrucciones</td>
+                                <td>Grandes, debido a la cantidad de bits necesarios para cada señal de control.</td>
+                                <td>Cortas, debido a la comprensión de información de control.</td>
+                                <td>Intermedio, cada campo representa un grupo de microordenes.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Complejidad de Decodificación</td>
+                                <td>Sin decodificación adicional, las señales de control se activan directamente.</td>
+                                <td>Requiere un decodificador, los que introducen latencia adicional.</td>
+                                <td>Decodificación simple y rápida, menos compleja que en la codificación vertical.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Velocidad de Ejecución</td>
+                                <td>Muy rápida, sin latencia adicional de decodificación.</td>
+                                <td>Mas lenta, debido al proceso de decodificación.</td>
+                                <td>Rápida, con la decodificación simple por campo.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Eficiencia de Memoria</td>
+                                <td>Baja, debido a la gran cantidad de bits inactivos.</td>
+                                <td>Alta, tamaño de las microinstrucciones reducido.</td>
+                                <td>Intermedia, en el medio de la vertical y la horizontal.</td>
+                            </tr>
+                            <tr>
+                                <td class="fila-descripcion">Ejemplo de Uso</td>
+                                <td>Utilizado en sistemas donde la flexibilidad y el paralelismo son cruciales.</td>
+                                <td>Utilizado en sistemas donde la eficiencia de memoria es crítica y la velocidad no es la máxima prioridad.</td>
+                                <td>Utilizado en sistemas que requieren un equilibrio entre eficiencia de memoria y velocidad de ejecución.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <h3 class="titulo3">¿Para qué arquitecturas son adecuados los secuenciadores microprogramados? </h3>
+                <div class="texto-desarrollo">
+                    <p>
+                    Los secuenciadores microprogramados son más adecuados para arquitecturas complejas que requieren flexibilidad y capacidad de modificación, como las arquitecturas CISC (Complex Instruction Set Computing). Estas arquitecturas se benefician de la capacidad de los secuenciadores microprogramados para manejar un conjunto grande y variado de instrucciones. Al almacenar microprogramas en memoria ROM, es posible modificar o añadir nuevas instrucciones sin necesidad de cambiar el hardware, lo cual proporciona una gran flexibilidad. Este enfoque permite a las arquitecturas CISC implementar instrucciones más complejas y poderosas, aunque a costa de una ejecución más lenta en comparación con los secuenciadores cableados.
+                </p>
+                </div>
+
+                <h3 class="titulo3">¿Para qué arquitecturas son adecuados los secuenciadores cableados?</h3>
+                <div class="texto-desarrollo">
+                    <p>
+                        Los secuenciadores cableados son más adecuados para arquitecturas RISC (Reduced Instruction Set Computing). Estas arquitecturas se benefician de la velocidad y eficiencia que ofrecen los secuenciadores cableados, ya que están diseñadas con un conjunto pequeño de instrucciones simples y específicas. Al utilizar un diseño rígido y optimizado, los secuenciadores cableados pueden ejecutar estas instrucciones de manera muy rápida y eficiente, lo cual es ideal para la filosofía de RISC que prioriza un alto rendimiento y una ejecución rápida. Sin embargo, esta rigidez también implica una menor flexibilidad, ya que cualquier cambio en el conjunto de instrucciones requiere modificaciones en el cableado del secuenciador.
                     </p>
                 </div>
-                
+
                 <button onclick="scrollToTop('secuenciadores')">▲</button>
             </section>
 
